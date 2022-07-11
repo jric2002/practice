@@ -1,0 +1,6 @@
+Nombre: miguel
+Edad: 19
+Nombre: jose
+Edad: 19
+Nombre: daniel
+Edad: 28
