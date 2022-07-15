@@ -7,7 +7,7 @@ struct Node {
   struct Node *next;
 };
 int main() {
-  struct Node *n1 = (struct Node *)malloc(sizeof(struct Node));
+  struct Node *n1 = malloc(sizeof(struct Node));
   struct Node *n2 = (struct Node *)malloc(sizeof(struct Node));
   struct Node *n3 = (struct Node *)malloc(sizeof(struct Node));
   n1->value = 10;
