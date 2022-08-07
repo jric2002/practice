@@ -3,6 +3,7 @@
 using namespace std;
 /* Declaration */
 int main() {
+  cout << "hello, world" << endl;
   return 0;
 }
 /* Definition */
