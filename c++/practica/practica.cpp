@@ -3,8 +3,6 @@
 using namespace std;
 /* Declaration */
 int main() {
-  char c = 'a'
-  cout << c << endl;
   return 0;
 }
 /* Definition */
