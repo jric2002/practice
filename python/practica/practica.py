@@ -1,2 +1,3 @@
 # Author: José Rodolfo (jric2002)
-print("Hello, world")
+import os
+print((os.path.basename(__file__)).replace(".py", ""))
