@@ -7,10 +7,10 @@
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
   // Register the window class.
-  const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+  const wchar_t CLASS_NAME[] = L"My first program";
   WNDCLASS wc = { };
-  wc.lpfnWndProc   = WindowProc;
-  wc.hInstance     = hInstance;
+  wc.lpfnWndProc = WindowProc;
+  wc.hInstance = hInstance;
   wc.lpszClassName = CLASS_NAME;
   RegisterClass(&wc);
   // Create the window.
@@ -48,7 +48,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hwnd, &ps);
       // All painting occurs here, between BeginPaint and EndPaint.
-      FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+      FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
       EndPaint(hwnd, &ps);
       return 0;
   }

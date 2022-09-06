@@ -90,14 +90,14 @@ int WINAPI WinMain(
 };
 /* Definition */
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-  PAINTSTRUCT ps;
-  HDC hdc;
-  TCHAR greeting[] = _T("Saludos desde mi casa...xD");
   switch (message) {
     case WM_CREATE:
       printf("%s", greeting);
       break;
     case WM_PAINT:
+      PAINTSTRUCT ps;
+      HDC hdc;
+      TCHAR greeting[] = _T("Saludos desde mi casa...xD");
       hdc = BeginPaint(hWnd, &ps);
       // Here your application is laid out.
       // For this introduction, we just print out "Hello, Windows desktop!"
