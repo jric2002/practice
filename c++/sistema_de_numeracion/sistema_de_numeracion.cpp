@@ -13,10 +13,10 @@ int octalToDecimal(string);
 string decimalToHexadecimal(int);
 int hexadecimalToDecimal(string);
 int main() {
-  int option;
+  char option;
   string binary, octal, hexadecimal;
   int decimal;
-  do {
+  while (true) {
     cout << "Operations" << endl;
     cout.fill('-');
     cout.width(10);
@@ -30,49 +30,49 @@ int main() {
     cout << "0. Exit." << endl;
     cout << "Choose an option: ";
     cin >> option;
-    switch (option) {
-      case 1:
-        cout << "Enter a decimal: ";
-        cin >> decimal;
-        cout << "The decimal " << decimal << " in binary is: " << decimalToBinary(decimal) << endl;
-        break;
-      case 2:
-        cout << "Enter a binary: ";
-        cin >> binary;
-        cout << "The binary " << binary << " in decimal is: " << binaryToDecimal(binary) << endl;
-        break;
-      case 3:
-        cout << "Enter a decimal: ";
-        cin >> decimal;
-        cout << "The decimal " << decimal << " in octal is: " << decimalToOctal(decimal) << endl;
-        break;
-      case 4:
-        cout << "Enter an octal: ";
-        cin >> octal;
-        cout << "The octal " << octal << " in decimal is: " << octalToDecimal(octal) << endl;
-        break;
-      case 5:
-        cout << "Enter a decimal: ";
-        cin >> decimal;
-        cout << "The decimal " << decimal << " in hexadecimal is: " << decimalToHexadecimal(decimal) << endl;
-        break;
-      case 6:
-        cout << "Enter a hexadecimal: ";
-        cin >> hexadecimal;
-        cout << "The hexadecimal " << hexadecimal << " in decimal is: " << hexadecimalToDecimal(hexadecimal) << endl;
-        break;
-      case 0:
-        cout << "Leaving the program :)" << endl;
-        break;
-      default:
-        cout << "That option doesn't exist...xD" << endl;
-        break;
+    cin.ignore();
+    if (option == '1') {
+      cout << "Enter a decimal: ";
+      cin >> decimal;
+      cout << "The decimal " << decimal << " in binary is: " << decimalToBinary(decimal) << endl;
+    }
+    else if (option == '2') {
+      cout << "Enter a binary: ";
+      cin >> binary;
+      cout << "The binary " << binary << " in decimal is: " << binaryToDecimal(binary) << endl;
+    }
+    else if (option == '3') {
+      cout << "Enter a decimal: ";
+      cin >> decimal;
+      cout << "The decimal " << decimal << " in octal is: " << decimalToOctal(decimal) << endl;
+    }
+    else if (option == '4') {
+      cout << "Enter an octal: ";
+      cin >> octal;
+      cout << "The octal " << octal << " in decimal is: " << octalToDecimal(octal) << endl;
+    }
+    else if (option == '5') {
+      cout << "Enter a decimal: ";
+      cin >> decimal;
+      cout << "The decimal " << decimal << " in hexadecimal is: " << decimalToHexadecimal(decimal) << endl;
+    }
+    else if (option == '6') {
+      cout << "Enter a hexadecimal: ";
+      cin >> hexadecimal;
+      cout << "The hexadecimal " << hexadecimal << " in decimal is: " << hexadecimalToDecimal(hexadecimal) << endl;
+    }
+    else if (option == '0') {
+      cout << "Leaving the program :)" << endl;
+      break;
+    }
+    else {
+      cout << "That option doesn't exist...xD" << endl;
     }
     cout << endl;
     /* cin.ignore();
     cin.get();
     system("cls"); */
-  } while (option != 0);
+  }
   return 0;
 }
 /* Definition */
