@@ -3,6 +3,7 @@
 using namespace std;
 /* Declaration */
 int main() {
+  cout << "sheet" << endl;
   return 0;
 }
 /* Definition */
