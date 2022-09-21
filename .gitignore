@@ -86,6 +86,9 @@ dkms.conf
 *.out
 *.app
 
+# Others
+*.res
+
 # Java #
 # Compiled class file
 *.class
