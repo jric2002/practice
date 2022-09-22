@@ -106,7 +106,7 @@ void dibujarBordeEsquinaID(HDC hdc, int x, int y, int a) {
 }
 
 void dibujarEsquina(HDC hdc, int x, int y, int a, int lu) {
-  if (a > 6) { // Prueba cambiando el valor de 20 por 10 o tal vez 50
+  if (a > 100) { // Prueba cambiando el numero 100 por un numero menor o mayor
     if (lu == 1) {
       dibujarLinea(hdc, x - (a / 4), y - (a / 2), x + (a / 4), y - (a / 2)); // Superior
       dibujarLinea(hdc, x - (a / 2), y - (a / 4), x - (a / 2), y + (a / 4)); // Izquierda
