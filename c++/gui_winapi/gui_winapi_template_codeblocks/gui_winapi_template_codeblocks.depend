@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1663780273 source:e:\proyectos\github\practice\c++\gui_winapi\gui_winapi_template_codeblocks\main.cpp
+	<windows.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1663780336 e:\proyectos\github\practice\c++\gui_winapi\gui_winapi_template_codeblocks\resource.h
+
+1663780317 source:e:\proyectos\github\practice\c++\gui_winapi\gui_winapi_template_codeblocks\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
