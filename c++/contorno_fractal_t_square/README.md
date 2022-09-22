@@ -1,4 +1,10 @@
 # Contorno Fractal - T-square
+## Compilar
+Para compilar el código simplemente abra su terminal y ejecute:
+```
+g++ -mconsole -mwindows .\contorno_fractal_t_square.cpp -o .\output.exe
+```
+
 En la linea 109, puedes cambiar el numero 100 por un número mas pequeño o uno más grande.  
 ![Contorno Fractal - T-square](./images/contorno-fractal-t-square-porcion-de-codigo.png)
 
