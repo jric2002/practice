@@ -1,7 +1,7 @@
 # Author: José Rodolfo (jric2002)
 import matplotlib.pyplot as plt
 import numpy as np
-datos =[]
+datos = []
 datos.append([250, 1.003])
 datos.append([300, 1.005])
 datos.append([350, 1.008])
