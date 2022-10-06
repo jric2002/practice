@@ -7,16 +7,16 @@ using namespace std;
 static TCHAR class_name[] = "Desktop App";
 static TCHAR title_text[] = "Contorno fractal - T-square";
 // Declaración del procedimiento de ventana
-//void dibujarObjeto(HDC, int, int, int);
-void dibujarLinea(HDC, int, int, int, int);
-void dibujarBordeEsquinaSI(HDC, int, int, int);
-void dibujarBordeEsquinaSD(HDC, int, int, int);
-void dibujarBordeEsquinaII(HDC, int, int, int);
-void dibujarBordeEsquinaID(HDC, int, int, int);
-void dibujarEsquina(HDC, int, int, int, int);
-void contornoFractal(HDC, int, int, int);
-//void L(HDC, int, int, int, int);
-int width, height;
+//void dibujarObjeto(HDC, double, double, double);
+void dibujarLinea(HDC, double, double, double, double);
+void dibujarBordeEsquinaSI(HDC, double, double, double);
+void dibujarBordeEsquinaSD(HDC, double, double, double);
+void dibujarBordeEsquinaII(HDC, double, double, double);
+void dibujarBordeEsquinaID(HDC, double, double, double);
+void dibujarEsquina(HDC, double, double, double, double);
+void contornoFractal(HDC, double, double, double);
+//void L(HDC, double, double, double, double);
+double width, height;
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 int WINAPI WinMain(
   HINSTANCE hThisInstance,
@@ -73,7 +73,7 @@ int WINAPI WinMain(
   return mensaje.wParam;
 }
 /* Definition */
-/*void dibujarObjeto(HDC hdc, int x, int y, int a) {
+/*void dibujarObjeto(HDC hdc, double x, double y, double a) {
   MoveToEx(hdc, x, y, NULL);
   LineTo(hdc, x + a, y);
   MoveToEx(hdc, x + a, y, NULL);
@@ -83,33 +83,34 @@ int WINAPI WinMain(
   MoveToEx(hdc, x, y + a, NULL);
   LineTo(hdc, x, y);
 }*/
-void dibujarLinea(HDC hdc, int xi, int yi, int xf, int yf) {
+void dibujarLinea(HDC hdc, double xi, double yi, double xf, double yf) {
   MoveToEx(hdc, xi, yi, NULL);
   LineTo(hdc, xf, yf);
 }
 // Dibujar bordes de esquina SI, SD, II, ID
-void dibujarBordeEsquinaSI(HDC hdc, int x, int y, int a) {
-  dibujarLinea(hdc, x, y, x, y + (a / 2)); // Borde SI -> Izq
-  dibujarLinea(hdc, x, y, x + (a / 2), y); // Borde SI -> Sup
+void dibujarBordeEsquinaSI(HDC hdc, double x, double y, double a) {
+  dibujarLinea(hdc, x, y + (a / 2), x, y); // Borde SI -> Izq
+  dibujarLinea(hdc, x + (a / 2), y, x, y); // Borde SI -> Sup
 }
-void dibujarBordeEsquinaSD(HDC hdc, int x, int y, int a) {
+void dibujarBordeEsquinaSD(HDC hdc, double x, double y, double a) {
   dibujarLinea(hdc, x, y + (a / 2), x, y); // Borde SD -> Der
   dibujarLinea(hdc, x - (a / 2), y, x, y); // borde SD -> Sup
 }
-void dibujarBordeEsquinaII(HDC hdc, int x, int y, int a) {
+void dibujarBordeEsquinaII(HDC hdc, double x, double y, double a) {
   dibujarLinea(hdc, x, y - (a / 2), x, y); // Borde II -> Izq
-  dibujarLinea(hdc, x, y, x + (a / 2), y); // Borde II -> Inf
+  dibujarLinea(hdc, x + (a / 2), y, x, y); // Borde II -> Inf
 }
-void dibujarBordeEsquinaID(HDC hdc, int x, int y, int a) {
+void dibujarBordeEsquinaID(HDC hdc, double x, double y, double a) {
   dibujarLinea(hdc, x, y - (a / 2), x, y); // Borde ID -> Der
   dibujarLinea(hdc, x - (a / 2), y, x, y); // Borde ID -> Inf
 }
-
-void dibujarEsquina(HDC hdc, int x, int y, int a, int lu) {
+void dibujarEsquina(HDC hdc, double x, double y, double a, double lu) {
   if (a > 100) { // Prueba cambiando el numero 100 por un numero menor o mayor
     if (lu == 1) {
-      dibujarLinea(hdc, x - (a / 4), y - (a / 2), x + (a / 4), y - (a / 2)); // Superior
-      dibujarLinea(hdc, x - (a / 2), y - (a / 4), x - (a / 2), y + (a / 4)); // Izquierda
+      dibujarLinea(hdc, x, y - (a / 2), x - (a / 4), y - (a / 2)); // Superior - Parte 1
+      dibujarLinea(hdc, x, y - (a / 2), x + (a / 4), y - (a / 2)); // Superior - Parte 2
+      dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y - (a / 4)); // Izquierda - Parte 1
+      dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y + (a / 4)); // Izquierda - Parte 2
       dibujarLinea(hdc, x, y + (a / 2), x - (a / 4), y + (a / 2)); // Inferior
       dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y - (a / 4)); // Derecha
       dibujarEsquina(hdc, x - (a / 2), y - (a / 2), a / 2, 1); // SI
@@ -117,18 +118,22 @@ void dibujarEsquina(HDC hdc, int x, int y, int a, int lu) {
       dibujarEsquina(hdc, x - (a / 2), y + (a / 2), a / 2, 3); // II
     }
     else if (lu == 2) {
-      dibujarLinea(hdc, x - (a / 4), y - (a / 2), x + (a / 4), y - (a / 2)); // Superior
+      dibujarLinea(hdc, x, y - (a / 2), x - (a / 4), y - (a / 2)); // Superior - Parte 1
+      dibujarLinea(hdc, x, y - (a / 2), x + (a / 4), y - (a / 2)); // Superior - Parte 2
       dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y - (a / 4)); // Izquierda
       dibujarLinea(hdc, x, y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior
-      dibujarLinea(hdc, x + (a / 2), y - (a / 4), x + (a / 2), y + (a / 4)); // Derecha
+      dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y - (a / 4)); // Derecha - Parte 1
+      dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y + (a / 4)); // Derecha - Parte 2
       dibujarEsquina(hdc, x + (a / 2), y - (a / 2), a / 2, 2); // SD
       dibujarEsquina(hdc, x - (a / 2), y - (a / 2), a / 2, 1); // SI
       dibujarEsquina(hdc, x + (a / 2), y + (a / 2), a / 2, 4); // ID
     }
     else if (lu == 3) {
       dibujarLinea(hdc, x, y - (a / 2), x - (a / 4), y - (a / 2)); // Superior
-      dibujarLinea(hdc, x - (a / 2), y - (a / 4), x - (a / 2), y + (a / 4)); // Izquierda
-      dibujarLinea(hdc, x - (a / 4), y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior
+      dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y - (a / 4)); // Izquierda - Parte 1
+      dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y + (a / 4)); // Izquierda - Parte 2
+      dibujarLinea(hdc, x, y + (a / 2), x - (a / 4), y + (a / 2)); // Inferior - Parte 1
+      dibujarLinea(hdc, x, y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior - Parte 2
       dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y + (a / 4)); // Derecha
       dibujarEsquina(hdc, x - (a / 2), y + (a / 2), a / 2, 3); // II
       dibujarEsquina(hdc, x - (a / 2), y - (a / 2), a / 2, 1); // SI
@@ -137,8 +142,10 @@ void dibujarEsquina(HDC hdc, int x, int y, int a, int lu) {
     else {
       dibujarLinea(hdc, x, y - (a / 2), x + (a / 4), y - (a / 2)); // Superior
       dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y + (a / 4)); // Izquierda
-      dibujarLinea(hdc, x - (a / 4), y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior
-      dibujarLinea(hdc, x + (a / 2), y - (a / 4), x + (a / 2), y + (a / 4)); // Derecha
+      dibujarLinea(hdc, x, y + (a / 2), x - (a / 4), y + (a / 2)); // Inferior - Parte 1
+      dibujarLinea(hdc, x, y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior - Parte 2
+      dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y - (a / 4)); // Derecha - Parte 1
+      dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y + (a / 4)); // Derecha - Parte 2
       dibujarEsquina(hdc, x + (a / 2), y + (a / 2), a / 2, 4); // ID
       dibujarEsquina(hdc, x + (a / 2), y - (a / 2), a / 2, 2); // SD
       dibujarEsquina(hdc, x - (a / 2), y + (a / 2), a / 2, 3); // II
@@ -167,13 +174,17 @@ void dibujarEsquina(HDC hdc, int x, int y, int a, int lu) {
     }
   }
 }
-void contornoFractal(HDC hdc, int x, int y, int a) {
+void contornoFractal(HDC hdc, double x, double y, double a) {
   //Rectangle(hdc, x-a, y-a, x+a, y+a);
   //dibujarObjeto(hdc, x -(a / 2), y - (a / 2), a);
-  dibujarLinea(hdc, x - (a / 4), y - (a / 2), x + (a / 4), y - (a / 2));
-  dibujarLinea(hdc, x - (a / 4), y + (a / 2), x + (a / 4), y + (a / 2));
-  dibujarLinea(hdc, x - (a / 2), y - (a / 4), x - (a / 2), y + (a / 4));
-  dibujarLinea(hdc, x + (a / 2), y - (a / 4), x + (a / 2), y + (a / 4));
+  dibujarLinea(hdc, x, y - (a / 2), x - (a / 4), y - (a / 2)); // Superior - Parte 1
+  dibujarLinea(hdc, x, y - (a / 2), x + (a / 4), y - (a / 2)); // Superior - Parte 2
+  dibujarLinea(hdc, x, y + (a / 2), x - (a / 4), y + (a / 2)); // Inferior - Parte 1
+  dibujarLinea(hdc, x, y + (a / 2), x + (a / 4), y + (a / 2)); // Inferior - Parte 2
+  dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y - (a / 4)); // Izquierda - Parte 1
+  dibujarLinea(hdc, x - (a / 2), y, x - (a / 2), y + (a / 4)); // Izquierda - Parte 2
+  dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y - (a / 4)); // Derecha - Parte 1
+  dibujarLinea(hdc, x + (a / 2), y, x + (a / 2), y + (a / 4)); // Derecha - Parte 2
   // SI = 1; SD = 2; II = 3; ID = 4;
   // SI = superior izquierdo
   // SD = superior derecho
@@ -184,7 +195,7 @@ void contornoFractal(HDC hdc, int x, int y, int a) {
   dibujarEsquina(hdc, x - (a / 2), y + (a / 2), a / 2, 3); // II
   dibujarEsquina(hdc, x + (a / 2), y + (a / 2), a / 2, 4); // ID
 }
-/*void L(HDC hdc, int xi, int yi, int xf, int yf) {
+/*void L(HDC hdc, double xi, double yi, double xf, double yf) {
   MoveToEx(hdc, xi, yi, NULL);
   LineTo(hdc, xf, yf);
 }*/
