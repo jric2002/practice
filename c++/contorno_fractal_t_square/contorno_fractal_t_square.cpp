@@ -53,7 +53,7 @@ int WINAPI WinMain(
     WS_OVERLAPPEDWINDOW, // Tipo por defecto
     CW_USEDEFAULT, // Windows decide la posición
     CW_USEDEFAULT, // donde se coloca la ventana
-    600, // Ancho en pixels
+    900, // Ancho en pixels
     600, // Alto en pixels
     HWND_DESKTOP, // La ventana es hija del escritorio
     NULL, // Sin menú
