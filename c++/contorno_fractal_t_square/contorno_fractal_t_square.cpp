@@ -53,7 +53,7 @@ int WINAPI WinMain(
     WS_OVERLAPPEDWINDOW, // Tipo por defecto
     CW_USEDEFAULT, // Windows decide la posición
     CW_USEDEFAULT, // donde se coloca la ventana
-    900, // Ancho en pixels
+    600, // Ancho en pixels
     600, // Alto en pixels
     HWND_DESKTOP, // La ventana es hija del escritorio
     NULL, // Sin menú
@@ -105,7 +105,7 @@ void dibujarBordeEsquinaID(HDC hdc, double x, double y, double a) {
   dibujarLinea(hdc, x - (a / 2), y, x, y); // Borde ID -> Inf
 }
 void dibujarEsquina(HDC hdc, double x, double y, double a, double lu) {
-  if (a > 100) { // Prueba cambiando el numero 100 por un numero menor o mayor
+  if (a > 12) { // Prueba cambiando el numero 100 por un numero menor o mayor
     if (lu == 1) {
       dibujarLinea(hdc, x, y - (a / 2), x - (a / 4), y - (a / 2)); // Superior - Parte 1
       dibujarLinea(hdc, x, y - (a / 2), x + (a / 4), y - (a / 2)); // Superior - Parte 2
