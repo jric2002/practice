@@ -23,6 +23,8 @@ Aquí te dejo algunos ejemplos:
 * Con 6  
 ![Contorno Fractal - T-square](./images/contorno-fractal-t-square-5.png)
 
+YouTube: https://www.youtube.com/watch?v=mchsYkrhWXE
+
 ## Nota
 Para dibujar 2 o más lineas debes tener en cuenta la dirección ya que puede que obtengas espacios entre lineas, es por eso que hice 3 pruebas para que veas como se dibujan las lineas en distintas direcciones. El ejemplo lo puedes en contrar en el archivo `dibujando_lineas_prueba.cpp`.
 
