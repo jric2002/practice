@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 # -*- coding: utf-8 -*-
 # Author: José Rodolfo (jric2002)
 class Producto:
