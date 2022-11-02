@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+# Comentario de una linea
+# Usando HereDoc
+name="José Rodolfo"
+<< 'TERMINATE'
+1ra Forma
+Esto es un comentario
+multilinea.
+echo "Hola, mundo"
+TERMINATE
+cat << EOF
+Comentario
+  echo "My name is ${name}"
+EOF
+cat << 'EOF'
+Comentario
+  echo "My name is ${name}"
+EOF
+cat << "EOF"
+Comentario
+  echo "My name is ${name}"
+EOF
+# Otra forma de comentar
+: '
+2da Forma
+Esto es un comentario
+multilinea.
+echo "Hola, mundo"
+'
+# Fuentes
+# https://www.cyberciti.biz/faq/bash-comment-out-multiple-line-code/
+# https://linuxize.com/post/bash-heredoc/

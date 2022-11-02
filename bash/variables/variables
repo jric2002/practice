@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+name="José Rodolfo"
+echo "My name is ${name}"
+echo "-------------------------------"
+echo "Nombre del Script: $0"
+echo "Primer argumento: $1"
+echo "Segundo argumento: $2"
+echo "Tercer argumento: $3"
+echo "Cantidad de argumentos: $#"
+echo "Todos los argumentos: $@"
+echo "Estado del ultimo prcoeso que se ejecuto: $?"
+echo "ID de proceso del script: $$"
+echo "User: $USER"
+echo "Hostnaem: $HOSTNAME"
+sleep 3
+echo "Tiempo transcurrido: $SECONDS"
+echo "Numero aleatorio: $RANDOM"
+echo "Numero de lineas: $LINENO"
+echo "Shell: $SHELL"

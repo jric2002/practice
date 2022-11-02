@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+declare -a dist=('Arch Linux' 'Debian' Ubuntu Linux\ Mint)
+echo "[+] Todos los elementos de 'dist'"
+echo "1er elemento: ${dist[0]}"
+for i in "${dist[@]}"; do
+  echo "Dist $i"
+done
+echo 'Nota: ${dist[@] es diferente a ${dist[*]}'
+echo "Cantidad elementos de 'dist': ${#dist[@]}"
+echo "[+] Agregar un elemento al array 'dist'"
+dist=("${dist[@]:0:2}" Fedora "${dist[@]:2}")
+for i in "${dist[@]}"; do
+  echo "Dist $i"
+done
+echo "[+] Eliminar un elemento al array 'dist'"
+# unset dist[2] # No recomendable
+dist=("${dist[@]:0:2}" "${dist[@]:3}")
+echo ${dist[2]}
+for i in "${dist[@]}"; do
+  echo "Dist $i"
+done
+echo "[+] Unir 'dist' con 'os'"
+declare -a os=('Windows' 'Linux' 'MacOS')
+declare -a nuevo_array=("${dist[@]}" "${os[@]}")
+for i in "${nuevo_array[@]}"; do
+  echo "Elem $i"
+done
+echo "[+] Tres primeros elementos de 'nuevo_array'"
+for i in "${nuevo_array[@]::3}"; do
+  echo "Elem $i"
+done
+echo "[+] Tres ultimos elementos de 'nuevo_array'"
+for i in "${nuevo_array[@]:${#nuevo_array[@]}-3}"; do
+  echo "Elem $i"
+done
+echo "[+] Eliminar array 'nuevo_array'"
+unset nuevo_array
+for i in "${nuevo_array[@]}"; do
+  echo "Elem $i"
+done

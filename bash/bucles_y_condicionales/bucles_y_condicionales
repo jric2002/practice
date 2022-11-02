@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+# -a and -o only work in one bracket
+# && and || only work in double bracket and in two or more expressions of one bracket
+# -gt = greater than (mayor que)
+# -lt = less than (menor que)
+# -ge = greater equal (mayor igual que)
+# -le = less equal (menor igual que)
+# -eq = equal to (igual que)
+# -ne = not equal to (no igual que)
+# <, >, >=, <=   work with double brackets
+# ==, =, != work with one and two brackets
+# -gt, -lt, -ge, -le, -eq, -ne  work with one and two brackets
+# escapes \<, \> for use in 1-bracket expressions
+# Condicionales
+echo "CONDICIONALES"
+echo "-------------"
+n=30
+if [ $n -eq 0 ]; then
+  echo "Cero"
+elif [ $n -ge 10 ] && [ $n -lt 20 ]; then
+  echo "Uno"
+elif [[ $n -ge 20 && $n -lt 30 ]]; then
+  echo "Dos"
+elif [ $n -ge 30 -a $n \< 40 ]; then
+  echo "Tres"
+else
+  echo "Ultimo"
+fi
+# Usando Case
+v=25
+case $v in
+  10 | 15)
+    echo "Numero 10 o 15"
+    ;;
+  20 | 25)
+    echo "Numero 20 o 25"
+    ;;
+  30 | 35)
+    echo "Numero 30 o 35"
+    ;;
+  *)
+    echo "Otro numero"
+    ;;
+esac
+echo
+# Bucles
+echo "BUCLES"
+echo "------"
+i=1
+echo "[+] Parte 1"
+while [ $i -le 5 ]; do
+  if [ $i -eq 3 ]; then
+    echo "Saliendo del bucle"
+    break
+  fi
+  echo "Numero $i"
+  ((i++))
+  # i=$[$i+1]
+  # i=$(($i+1))
+done
+echo "[+] Parte 2"
+for i in {6..10}; do
+  echo "Numero $i"
+done
+echo "[+] Parte 3"
+for ((i=11; i <= 15; i++)); do
+  if [ $i -eq 13 ]; then
+    echo "Continua"
+    continue
+  fi
+  echo "Numero $i"
+done
+echo "[+] Parte 4"
+for ((i=16; i <= 20; i=$[$i+2])); do
+  echo "Numero $i"
+done
+echo -e "\n[+] Colores"
+for c in rojo verde azul amarillo; do
+  echo "Color $c"
+done
+echo -e "\n[+] Archivos y Directorios"
+for o in $(ls); do
+  echo $o
+done
+echo -e "\n[+] Bucle infinito con condicion de parada"
+i=1
+# while true; do
+while :; do
+  if [ $i -eq 3 ]; then
+    echo "Cinco"
+  elif [ $i -eq 6 ]; then
+    echo "Saliendo del bucle infinito"
+    break
+  else
+    echo $i
+  fi
+  ((i++))
+done
