@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+echo -n "Ingresa tu nombre: "
+read -t 3 name
+echo "Hola $name"
+read -p "Cual es tu edad: " age
+echo "Tu edad es $age"
+echo -n "Colores favoritos: "
+read -a color_fav
+echo -n "Tus colores favoritos son: "
+for cf in ${color_fav[@]}; do
+  echo -n "$cf "
+done
+echo
+read -s -p "Ingresa tu password: " password
+echo
+echo "Tu password es: $password"

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+name="José Rodolfo"
+name=""
+echo ${name="None"}
+echo $name
+echo ${name:="None"}
+echo $name
+echo "-----------------------"
+name="JOSÉ RODOLFO"
+echo ${name,,}
+echo ${name,}
+name="josé rodolfo"
+echo ${name^^}
+echo ${name^}
+echo "-----------------------"
+name="José Rodolfo"
+echo ${name:5:3}
+echo ${name:5}
+# echo ${name:(-3)}
+echo ${name: -3}
+echo "-----------------------"
+greeting="Hola, soy $name" # Hola, soy José Rodolfo
+echo ${greeting#*a}
+echo ${greeting##*s}
+echo ${greeting%d*}
+echo ${greeting%%,*}
+echo "-----------------------"
+greeting="Hola, soy $name" # Hola, soy José Rodolfo
+echo ${greeting/o/u}
+echo ${greeting//o/u}
+echo ${greeting/o}
+echo ${greeting//o}
+echo "-----------------------"
+greeting="Hola, mundo"
+echo "Longitud de cadena: ${#greeting}"

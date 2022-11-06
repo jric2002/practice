@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+declare -i a=40
+declare -i b=10
+echo "a = $a    b = $b"
+echo "Suma: $[$a+$b]"
+echo "Suma: $(expr $a + $b)"
+echo "Resta: $(expr $a - $b)"
+echo "Multiplicacion: $(expr $a \* $b)"
+echo "Division: $(expr $a / $b)"
+echo "Modulo: $(expr $a % $b)"
+echo "---------------------"
+i=1
+while [ $i -le 5 ]; do
+  echo -n "$i "
+  # let i=$i+1
+  # let i++
+  # ((i++))
+  # ((i=$i+1))
+  # i=$(($i+1))
+  i=$[$i+1]
+done
+echo
+echo "--------------------"
+unset a
+unset b
+a=20.5
+b=2.25
+echo "a = 20.5    b = 2.25"
+echo "Suma: $(echo "$a + $b" | bc)"
+echo "Resta: $(echo "$a - $b" | bc)"
+echo "Multiplicacion: $(echo "$a * $b" | bc)"
+echo "Division: $(echo "$a + $b" | bc)"
+echo "Modulo: $(echo "$a % $b" | bc)"
+echo "--------------------"
+echo "10 > 2: $(echo "10 > 2" | bc)"
+echo "10 <= 10: $(echo "10 <= 10" | bc)"
+echo "1 && 1: $(echo "1 && 1" | bc)"
+echo "1 && 0: $(echo "1 && 0" | bc)"
+echo "1 || 0: $(echo "1 || 0" | bc)"
+echo "1 || 1: $(echo "1 || 1" | bc)"
+echo "sqrt(25): $(echo "sqrt(25)" | bc)"
+echo "Total digitos de 12345.24: $(echo "length(12345.24)" | bc)"

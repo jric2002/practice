@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+name="José Rodolfo"
+function presentacion() {
+  local age=20
+  gender='m'
+  echo "My name is $name"
+  name="Miguel"
+}
+presentacion
+echo "name: $name"
+echo "age: $age"
+echo "gender: $gender"
+saludo() { echo "Hola, mundo"; }
+sumar() {
+  s=0
+  for n in $@; do
+    s=$[$s+$n]
+  done
+  echo $s
+}
+t=$(sumar 10 20 30)
+echo "s: $t"

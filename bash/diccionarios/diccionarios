@@ -1,2 +1,16 @@
 #!/usr/bin/env bash
 # Author: José Rodolfo (jric2002)
+declare -A jose=([first_name]="José Rodolfo" [age]=20 [gender]='m')
+echo "Cantidad de elementos: ${#jose[@]}"
+for k in "${!jose[@]}"; do
+  echo "$k => ${jose[$k]}"
+done
+echo
+jose+=(["phone number"]=123456789)
+for k in "${!jose[@]}"; do
+  echo "$k => ${jose[$k]}"
+done
+unset jose
+for k in "${!jose[@]}"; do
+  echo "$k => ${jose[$k]}"
+done
