@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Author: José Rodolfo (jric2002)
+# Buscar documentación del comando "set"
+# bash -x ./practica
+# bash -x -e ./practica
+# bash -x -e -v ./practica
+set -x
+n=$((2+2))
+ls hola/
+greeting="Hello, world"
+echo $greeting
+set +x

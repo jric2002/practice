@@ -44,6 +44,12 @@ case $v in
     ;;
 esac
 echo
+echo "[+] Operador condicional (ternario)"
+n=5
+echo $(($n >= 2 ? 10 : 20))
+r=$(($n >= 2 ? 10 : 20))
+echo "r: $r"
+echo
 # Bucles
 echo "BUCLES"
 echo "------"
