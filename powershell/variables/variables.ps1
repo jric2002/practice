@@ -1,6 +1,6 @@
 # Author: José Rodolfo (jric2002)
 $output = $null
-$name = "José Rodolfo"
+$Global:name = "José Rodolfo"
 $output = "My name is " + $name
 Write-Output $output
 $numeros = 1, 2, 3
@@ -29,3 +29,10 @@ ${hola-mundo} = "Hola mundo"
 ${var prueba} = "Variable de prueba"
 Write-Output ${hola-mundo}
 Write-Output ${var prueba}
+Write-Output "[+] Tipo de dato de variables"
+$var1 = "Hola"
+$var2 = 10
+$var3 = 3.15
+Write-Output "`$var1 -> $var1.GetType().Name"
+Write-Output "`$var2 -> $var2.GetType().Name"
+Write-Output "`$var3 -> $var3.GetType().Name"
