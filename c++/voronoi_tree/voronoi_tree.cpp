@@ -8,6 +8,9 @@
 #include <cstring>
 #include <map>
 using namespace std;
+/* Para compilar este archivo abre tu consola y ejecuta el siguiente comando:
+g++ -mconsole -mwindows voronoi_tree.cpp -o output.exe
+*/
 /* Declaration */
 class Punto {
   public:
@@ -407,7 +410,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT mensaje, WPARAM wParam, LPARAM 
       pos_caja[2] = 650;
       pos_caja[3] = 650;
       // Ejemplo 1
-      ejemplo1();
+      //ejemplo1();
       hejex = CreateWindow(
         "EDIT",
         NULL,
@@ -577,7 +580,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT mensaje, WPARAM wParam, LPARAM 
       cout.fill('-');
       cout << "" << endl;
       // Dibujar mediatriz
-      // vt.dibujarMediatriz(hdc);
+      vt.dibujarMediatriz(hdc);
       // Unir puntos
       vt.unirPuntos(hdc);
       // Mostrar los nodos y puntos como texto
