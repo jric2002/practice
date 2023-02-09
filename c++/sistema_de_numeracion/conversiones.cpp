@@ -15,7 +15,7 @@ float fractionToDecimalBase(float, int);
 int main() {
   char option;
   int decimal, base;
-  string base_number;
+  string numero;
   float decimal_number, fraction;
   while (true) {
     cout << "Operations" << endl;
@@ -41,10 +41,10 @@ int main() {
     }
     else if (option == '2') {
       cout << "Enter a base number: ";
-      cin >> base_number;
+      cin >> numero;
       cout << "Enter the base of the number: ";
       cin >> base;
-      cout << "The base number " << base_number << "of base " << base << " in base decimal is: " << anyMinorBaseToDecimalBase(base_number, base) << endl;
+      cout << "The base number " << numero << "of base " << base << " in base decimal is: " << anyMinorBaseToDecimalBase(numero, base) << endl;
     }
     else if (option == '3') {
       cout << "Enter a decimal: ";
@@ -55,10 +55,10 @@ int main() {
     }
     else if (option == '4') {
       cout << "Enter a base number: ";
-      cin >> base_number;
+      cin >> numero;
       cout << "Enter the base of the number: ";
       cin >> base;
-      cout << "The base number " << base_number << " of base " << base << " in base decimal is: " << anyMajorBaseToDecimalBase(base_number, base) << endl;
+      cout << "The base number " << numero << " of base " << base << " in base decimal is: " << anyMajorBaseToDecimalBase(numero, base) << endl;
     }
     else if (option == '5') {
       cout << "Enter a decimal: ";
@@ -101,11 +101,11 @@ string decimalBaseToAnyMinorBase(int number, int base) {
   reverse(converted_number.begin(), converted_number.end());
   return converted_number;
 }
-int anyMinorBaseToDecimalBase(string base_number, int base) {
+int anyMinorBaseToDecimalBase(string numero, int base) {
   char digit;
   int decimal = 0;
-  for (int i = 0; i < base_number.size(); i++) {
-    digit = base_number.at(base_number.size() - (i + 1));
+  for (int i = 0; i < numero.size(); i++) {
+    digit = numero.at(numero.size() - (i + 1));
     decimal = decimal + (atoi(&digit) * pow(base, i));
   }
   return decimal;
@@ -132,11 +132,11 @@ string decimalBaseToAnyMajorBase(int decimal, int base) {
   reverse(converted_number.begin(), converted_number.end());
   return converted_number;
 }
-int anyMajorBaseToDecimalBase(string base_number, int base) {
+int anyMajorBaseToDecimalBase(string numero, int base) {
   char character;
   int decimal = 0;
-  for (int i = 0; i < base_number.size(); i++) {
-    character = base_number.at(base_number.size() - (i + 1));
+  for (int i = 0; i < numero.size(); i++) {
+    character = numero.at(numero.size() - (i + 1));
     if (character >= '0' && character <= '9') {
     decimal = decimal + (atoi(&character) * pow(base, i));
     }
@@ -146,32 +146,34 @@ int anyMajorBaseToDecimalBase(string base_number, int base) {
   }
   return decimal;
 }
-float decimalBaseToFraction(float base_number, int base) {
+float decimalBaseToFraction(float numero, int base) {
   float fraction = 0;
   int digit;
+  int entero;
   int aux = 10;
   int i = 0;
-  while (base_number != 0 && i < 10) {
-    base_number = base_number * base;
-    digit = int(base_number);
+  entero = numero;
+  while (numero != 0 && i < 10) {
+    numero = numero * base;
+    digit = int(numero);
     fraction = fraction + ((float)( digit) / aux);
-    base_number = base_number - digit;
+    numero = numero - digit;
     aux *= 10;
     i++;
   }
   return fraction;
 }
-float fractionToDecimalBase(float base_number, int base) {
+float fractionToDecimalBase(float numero, int base) {
   int digit;
   float decimal = 0;
   int i;
-  decimal += int(base_number);
+  decimal += int(numero);
   i = 1;
-  while (base_number != 0) {
-    base_number = (base_number * 10);
-    digit = int(base_number);
+  while (numero != 0) {
+    numero = (numero * 10);
+    digit = int(numero);
     decimal += digit / (float)pow(base, i);
-    base_number = base_number - digit;
+    numero = numero - digit;
     i++;
   }
   return decimal;
