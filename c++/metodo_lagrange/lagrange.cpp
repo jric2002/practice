@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstring>
 #include <utility>
+/* Author: José Rodolfo (jric2002) */
 using namespace std;
 /* Declaration */
 template <typename H, typename C>
