@@ -1,6 +1,6 @@
-PWD d:\Proyectos\GitHub\practice\latex\practica
+PWD D:\Proyectos\GitHub\practice\latex\practica
 INPUT C:\Users\Usuario\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\Proyectos\GitHub\practice\latex\practica\practica.tex
+INPUT practica.tex
 OUTPUT practica.log
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Usuario\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

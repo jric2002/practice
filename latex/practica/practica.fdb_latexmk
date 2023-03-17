@@ -1,5 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1679023339 "d:/Proyectos/GitHub/practice/latex/practica/practica.tex" "practica.pdf" "practica" 1679023341 0
+["pdflatex"] 1679072887 "./practica.tex" "practica.pdf" "practica" 1679072890 0
+  "./practica.tex" 1679023337 454 7998894b62f883f4d7da5bb01e92e0c5 ""
   "C:/Users/Usuario/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1679001286 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Usuario/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1670547282 10788954 b1b7bb6ded7d7968e5c2e460cece0f3d ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -57,9 +58,8 @@
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/tex/latex/lm/omxlmex.fd" 1430474546 568 a5494d810f2680caf10205cd1226c76c ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmr.fd" 1430474546 1882 28c08db1407ebff35a658fd141753d16 ""
   "C:/Users/Usuario/AppData/Local/Programs/MiKTeX/tex/latex/lm/t1lmr.fd" 1430474546 1867 996fe743d88a01aca041ed22cc10e1bb ""
-  "d:/Proyectos/GitHub/practice/latex/practica/practica.tex" 1679023337 454 7998894b62f883f4d7da5bb01e92e0c5 ""
   "img/stranger-things.jpg" 1638281749 987350 952ca9bcafab38f30ded31d75e426d5b ""
-  "practica.aux" 1679023340 224 01ef82b1f896f5bdbbe2c0876f76e12e "pdflatex"
+  "practica.aux" 1679072890 224 01ef82b1f896f5bdbbe2c0876f76e12e "pdflatex"
   "practica.tex" 1679023337 454 7998894b62f883f4d7da5bb01e92e0c5 ""
   (generated)
   "practica.aux"
