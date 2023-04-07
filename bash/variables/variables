@@ -12,7 +12,7 @@ echo "Todos los argumentos: $@"
 echo "Estado del ultimo prcoeso que se ejecuto: $?"
 echo "ID de proceso del script: $$"
 echo "User: $USER"
-echo "Hostnaem: $HOSTNAME"
+echo "Hostname: $HOSTNAME"
 sleep 3
 echo "Tiempo transcurrido: $SECONDS"
 echo "Numero aleatorio: $RANDOM"
