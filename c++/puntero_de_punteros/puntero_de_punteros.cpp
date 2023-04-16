@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) {
     delete[] tabla[i];
   }
   delete tabla;
-  delete tabla;
   return 0;
 }
 /* Definition */
