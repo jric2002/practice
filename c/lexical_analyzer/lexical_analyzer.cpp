@@ -8,7 +8,7 @@
 char cad[100];
 int i;
 int getToken() {
-  while (cad[i] == ' ' || cad[i] == '\t') {
+  while (cad[i] == ' ' || cad[i] == '\t' || cad[i] == '\n') {
     i++;
   }
   if (cad[i] == 'a') {
@@ -37,9 +37,7 @@ bool lexico() {
   while (token != FN) {
     token = getToken();
     if (token == ERROR) {
-      cout << "No se reconoce el caracter " <<
-      "'" << cad[i - 1] << "'" <<
-      " en la posicion " << (i - 1) << endl;
+      printf("No se reconoce el caracter '%c' en la posicion %i\n", cad[i - 1], (i - 1));
       return false;
     }
   }
@@ -47,12 +45,19 @@ bool lexico() {
 }
 int main(int argc, char *argv[]) {
   char file_name[] = "code.txt";
+  char c;
   FILE *f = fopen(file_name, "r");
   if (f != NULL) {
+    while ((c = fgetc(f)) != EOF) {
+      strncat(cad, &c, 1);
+    }
     fclose(f);
   }
   else {
-    cout << "Cannot open the file " << file_name << endl;
+    printf("No se puede abrir el archivo %s\n", file_name);
   }
+  printf("%s\n", cad);
+  i = 0;
+  printf("Estado %i\n", lexico());
   return 0;
 }
