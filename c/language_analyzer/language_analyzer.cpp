@@ -48,7 +48,7 @@ int sintactico() {
   int token = 0;
   int estado = 0;
   i = 0;
-  while(true) {
+  while (true) {
     token = getToken();
     printf("estado: %i\ttoken: %c\n", estado, cad[i-1]);
     if (token == FIN) {
