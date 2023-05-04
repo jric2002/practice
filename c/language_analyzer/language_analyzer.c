@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>  
 #define A 99
 #define B 200
 #define C 105
@@ -33,8 +34,8 @@ int getToken() {
   }
 }
 bool lexico() {
-  int token = 0;
   i = 0;
+  int token = 0;
   while (token != FIN) {
     token = getToken();
     if (token == ERROR) {
@@ -44,10 +45,10 @@ bool lexico() {
   }
   return true;
 }
-int sintactico() {
+bool sintactico() {
+  i = 0;
   int token = 0;
   int estado = 0;
-  i = 0;
   while (true) {
     token = getToken();
     printf("estado: %i\ttoken: %c\n", estado, cad[i-1]);
@@ -67,11 +68,11 @@ int sintactico() {
       if (token == A) {
         estado = 1;
       }
-      else if (token == C) {
-        estado = 2;
-      }
       else if (token == B) {
         estado = 3;
+      }
+      else if (token == C) {
+        estado = 2;
       }
       else {
         printf("Te recomiendo usar estos caracteres 'a', 'b', 'c'\n");
@@ -103,8 +104,72 @@ int sintactico() {
     return false;
   }
 }
+bool semantico() {
+  i = 0;
+  int token = 0, token_ant = 0, cont = 0;
+  int ca = 0, cb = 0, cc = 0;
+  while (true) {
+    token = getToken();
+    if (token == FIN) {
+      break;
+    }
+    if (token == token_ant) {
+      cont++;
+    }
+    else {
+      cont = 0;
+    }
+    token_ant = token;
+    if (cont == 3) {
+      printf("ERROR: Pusiste mas de '%c' juntas permitidas.\n", cad[i - 1]);
+      return false;
+    }
+    if (token == A) {
+      ca++;
+    }
+    if (token == B) {
+      cb++;
+    }
+    if (token == C) {
+      cc++;
+    }
+    if (ca > 4) {
+      printf("ERROR a\n");
+      return false;
+    }
+    if (cb > 4) {
+      printf("ERROR b\n");
+      return false;
+    }
+    if (cc > 4) {
+      printf("ERROR c\n");
+      return false;
+    }
+  }
+  return true;
+}
+void ejecucion() {
+  i = 0;
+  int token = 0;
+  while (true) {
+    token = getToken();
+    if (token == FIN) {
+      break;
+    }
+    if (token == A) {
+      printf("Vocal\n");
+    }
+    if (token == B) {
+      printf("Consonante\n");
+    }
+    if (token == C) {
+      printf("Numero\n");
+    }
+  }
+}
 int main(int argc, char *argv[]) {
   char file_name[] = "code.txt";
+  bool res;
   char c;
   FILE *f = fopen(file_name, "r");
   if (f != NULL) {
@@ -116,9 +181,31 @@ int main(int argc, char *argv[]) {
   else {
     printf("No se puede abrir el archivo %s\n", file_name);
   }
-  printf("Content:\n%s\n", cad);
-  if (lexico()) {
-    printf("Sintactico: %i\n", sintactico());
+  printf("[+] Content: \n%s\n", cad);
+  res = lexico();
+  printf("[+] Analisis Lexico: ");
+  if (res) {
+    printf("OK\n");
+    res = sintactico();
+    printf("[+] Analisis Sintactico: ");
+    if (res) {
+      printf("OK\n");
+      res = semantico();
+      printf("[+] Analisis Semantico: ");
+      if (res) {
+        printf("OK\n");
+        ejecucion();
+      }
+      else {
+        printf("WRONG\n");
+      }
+    }
+    else {
+      printf("WRONG\n");
+    }
+  }
+  else {
+    printf("WRONG\n");
   }
   return 0;
 }
