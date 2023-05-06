@@ -1,0 +1,135 @@
+body {
+  background-color: var(--black-color-2);
+}
+header {
+  background-color: var(--black-color-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+header .logo {
+  width: 150px;
+  text-decoration: none;
+}
+header .logo svg path {
+  fill: rgb(255, 255, 255);
+}
+header .search {
+  color: var(--black-color-4);
+  background-color: var(--black-color-3);
+  border: none;
+  border-radius: 50px;
+  width: 300px;
+  min-width: 50px;
+  padding: 1rem;
+  margin: 0 0.5rem;
+}
+header .search:hover {
+  box-shadow: 0 0 0 1px var(--black-color-4);
+  color: white;
+}
+header .nosotros {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+@media screen and (max-width: 600px) {
+  header .logo {
+    width: 100px;
+  }
+  header .search {
+    width: 150px;
+    padding: 0.75rem;
+  }
+}
+/* Media player */
+.media-player {
+  background-image: linear-gradient(45deg, rgba(23,148,230,1) 0%, rgba(203,232,0,1) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: sticky;
+  left: 0;
+  bottom: 0;
+}
+.media-player .info {
+  grid-area: info;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/** Cover **/
+.media-player .info .cover {
+  width: 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.75);
+  margin: 1.25rem 0 1.75rem;
+}
+/** Title **/
+.media-player .info .data .title {
+  color: var(--white-color);
+  margin: 1rem;
+}
+/** Author **/
+.media-player .info .data .author {
+  color: var(--white-color);
+}
+.media-player .controls-general {
+  grid-area: controls-general;
+  width: 75%;
+  display: grid;
+  grid-template-areas: "track"
+                      "controls";
+}
+/** Track **/
+.media-player .track {
+  grid-area: track;
+  cursor: pointer;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+}
+.media-player .progress {
+  width: 0%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/** Controls **/
+.media-player .controls-general .controls {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0.5rem;
+}
+.media-player .controls-general .controls div {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  margin: 0.5rem;
+  transition: background-color 0.25s linear;
+}
+.media-player .controls-general .controls div:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.media-player .controls-general .controls div svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white-color);
+}
+.hide-button {
+  display: none !important;
+}
