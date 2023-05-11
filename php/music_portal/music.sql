@@ -1,0 +1,53 @@
+CREATE DATABASE IF NOT EXISTS music;
+USE music;
+CREATE TABLE IF NOT EXISTS artists (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS songs (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  title TEXT NOT NULL,
+  album INT,
+  collab INT,
+  duration TIME NOT NULL
+  CONSTRAINT songs_albums_fk1
+    FOREIGN KEY (album) REFERENCES albums (id),
+  CONSTRAINT songs_collaborations_fk1
+    FOREIGN KEY (collab) REFERENCES
+);
+CREATE TABLE IF NOT EXISTS albums (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  artist INT NOT NULL,
+  name INT NOT NULL,
+  CONSTRAINT albums_artists_fk1
+    FOREIGN KEY (artist) REFERENCES artists (id)
+);
+CREATE TABLE IF NOT EXISTS genres (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS collaborations (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  song INT NOT NULL,
+  artist INT NOT NULL,
+  feat INT,
+  CONSTRAINT collaborations_artists_fk1
+    FOREIGN KEY (artist) REFERENCES artists (id);
+  CONSTRAINT collaborations_artists_fk2
+    FOREIGN KEY (feat) REFERENCES artists (id);
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name TEXT NOT NULL,
+  gender INT,
+  email TEXT NOT NULL,
+  username TEXT NOT NULL,
+  password TEXT NOT NULL,
+  CONSTRAINT users_genders_fk1
+    FOREIGN KEY (gender) REFERENCES genders (id)
+);
+CREATE TABLE IF NOT EXISTS genders (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  gender CHAR (1) NOT NULL
+);
