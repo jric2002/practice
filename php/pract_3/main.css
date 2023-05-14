@@ -1,0 +1,49 @@
+@charset "UTF-8";
+:root {
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --gray-color: #0f0f12;
+  --green-color: #98ca3f;
+  --yellow-color: #fcee0a;
+  --sky-blue-color: #2490fc;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: sans-serif;
+}
+.main {
+  padding: 1rem;
+}
+h1.title {
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+div.options > div {
+  padding: 0.5rem 0;
+}
+div.options > div input[type="text"] {
+  outline: none;
+  font-size: 1rem;
+  padding: 0.25rem;
+}
+div.options > div button {
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+  color: var(--white-color);
+  background-color: var(--sky-blue-color);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.25s linear;
+}
+div.options > div button:hover {
+  background-color: var(--green-color);
+}
+div.query-string {
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 1rem 0;
+}

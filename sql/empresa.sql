@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS empresa;
+USE empresa;
 CREATE TABLE empleado (
   nombre VARCHAR (30),
   apellido VARCHAR (30),
@@ -79,13 +81,58 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 INSERT INTO empleado VALUES
-("Juan", "Polo", "123456789", "3-mar-59", "Sucre 7-12", "M", 3000, "333445555", 5),
-("Humberto", "Pons", "333445555", "25-dic-60", "Bolivar 5-67", "M", 4000, "888665555", 5),
-("Irma", "Vega", "999887777", "13-nov-50", "P Cordova 3-45", "F", 2500, "987654321", 4),
-("Elena","Tapia","987654321","03-may-61","Ordoñez 7-29","F", 4300, "888665555", 4),
-("Pablo","Castro","666884444","15-sep-55","Bolivar 1-50","M", 3800, "333445555", 5),
-("Marcia", "Mora", "453453453", "29-mar-60", "Colombia 4-23", "F", 2500, "333445555", 5),
-("Manuel", "Bonilla", "987987987", "16-jul-58", "B. Malo 1-10", "M", 2500, "987654321", 4),
-("Jaime", "Pérez", "888665555", "5-abr-57", "Sangurima 8-34", "M", 5500, NULL, 1);
+("Juan", "Polo", "123456789", "1959-03-03", "Sucre 7-12", "M", 3000, "333445555", 5),
+("Humberto", "Pons", "333445555", "1960-12-25", "Bolivar 5-67", "M", 4000, "888665555", 5),
+("Irma", "Vega", "999887777", "1950-11-13", "P Cordova 3-45", "F", 2500, "987654321", 4),
+("Elena", "Tapia", "987654321", "1961-05-03", "Ordoñez 7-29", "F", 4300, "888665555", 4),
+("Pablo", "Castro", "666884444", "1955-09-15", "Bolivar 1-50", "M", 3800, "333445555", 5),
+("Marcia", "Mora", "453453453", "1960-03-29", "Colombia 4-23", "F", 2500, "333445555", 5),
+("Manuel", "Bonilla", "987987987", "1958-07-16", "B. Malo 1-10", "M", 2500, "987654321", 4),
+("Jaime", "Pérez", "888665555", "1957-04-05", "Sangurima 8-34", "M", 5500, NULL, 1);
+
 INSERT INTO localizacion VALUES
-(1, "Cuenca");
+(1, "Cuenca"),
+(4, "Guayaquil"),
+(5, "Quito"),
+(5, "Manta"),
+(5, "Cuenca");
+
+INSERT INTO proyecto VALUES
+("ProductoX", 1, "Quito", 5),
+("ProductoY", 2, "Manta", 5),
+("ProductoZ", 3, "Cuenca", 5),
+("Computadora", 10, "Guayaquil", 4),
+("Reorganizar", 20, "Cuenca", 1),
+("Beneficios", 30, "Guayaquil", 4);
+
+INSERT INTO carga_f VALUES
+("333445555", "María", "F", "1986-02-02", "Hija"),
+("333445555", "Teodoro", "M", "1990-10-10", "Hijo"),
+("333445555", "Ana", "F", "1965-09-15", "Cónyuge"),
+("987654321", "Alberto", "M", "1967-07-06", "Cónyuge"),
+("123456789", "Miguel", "M", "1984-11-05", "Hijo"),
+("123456789", "María", "F", "1987-01-09", "Hija"),
+("123456789", "Elizabeth", "F", "1960-12-12", "Cónyuge");
+
+INSERT INTO departamento VALUES
+("Investigación", 5, "333445555", "1980-05-12"),
+("Administrativo", 4, "987654321", "1982-12-05"),
+("Compras", 1, "888665555", "1978-06-06");
+
+INSERT INTO trabaja_en VALUES
+("123456789", 1, 12.5),
+("123456789", 2, 15.6),
+("666884444", 3, 14.7),
+("453453453", 1, 10),
+("453453453", 2, 10),
+("333445555", 2, 20),
+("333445555", 3, 10),
+("333445555", 10, 10),
+("333445555", 20, 10),
+("999887777", 30, 30),
+("999887777", 10, 5),
+("987987987", 10, 15),
+("987987987", 30, 17),
+("987654321", 30, 10),
+("987654321", 20, 12),
+("888665555", 20, NULL);
