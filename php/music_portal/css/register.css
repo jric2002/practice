@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: sans-serif;
+  display: grid;
+  grid-template-areas: "header"
+                      "login";
+}
+.header {
+  grid-area: header;
+  background-color: var(--white-color);
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
+}
+.header svg {
+  height: 36px;
+}
+.header svg path {
+  fill: var(--black-color-1);
+}
+.login {
+  grid-area: login;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  padding: 1rem;
+}
+.login form {
+  width: 250px;
+}
+.login form h1 {
+  text-align: center;
+  margin: 1rem 0;
+}
+.login form > div {
+  box-sizing: content-box;
+}
+.login form > div input {
+  width: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  margin: 0.25rem 0 1rem 0;
+}
+.login form > div input[type="submit"] {
+  outline: none;
+  color: var(--white-color);
+  background-color: var(--sky-blue-color);
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 0;
+  transition: background-color 0.1s linear;
+}
+.login form > div input[type="submit"]:hover {
+  background-color: var(--green-color);
+}
+.login form > div.note p {
+  font-size: 0.75rem;
+}
