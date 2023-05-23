@@ -17,6 +17,9 @@ body {
   align-items: center;
   background-color: var(--white-color);
   border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  left: 0;
   padding: 1rem;
 }
 .header svg {
@@ -24,6 +27,31 @@ body {
 }
 .header svg path {
   fill: var(--black-color-1);
+}
+.header form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header form input[type="search"] {
+  outline: none;
+  font-size: 1rem;
+  border: 1px solid var(--black-color-1);
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin: 0.25rem;
+}
+.header form input[type="submit"] {
+  display: none;
+}
+.header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header div h1.user {
+  font-size: 1rem;
+  margin: 0 0.5rem 0 0;
 }
 /* Songs */
 .songs {
@@ -33,21 +61,60 @@ body {
 .songs .card {
   border-radius: 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
 }
+.songs .card:hover {
+  color: var(--white-color);
+  background-color: var(--black-color-4);
+}
+.songs .card .metadata {
+  display: flex;
+}
 /** Cover **/
-.songs .card .cover {
-  width: 50px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.75);
+.songs .card .metadata .cover {
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.75);
   margin: 1.25rem 0 1.75rem;
 }
-/** Title **/
-.songs .card .data .title {
-  margin: 1rem;
+@media screen and (max-width: 320px) {
+  .songs .card .metadata .cover {
+    width: 75px;
+  }
 }
+/** Title **/
+.songs .card .metadata .data {
+  padding: 1rem;
+}
+.songs .card .metadata .data .title {
+  margin: 0 0 0.5rem 0;
+}
+.songs .card .metadata .data .duration {
+  margin: 0.25rem 0 0 0;
+}
+.songs .card .play-song {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  margin: 0.5rem;
+  transition: background-color 0.25s linear;
+}
+.songs .card .play-song:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.songs .card .play-song svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white-color);
+}
+
 /* Media player */
 .media-player {
   grid-area: media-player;
@@ -62,25 +129,34 @@ body {
 }
 .media-player .info {
   grid-area: info;
-  width: 150px;
+  width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 /** Cover **/
 .media-player .info .cover {
-  width: 50px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.75);
-  margin: 1.25rem 0 1.75rem;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+@media screen and (max-width: 320px) {
+  .media-player .info .cover {
+    width: 75px;
+  }
+}
+.media-player .info .data {
+  padding: 0.25rem 1rem;
 }
 /** Title **/
-.media-player .info .data .title {
+.media-player .info .data .song-name {
+  font-size: 1.5rem;
   color: var(--white-color);
-  margin: 1rem;
+  margin: 0 0 1rem 0;
 }
 /** Author **/
-.media-player .info .data .author {
+.media-player .info .data .artist {
+  font-size: 1rem;
   color: var(--white-color);
 }
 .media-player .controls-general {
@@ -97,6 +173,7 @@ body {
   width: 100%;
   height: 10px;
   background-color: rgba(255, 255, 255, 0.25);
+  position: relative;
   border-radius: 5px;
 }
 .media-player .progress {
@@ -108,12 +185,20 @@ body {
   top: 0;
   left: 0;
 }
+/** Duration **/
+.media-player .controls-general .duration {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white-color);
+  padding: 0.5rem 0 0 0;
+}
 /** Controls **/
 .media-player .controls-general .controls {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  margin: 0.5rem;
+  margin: 0.5rem 0 0 0;
 }
 .media-player .controls-general .controls div {
   cursor: pointer;
@@ -137,4 +222,18 @@ body {
 }
 .hide-button {
   display: none !important;
+}
+/** Volume **/
+.media-player .controls-general .volume {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.media-player .controls-general .volume svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white-color);
+}
+.media-player .controls-general .volume input {
+  outline: none;
 }
