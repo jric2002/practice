@@ -9,10 +9,10 @@ Para crear nuestra gramática necesitaremos definir algunas reglas.
 | titulo | title |
 | css | link:css |
 | js | script |
-| e1 | h1 |
-| e2 | h2 |
-| e3 | h3 |
-| e4 | h4 |
+| e1 | e1 |
+| e2 | e2 |
+| e3 | e3 |
+| e4 | e4 |
 | p | p |
 | a | a |
 | img | img |
@@ -40,12 +40,12 @@ documento
     titulo "2 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "2 ejemplo"
+    e1 "2 ejemplo"
     div
-      h2 "subtitulo"
+      e2 "subtitulo"
       p "párrafo 1"
     div
-      h2 "subtitulo"
+      e2 "subtitulo"
       p "párrafo 2"
     a "http://localhost" "Ir a inicio"
     p "Fin del página web"
@@ -59,14 +59,14 @@ documento
     titulo "3 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "3 ejemplo"
+    e1 "3 ejemplo"
     div
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 1"
         img "http://localhost/sub-1.jpg" "sub-1"
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 2"
         img "http://localhost/sub-2.jpg" "sub-2"
     div
@@ -82,14 +82,14 @@ documento
     titulo "4 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "4 ejemplo"
+    e1 "4 ejemplo"
     div
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 1"
         img "http://localhost/sub-1.jpg" "sub-1"
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 2"
         img "http://localhost/sub-2.jpg" "sub-2"
       a "http://localhost" "Ver más"
@@ -106,17 +106,17 @@ documento
     titulo "5 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "5 ejemplo"
+    e1 "5 ejemplo"
     div
-      h2 "subtitulo"
+      e2 "subtitulo"
       p "párrafo 1"
       img "http://localhost/sub-1.jpg" "sub-1"
     div
-      h2 "subtitulo"
+      e2 "subtitulo"
       p "párrafo 2"
       img "http://localhost/sub-2.jpg" "sub-2"
       div
-        h3 "subtitulo"
+        e3 "subtitulo"
         p "parráfo 3"
         img
     div
@@ -132,19 +132,19 @@ documento
     titulo "6 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "6 ejemplo"
+    e1 "6 ejemplo"
     div
     div
       div
-        h2 "subtitulo"
-        h3
-        h4
+        e2 "subtitulo"
+        e3
+        e4
         p "párrafo 1"
         img "http://localhost/sub-1.jpg" "sub-1"
       div
-        h2 "subtitulo"
-        h3
-        h4
+        e2 "subtitulo"
+        e3
+        e4
         p "párrafo 2"
         img "http://localhost/sub-2.jpg" "sub-2"
     div
@@ -161,14 +161,14 @@ documento
     titulo
     css
   cuerpo
-    h1
+    e1
     div
       div
-        h2
+        e2
         p
         img "http://localhost/sub-1.jpg"
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 2"
         img "http://localhost/sub-2.jpg" "sub-2"
     div
@@ -184,15 +184,15 @@ documento
     titulo "8 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "8 ejemplo"
+    e1 "8 ejemplo"
     div
       div
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 1"
         img "http://localhost/sub-1.jpg" "sub-1"
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 2"
         img "http://localhost/sub-2.jpg"
         div
@@ -210,14 +210,14 @@ documento
     titulo "9 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "9 ejemplo"
+    e1 "9 ejemplo"
     div
       div
-        h2
+        e2
         p
         img
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p
         img "http://localhost/sub-2.jpg"
         div
@@ -234,17 +234,17 @@ documento
     titulo "10 ejemplo"
     css "./main.js"
   cuerpo
-    h1 "10 ejemplo"
+    e1 "10 ejemplo"
     div
-      h4 "Subtitulo"
+      e4 "Subtitulo"
     div
       div
-        h2 "subtitulo"
+        e2 "subtitulo"
         p "párrafo 1"
         a "http://localhost" "Ver más.."
         img "http://localhost/sub-1.jpg" "sub-1"
       div
-      h2 "subtitulo"
+      e2 "subtitulo"
       p "párrafo 2"
       a "http://localhost" "Ver más.."
       img "http://localhost/sub-2.jpg"
