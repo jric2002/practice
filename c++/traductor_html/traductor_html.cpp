@@ -1,69 +1,117 @@
 /******* EJEMPLOS DEL LENGUAJE GRAFICADOR *******
-graficos(){
-  cuadrado(100,100,50);
-  circulo(125,125,50);
-  rectangulo(100,100,200,50);
-  linea(100,100,200,50);
-}
+documento
+  encabezado
+    titulo "Hola mundo" ftitulo
+  fencabezado
+  cuerpo
+    e1 "Hola mundo" fe1
+    e2 "Autor" fe2
+    p "Esto es un párrafo" fp
+    a "http://localhost" "Ir a la página principal" fa
+    div
+      img "http://localhost/cat.jpg" "Es un gato"
+    fdiv
+  fcuerpo
+fdocumento
 
-graficos(){
-  posx1=120;
-  posx2=120;
-  posx=175;
-  posy=100;
-  tam1=100;
-  tam2=75;
-  cuadrado(200,200,tam1);
-  linea(100,100,tam1,50);
-  rectangulo(posx1,posy,tam2,50);
-  radio=24;
-  circulo(posx,posy,radio);
-}
-
-graficos(){
-  lado=50;
-  cuadrado(100,100,lado);
-  ancho=150;
-  rectangulo(x1,y1,100,ancho);
-}
+documento
+  encabezado
+    titulo "8 ejemplo" ftitulo
+    css "./main.js"
+  fencabezado
+  cuerpo
+    e1 "8 ejemplo" fe1
+    div
+      div
+      div
+        e2 "subtitulo" fe2
+        p "párrafo 1" fp
+        img "http://localhost/sub-1.jpg" "sub-1"
+      fdiv
+      div
+        e2 "subtitulo" fe2
+        p "párrafo 2" fp
+        img "http://localhost/sub-2.jpg"
+        div fdiv
+      fdiv
+    fdiv
+    div
+      a "http://localhost" "Ir a inicio" fa
+      p "Fin de la página web" fp
+    fdiv
+    js "./main.js"
+  fcuerpo
+fdocumento
 
 ******** PALABRAS CLAVE Y SIGNOS QUE CORRESPONDEN AL LENGUAJE *******
-graficos
-(
-)
-{
-}
-=
-;
-cuadrado
-rectangulo
-circulo
-linea
-,
-VAR
-NUM
+documento
+fdocumento
+encabezado
+fencabezado
+cuerpo
+fcuerpo
+titulo
+ftitulo
+css
+js
+e1
+fe1
+e2
+fe2
+e3
+fe3
+e4
+fe4
+img
+p
+fp
+a
+fa
+div
+fdiv
 
 ******** LISTA DE SENTENCIAS ****************************************
-ASIGNACIONES
-DIBUJAR CUADRADO
-DIBUJAR RECTANGULO
-DIBUJAR CIRCULO
-DIBUJAR LINEA
+DECLARAR Y DIFINIR PALABRAS RESERVADAS
 
 ******** DIBUJAR EL AUTOMATA ****************************************
 
 ******** ERRORES SEMANTICOS *****************************************
-LAS VARIABLES NO ESTAN REGISTRADAS EN LA TABLA DE SIMBOLOS
-LAS VARIABLES NO TIENEN UN VALOR ASIGNADO
+LAS PALABRAS RESERVADAS NO ESTAN REGISTRADAS EN LA TABLA DE SIMBOLOS
+LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 
 ********************************************************************/
 
 #include <iostream>
 #include <string.h>
 #include <list>
+#include <fstream>
+#include <cstring>
 
-#define VAR         20
-#define NUM         21
+#define DOCUMENT       0
+#define FDOCUMENT      1
+#define ENCABEZADO     2
+#define FENCABEZADO    3
+#define CUERPO         4
+#define FCUERPO        5
+#define TITULO         6
+#define FTITULO        7
+#define CSS            8
+#define JS             9
+#define E1            10
+#define FE1           11
+#define E2            12
+#define FE2           13
+#define E3            14
+#define FE3           15
+#define E4            16
+#define FE4           17
+#define P             18
+#define FP            19
+#define A             20
+#define FA            21
+#define IMG           22
+#define DIV           23
+#define FDIV          24
 
 #define FIN     666
 #define ERROR   999
@@ -174,7 +222,31 @@ class Analisis{
       //Aquí hacer la apertura de archivo de texto plano
       strcpy(cad,input);
       i=0;
-      ts.Insertar("",0,"pclave",vacio,vacio);
+      ts.Insertar("documento", DOCUMENTO, "pclave", vacio, vacio);
+      ts.Insertar("fdocumento", FDOCUMENTO, "pclave", vacio, vacio);
+      ts.Insertar("encabezado", ENCABEZADO, "pclave", vacio, vacio);
+      ts.Insertar("fencabezado", FENCABEZADO, "pclave", vacio, vacio);
+      ts.Insertar("cuerpo", CUERPO, "pclave", vacio, vacio);
+      ts.Insertar("fcuerpo", FCUERPO, "pclave", vacio, vacio);
+      ts.Insertar("titulo", TITULO, "pclave", vacio, vacio);
+      ts.Insertar("ftitulo", FTITULO, "pclave", vacio, vacio);
+      ts.Insertar("css", CSS, "pclave", vacio, vacio);
+      ts.Insertar("js", JS, "pclave", vacio, vacio);
+      ts.Insertar("e1", E1, "pclave", vacio, vacio);
+      ts.Insertar("fe1", FE1, "pclave", vacio, vacio);
+      ts.Insertar("e2", E2, "pclave", vacio, vacio);
+      ts.Insertar("fe2", FE2, "pclave", vacio, vacio);
+      ts.Insertar("e3", E3, "pclave", vacio, vacio);
+      ts.Insertar("fe3", FE3, "pclave", vacio, vacio);
+      ts.Insertar("e4", E4, "pclave", vacio, vacio);
+      ts.Insertar("fe4", FE4, "pclave", vacio, vacio);
+      ts.Insertar("p", P, "pclave", vacio, vacio);
+      ts.Insertar("fp", FP, "pclave", vacio, vacio);
+      ts.Insertar("a", A, "pclave", vacio, vacio);
+      ts.Insertar("fa", FA, "pclave", vacio, vacio);
+      ts.Insertar("img", IMG, "pclave", vacio, vacio);
+      ts.Insertar("div", DIV, "pclave", vacio, vacio);
+      ts.Insertar("fdiv", FDIV, "pclave", vacio, vacio);
       for(int ii=0;ii<22;ii++){
         for(int jj=0;jj<14;jj++){
           tTransicion[ii][jj]=ERROR;
@@ -354,7 +426,22 @@ class Analisis{
 };
 int main()
 {
-  Analisis*obj=new Analisis("graficos(){ posx1=120; posx2=120; posx=175; posy=100; tam1=100; tam2=75; cuadrado(200,200,tam1); linea(100,100,tam1,50); rectangulo(posx1,posy,tam2,tam2); radio=24; circulo(posx,posy,radio); }");
-  obj->Analizar();
-  return true;
+  char file_name[] = "ejemplo.txt";
+  ifstream f;
+  f.open(file_name);
+  if (f.is_open()) {
+    string codigo;
+    char c;
+    while (f.get(c)) {
+      codigo += c;
+    }
+    cout << codigo << endl;
+    Analisis *obj = new Analisis(codigo);
+    obj->Analizar();
+    f.close();
+  }
+  else {
+    cout << "No se puede abrir el archivo: " << file_name << endl;
+  }
+  return 0;
 }

@@ -1,0 +1,14 @@
+documento
+  encabezado
+    titulo "Hola mundo" ftitulo
+  fencabezado
+  cuerpo
+    e1 "Hola mundo" fe1
+    e2 "Autor" fe2
+    p "Esto es un párrafo" fp
+    a "http://localhost" "Ir a la página principal" fa
+    div
+      img "http://localhost/cat.jpg" "Es un gato"
+    fdiv
+  fcuerpo
+fdocumento

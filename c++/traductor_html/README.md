@@ -23,6 +23,7 @@ Para crear nuestra gramática necesitaremos definir algunas reglas.
 | fe4 | h4 |
 | p | p |
 | fp | p |
+| a | a |
 | fa | a |
 | img | img |
 | div | div |
