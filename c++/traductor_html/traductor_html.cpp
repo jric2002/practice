@@ -87,8 +87,8 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #include <fstream>
 #include <cstring>
 
-#define DOCUMENT       0
-#define FDOCUMENT      1
+#define DOCUMENTO      0
+#define FDOCUMENTO     1
 #define ENCABEZADO     2
 #define FENCABEZADO    3
 #define CUERPO         4
@@ -112,6 +112,8 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #define IMG           22
 #define DIV           23
 #define FDIV          24
+#define COMILLA_DOBLE 25
+#define VALOR         26
 
 #define FIN     666
 #define ERROR   999
@@ -143,7 +145,7 @@ class Atributos{
       valor=val;
       estado=est;
     }
-    Mostrar(){
+    void Mostrar(){
       cout<<"Tipo("<<tipo<<") \t";
       cout<<"Lexema("<<lexema<<") \t";
       cout<<"Token("<<token<<") \t";
@@ -211,8 +213,6 @@ class Analisis{
     int i;
     char cad[1000];
     int estado;
-    string numero;
-    string variable;
     //22 SON LOS ESTADOS DEL AUTOMATA
     //14 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
     int tTransicion[22][14];
@@ -258,7 +258,7 @@ class Analisis{
       char elements[100];
       /*AQUI DEBEN DE DEFINIR LOS CARACTERES QUE NO SEAN LETRAS O NUMEROS Y QUE CORRESPONDAN AL LENGUAJE*/
       /*NO DEBEN DE REPETIR CARACTERES*/
-      strcpy(elements,"(){}=,;");/*<- AQUI*/
+      strcpy(elements,"\"");/*<- AQUI*/
       int elements_cont=0;
       while(elements[elements_cont]!='\0'){
         if(elements[elements_cont]==c)
@@ -268,7 +268,7 @@ class Analisis{
       return false;
     }
     int getToken(){
-      while(cad[i]==' '){
+      while(cad[i]==' ' || cad[i]=='\n' || cad[i]=='\t'){
         i++;
       }
       if(cad[i]=='\0'){
@@ -278,7 +278,7 @@ class Analisis{
       else if(isalpha(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(isalpha(cad[i]) || isdigit(cad[i])){
+        while(isalpha(cad[i])){
           tmp[tmp_cont]=cad[i];
           tmp_cont++;
           i++;
@@ -292,52 +292,19 @@ class Analisis{
             return attr.token;
           }
         }
-        variable=tmp;
-        return VAR;
-      }
-      else if(isdigit(cad[i])){
-        char tmp[100];
-        int tmp_cont=0;
-        while(isdigit(cad[i])){
-          tmp[tmp_cont]=cad[i];
-          tmp_cont++;
-          i++;
-        }
-        tmp[tmp_cont]='\0';
-        numero=tmp;
-        return NUM;
+        return ERROR;
       }
       else if(iselement(cad[i])){
-        if(iselement(cad[i+1])){
-          char tmp[3];
-          tmp[0]=cad[i];
-          tmp[1]=cad[i+1];
-          tmp[2]='\0';
-          Atributos attr;
-          string lex=tmp;
-          //cout<<"de 2:"<<lex<<endl;
-          for(auto item:ts.getTabla()){
-            if(ts.BuscarPClave(lex,attr)){
-              i++;
-              i++;
-              return attr.token;
-            }
-          }
-          //cout<<"salio"<<endl;
-        }
-        char tmp[2];
-        tmp[0]=cad[i];
-        tmp[1]='\0';
         Atributos attr;
-        string lex=tmp;
-        //cout<<"de 1:"<<lex<<endl;
+        string lex=cad[i];
+        //cout<<"de 2:"<<lex<<endl;
         for(auto item:ts.getTabla()){
           if(ts.BuscarPClave(lex,attr)){
+            i++;
             i++;
             return attr.token;
           }
         }
-        //cout<<"salio"<<endl;
         i++;
         return ERROR;
       }
@@ -351,15 +318,9 @@ class Analisis{
       int token=0;
       while(true){
         token=getToken();
-        //cout<<"Lexico: "<<token<<endl;
+        cout<<"Lexico: "<<token<<endl;
         if(token==FIN){
           return true;
-        }
-        else if(token==VAR){
-          Atributos attr;
-          if(!ts.Buscar(variable,attr)){
-            ts.Insertar(variable,VAR,"var",null,null);
-          }
         }
         else if(token==ERROR){
           //Aqui deben de mostrar el error lo más especifico posible
@@ -430,14 +391,17 @@ int main()
   ifstream f;
   f.open(file_name);
   if (f.is_open()) {
-    string codigo;
+    string contenido;
+    char codigo[100];
     char c;
     while (f.get(c)) {
-      codigo += c;
+      contenido += c;
     }
-    cout << codigo << endl;
+    cout << contenido << endl;
+    strcpy(codigo, contenido.c_str());
     Analisis *obj = new Analisis(codigo);
-    obj->Analizar();
+    // obj->Analizar();
+    obj->Lexico();
     f.close();
   }
   else {

@@ -1,33 +1,34 @@
 # Traductor HTML
 Para crear nuestra gramática necesitaremos definir algunas reglas.
 ## Palabras reservadas (P.R) de nuestro lenguaje
-| P.R | Etiqueta HTML |
-| :---: | :---: |
-| documento | DOCTYPE |
-| fdocumento | DOCTYPE |
-| encabezado | head |
-| fencabezado | head |
-| cuerpo | body |
-| fcuerpo | body |
-| titulo | title |
-| ftitulo | title |
-| css | link:css |
-| js | script |
-| e1 | h1 |
-| fe1 | h1 |
-| e2 | h2 |
-| fe2 | h2 |
-| e3 | h3 |
-| fe3 | h3 |
-| e4 | h4 |
-| fe4 | h4 |
-| p | p |
-| fp | p |
-| a | a |
-| fa | a |
-| img | img |
-| div | div |
-| fdiv | div |
+| LEXEMA | TOKEN | Tipo | Valor |
+| :---: | :---: | :---: | :---: |
+| documento | DOCUMENTO | P.R | - |
+| fdocumento | FDOCUMENTO | P.R | - |
+| encabezado | ENCABEZADO | P.R | - |
+| fencabezado | FENCABEZADO | P.R | - |
+| cuerpo | CUERPO | P.R | - |
+| fcuerpo | FCUERPO | P.R | - |
+| titulo | TITULO | P.R | - |
+| ftitulo | FTITULO | P.R | - |
+| css | CSS | P.R | - |
+| js | JS | P.R | - |
+| e1 | E1 | P.R | - |
+| fe1 | FE1 | P.R | - |
+| e2 | E2 | P.R | - |
+| fe2 | FE2 | P.R | - |
+| e3 | E3 | P.R | - |
+| fe3 | FE3 | P.R | - |
+| e4 | E4 | P.R | - |
+| fe4 | FE4 | P.R | - |
+| p | P | P.R | - |
+| fp | FP | P.R | - |
+| a | A | P.R | - |
+| fa | FA | P.R | - |
+| img | IMG | P.R | - |
+| div | DIV | P.R | - |
+| fdiv | FDIV | P.R | - |
+| "mundo" | VALOR | STRING | - |
 
 ## Ejemplos de código de nuestro lenguaje
 ### 1 ejemplo
