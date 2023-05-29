@@ -87,33 +87,33 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #include <fstream>
 #include <cstring>
 
-#define DOCUMENTO      0
-#define FDOCUMENTO     1
-#define ENCABEZADO     2
-#define FENCABEZADO    3
-#define CUERPO         4
-#define FCUERPO        5
-#define TITULO         6
-#define FTITULO        7
-#define CSS            8
-#define JS             9
-#define E1            10
-#define FE1           11
-#define E2            12
-#define FE2           13
-#define E3            14
-#define FE3           15
-#define E4            16
-#define FE4           17
-#define P             18
-#define FP            19
-#define A             20
-#define FA            21
-#define IMG           22
-#define DIV           23
-#define FDIV          24
-#define COMILLA_DOBLE 25
-#define VALOR         26
+#define DOCUMENTO          0
+#define FDOCUMENTO         1
+#define ENCABEZADO         2
+#define FENCABEZADO        3
+#define CUERPO             4
+#define FCUERPO            5
+#define TITULO             6
+#define FTITULO            7
+#define CSS                8
+#define JS                 9
+#define E1                10
+#define FE1               11
+#define E2                12
+#define FE2               13
+#define E3                14
+#define FE3               15
+#define E4                16
+#define FE4               17
+#define P                 18
+#define FP                19
+#define A                 20
+#define FA                21
+#define IMG               22
+#define DIV               23
+#define FDIV              24
+#define COMILLA_DOBLE     25
+#define VALOR             26
 
 #define FIN     666
 #define ERROR   999
@@ -247,6 +247,7 @@ class Analisis{
       ts.Insertar("img", IMG, "pclave", vacio, vacio);
       ts.Insertar("div", DIV, "pclave", vacio, vacio);
       ts.Insertar("fdiv", FDIV, "pclave", vacio, vacio);
+      ts.Insertar("\"", COMILLA_DOBLE, "pclave", vacio, vacio);
       for(int ii=0;ii<22;ii++){
         for(int jj=0;jj<14;jj++){
           tTransicion[ii][jj]=ERROR;
@@ -278,7 +279,7 @@ class Analisis{
       else if(isalpha(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(isalpha(cad[i])){
+        while(isalpha(cad[i]) || isdigit(cad[i])){
           tmp[tmp_cont]=cad[i];
           tmp_cont++;
           i++;
@@ -291,16 +292,18 @@ class Analisis{
           if(ts.BuscarPClave(lex,attr)){
             return attr.token;
           }
+          else {
+            return VALOR;
+          }
         }
         return ERROR;
       }
       else if(iselement(cad[i])){
         Atributos attr;
-        string lex=cad[i];
-        //cout<<"de 2:"<<lex<<endl;
+        string lex(1, cad[i]);
+        cout<<"de 2:"<<lex<<endl;
         for(auto item:ts.getTabla()){
           if(ts.BuscarPClave(lex,attr)){
-            i++;
             i++;
             return attr.token;
           }

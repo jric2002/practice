@@ -28,7 +28,10 @@ Para crear nuestra gramática necesitaremos definir algunas reglas.
 | img | IMG | P.R | - |
 | div | DIV | P.R | - |
 | fdiv | FDIV | P.R | - |
-| "mundo" | VALOR | STRING | - |
+| " | COMILLA_DOBLE | P.R | - |
+| "mundo" | VALOR | Cadena | - |
+
+P.R = Palabra Reservada
 
 ## Ejemplos de código de nuestro lenguaje
 ### 1 ejemplo
