@@ -1,45 +1,20 @@
 /******* EJEMPLOS DEL LENGUAJE GRAFICADOR *******
 documento
   encabezado
-    titulo "Hola mundo" ftitulo
-  fencabezado
-  cuerpo
-    e1 "Hola mundo" fe1
-    e2 "Autor" fe2
-    p "Esto es un párrafo" fp
-    a "http://localhost" "Ir a la página principal" fa
-    div
-      img "http://localhost/cat.jpg" "Es un gato"
-    fdiv
-  fcuerpo
-fdocumento
-
-documento
-  encabezado
-    titulo "8 ejemplo" ftitulo
+    titulo "1 ejemplo" ftitulo
     css "./main.js"
+    js "./main.js"
   fencabezado
   cuerpo
-    e1 "8 ejemplo" fe1
-    div
-      div
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 1" fp
-        img "http://localhost/sub-1.jpg" "sub-1"
-      fdiv
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 2" fp
-        img "http://localhost/sub-2.jpg"
-        div fdiv
-      fdiv
-    fdiv
-    div
-      a "http://localhost" "Ir a inicio" fa
-      p "Fin de la página web" fp
-    fdiv
-    js "./main.js"
+    e1 "1 ejemplo" fe1
+    e2 "subtitulo" fe2
+    p "párrafo 1" fp
+    img "http://localhost/sub-1.jpg" "sub-1"
+    e2 "subtitulo" fe2
+    p "párrafo 2" fp
+    img "http://localhost/sub-2.jpg" "sub-2"
+    a "http://localhost" "Ir a inicio" fa
+    p "Fin de la página web" fp
   fcuerpo
 fdocumento
 
@@ -58,17 +33,11 @@ e1
 fe1
 e2
 fe2
-e3
-fe3
-e4
-fe4
 img
 p
 fp
 a
 fa
-div
-fdiv
 
 ******** LISTA DE SENTENCIAS ****************************************
 DECLARAR Y DIFINIR PALABRAS RESERVADAS
@@ -112,8 +81,7 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #define IMG               22
 #define DIV               23
 #define FDIV              24
-#define COMILLA_DOBLE     25
-#define CADENA            26
+#define CADENA            25
 
 #define FIN     666
 #define ERROR   999
@@ -216,7 +184,7 @@ class Analisis{
     string cadena;
     //22 SON LOS ESTADOS DEL AUTOMATA
     //14 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
-    int tTransicion[22][14];
+    int tTransicion[22][26];
     TablaSimbolos ts;
   public:
     Analisis(char input[100]){
@@ -248,13 +216,41 @@ class Analisis{
       ts.Insertar("img", IMG, "pclave", vacio, vacio);
       ts.Insertar("div", DIV, "pclave", vacio, vacio);
       ts.Insertar("fdiv", FDIV, "pclave", vacio, vacio);
-      ts.Insertar("\"", COMILLA_DOBLE, "pclave", vacio, vacio);
       for(int ii=0;ii<22;ii++){
-        for(int jj=0;jj<14;jj++){
+        for(int jj=0;jj<26;jj++){
           tTransicion[ii][jj]=ERROR;
         }
       }
-      tTransicion[0][0]=1;
+      tTransicion[0][DOCUMENTO]=1;
+      tTransicion[1][ENCABEZADO]=2;
+      tTransicion[2][TITULO]=3;
+      tTransicion[3][CADENA]=4;
+      tTransicion[4][FTITULO]=2;
+      tTransicion[2][JS]=6;
+      tTransicion[6][CADENA]=2;
+      tTransicion[2][CSS]=5;
+      tTransicion[5][CADENA]=2;
+      tTransicion[2][FENCABEZADO]=7;
+      tTransicion[7][CUERPO]=8;
+      tTransicion[8][E1]=9;
+      tTransicion[9][CADENA]=10;
+      tTransicion[10][FE1]=8;
+      tTransicion[8][E2]=11;
+      tTransicion[11][CADENA]=12;
+      tTransicion[12][FE2]=8;
+      tTransicion[8][P]=13;
+      tTransicion[13][CADENA]=14;
+      tTransicion[14][FP]=8;
+      tTransicion[8][A]=15;
+      tTransicion[15][CADENA]=16;
+      tTransicion[16][FA]=8;
+      tTransicion[16][CADENA]=17;
+      tTransicion[17][FA]=8;
+      tTransicion[8][IMG]=18;
+      tTransicion[18][CADENA]=19;
+      tTransicion[19][CADENA]=8;
+      tTransicion[8][FCUERPO]=20;
+      tTransicion[20][FDOCUMENTO]=21;
     }
     bool iselement(char c){
       char elements[100];
@@ -270,7 +266,7 @@ class Analisis{
       return false;
     }
     int getToken(){
-      while(cad[i]==' '){
+      while(cad[i]==' ' || cad[i]=='\t' || cad[i]=='\n'){
         i++;
       }
       if(cad[i]=='\0'){
@@ -280,7 +276,7 @@ class Analisis{
       else if(isalpha(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(isalpha(cad[i])){
+        while(isalpha(cad[i]) || isdigit(cad[i])){
           tmp[tmp_cont]=cad[i];
           tmp_cont++;
           i++;
@@ -289,17 +285,16 @@ class Analisis{
         Atributos attr;
         string lex=tmp;
         //buscando en la tabla de simbolos
-        for(auto item:ts.getTabla()){
-          if(ts.BuscarPClave(lex,attr)){
-            return attr.token;
-          }
+        if(ts.BuscarPClave(lex,attr)){
+          return attr.token;
         }
         return ERROR;
       }
       else if(iselement(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(cad[i] != '"'){
+        i++;
+        while(cad[i] != '\"'){
           tmp[tmp_cont]=cad[i];
           tmp_cont++;
           i++;
@@ -307,12 +302,8 @@ class Analisis{
         i++;
         Atributos attr;
         string lex=tmp;
-        //cout<<"de 2:"<<lex<<endl;
-        for(auto item:ts.getTabla()){
-          if(ts.BuscarPClave(lex,attr)){
-            i++;
-            return attr.token;
-          }
+        if(ts.BuscarPClave(lex,attr)){
+          return attr.token;
         }
         cadena=tmp;
         return CADENA;
@@ -327,7 +318,7 @@ class Analisis{
       int token=0;
       while(true){
         token=getToken();
-        //cout<<"Lexico: "<<token<<endl;
+        cout<<"Lexico: "<<token<<endl;
         if(token==FIN){
           return true;
         }
@@ -343,6 +334,7 @@ class Analisis{
           return false;
         }
       }
+      // ts.Mostrar();
     }
     bool Sintactico(){
       i=0;
@@ -356,7 +348,7 @@ class Analisis{
           Error(2000);
           return false;
         }
-        //cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
+        // cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
         estado=tTransicion[estado][token];
         if(estado==ERROR){
           Error(400);
@@ -412,11 +404,29 @@ int main()
     while (f.get(c)) {
       contenido += c;
     }
-    cout << contenido << endl;
+    // cout << contenido << endl;
     strcpy(codigo, contenido.c_str());
     Analisis *obj = new Analisis(codigo);
     // obj->Analizar();
-    obj->Lexico();
+    if (obj->Lexico()) {
+      cout << "[+] Analisis Lexico: BIEN" << endl;
+      if (obj->Sintactico()) {
+        cout << "[+] Analisis Sintatico: BIEN" << endl;
+        if (obj->Semantico()) {
+          cout << "[+] Analisis Semantico: BIEN" << endl;
+        }
+        else {
+          cout << "[-] Analisis Semantico: FALLO" << endl;
+        }
+      }
+      else {
+        cout << "[-] Analisis Sintatico: FALLO" << endl;
+      }
+    }
+    else {
+      cout << "[-] Analisis Lexico: FALLO" << endl;
+    }
+    obj->Sintactico();
     f.close();
   }
   else {

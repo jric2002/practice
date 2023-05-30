@@ -1,14 +1,18 @@
 documento
   encabezado
-    titulo "Hola mundo" ftitulo
+    titulo "3 ejemplo" ftitulo
+    css "./main.js"
+    js "./main.js"
   fencabezado
   cuerpo
-    e1 "Hola mundo" fe1
-    e2 "Autor" fe2
-    p "Esto es un parrafo" fp
-    a "http://localhost" "Ir a la pagina principal" fa
-    div
-      img "http://localhost/cat.jpg" "Es un gato"
-    fdiv
+    e1 "3 ejemplo" fe1
+    e2 "subtitulo" fe2
+    p "párrafo 1" fp
+    img "http://localhost/sub-1.jpg" "sub-1"
+    e2 "subtitulo" fe2
+    p "párrafo 2" fp
+    img "http://localhost/sub-2.jpg" "sub-2"
+    a "http://localhost" "Ir a inicio" fa
+    p "Fin de la página web" fp
   fcuerpo
 fdocumento
