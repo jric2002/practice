@@ -270,11 +270,31 @@ class Analisis{
       return false;
     }
     int getToken(){
-      while(cad[i]==' ' || cad[i]=='\n' || cad[i]=='\t'){
+      while(cad[i]==' '){
         i++;
       }
       if(cad[i]=='\0'){
         return FIN;
+      }
+      /*AQUI PUEDE QUE SE TRATE DE UNA VARIABLE O UNA PALABRA CLAVE*/
+      else if(isalpha(cad[i])){
+        char tmp[100];
+        int tmp_cont=0;
+        while(isalpha(cad[i])){
+          tmp[tmp_cont]=cad[i];
+          tmp_cont++;
+          i++;
+        }
+        tmp[tmp_cont]='\0';
+        Atributos attr;
+        string lex=tmp;
+        //buscando en la tabla de simbolos
+        for(auto item:ts.getTabla()){
+          if(ts.BuscarPClave(lex,attr)){
+            return attr.token;
+          }
+        }
+        return ERROR;
       }
       else if(iselement(cad[i])){
         char tmp[100];
@@ -284,34 +304,21 @@ class Analisis{
           tmp_cont++;
           i++;
         }
-        tmp[tmp_cont]='\0';
+        i++;
         Atributos attr;
         string lex=tmp;
-        cout << "Lex: " << lex <<endl;
-        //buscando en la tabla de simbolos
-        if(ts.BuscarPClave(lex,attr)){
-          return attr.token;
+        //cout<<"de 2:"<<lex<<endl;
+        for(auto item:ts.getTabla()){
+          if(ts.BuscarPClave(lex,attr)){
+            i++;
+            return attr.token;
+          }
         }
-        i++;
         cadena=tmp;
         return CADENA;
       }
       else{
-        char tmp[100];
-        int tmp_cont=0;
-        while(cad[i] != ' '){
-          tmp[tmp_cont]=cad[i];
-          tmp_cont++;
-          i++;
-        }
-        tmp[tmp_cont]='\0';
-        Atributos attr;
-        string lex=tmp;
-        cout << "Lex: " << lex <<endl;
-        //buscando en la tabla de simbolos
-        if(ts.BuscarPClave(lex,attr)){
-          return attr.token;
-        }
+        i++;
         return ERROR;
       }
     }
@@ -320,9 +327,15 @@ class Analisis{
       int token=0;
       while(true){
         token=getToken();
-        cout<<"Lexico: "<<token<<endl;
+        //cout<<"Lexico: "<<token<<endl;
         if(token==FIN){
           return true;
+        }
+        else if(token==CADENA){
+          Atributos attr;
+          if(!ts.Buscar(cadena,attr)){
+            ts.Insertar(cadena,CADENA,"cadena",null,null);
+          }
         }
         else if(token==ERROR){
           //Aqui deben de mostrar el error lo más especifico posible
