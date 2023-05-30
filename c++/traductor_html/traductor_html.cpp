@@ -113,7 +113,7 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #define DIV               23
 #define FDIV              24
 #define COMILLA_DOBLE     25
-#define VALOR             26
+#define CADENA            26
 
 #define FIN     666
 #define ERROR   999
@@ -213,6 +213,7 @@ class Analisis{
     int i;
     char cad[1000];
     int estado;
+    string cadena;
     //22 SON LOS ESTADOS DEL AUTOMATA
     //14 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
     int tTransicion[22][14];
@@ -275,11 +276,10 @@ class Analisis{
       if(cad[i]=='\0'){
         return FIN;
       }
-      /*AQUI PUEDE QUE SE TRATE DE UNA VARIABLE O UNA PALABRA CLAVE*/
-      else if(isalpha(cad[i])){
+      else if(iselement(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(isalpha(cad[i]) || isdigit(cad[i])){
+        while(cad[i] != '"'){
           tmp[tmp_cont]=cad[i];
           tmp_cont++;
           i++;
@@ -287,32 +287,31 @@ class Analisis{
         tmp[tmp_cont]='\0';
         Atributos attr;
         string lex=tmp;
+        cout << "Lex: " << lex <<endl;
         //buscando en la tabla de simbolos
-        for(auto item:ts.getTabla()){
-          if(ts.BuscarPClave(lex,attr)){
-            return attr.token;
-          }
-          else {
-            return VALOR;
-          }
-        }
-        return ERROR;
-      }
-      else if(iselement(cad[i])){
-        Atributos attr;
-        string lex(1, cad[i]);
-        cout<<"de 2:"<<lex<<endl;
-        for(auto item:ts.getTabla()){
-          if(ts.BuscarPClave(lex,attr)){
-            i++;
-            return attr.token;
-          }
+        if(ts.BuscarPClave(lex,attr)){
+          return attr.token;
         }
         i++;
-        return ERROR;
+        cadena=tmp;
+        return CADENA;
       }
       else{
-        i++;
+        char tmp[100];
+        int tmp_cont=0;
+        while(cad[i] != ' '){
+          tmp[tmp_cont]=cad[i];
+          tmp_cont++;
+          i++;
+        }
+        tmp[tmp_cont]='\0';
+        Atributos attr;
+        string lex=tmp;
+        cout << "Lex: " << lex <<endl;
+        //buscando en la tabla de simbolos
+        if(ts.BuscarPClave(lex,attr)){
+          return attr.token;
+        }
         return ERROR;
       }
     }
