@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* Bootstrap */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+/* Variables */
+$bg-color: #15202B;
+$white-color: #ffffff;
+$sky-blue-color: rgb(29, 161, 242);
+
+/* Header */
+@import "sass_modules/header";
+
+/* Section */
+@import "sass_modules/section";
+
+/* Footer */
+@import "sass_modules/footer";

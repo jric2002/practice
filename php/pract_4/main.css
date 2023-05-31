@@ -1,0 +1,18 @@
+body {
+  background-color: rgb(106, 148, 228);
+}
+.datos h1 {
+  color: blue;
+  text-align: center;
+}
+.datos form {
+  background-color: rgb(245, 236, 115);
+  padding: 1rem;
+  margin: 0 3rem;
+}
+.datos form .part-1 {
+  display: flex;
+}
+.datos div {
+  margin: 0.75rem;
+}

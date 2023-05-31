@@ -1,0 +1,54 @@
+section {
+  @include flex(column, nowrap, center, center);
+  img {
+    width: 272px;
+    margin: 1.5rem;
+  }
+  .box {
+    @include flex(row, nowrap, center, center);
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    input {
+      width: 487px;
+      height: 34px;
+      outline: none;
+      border: none;
+    }
+    span {
+      padding: 0.5rem;
+      border-radius: 24px 0 0 24px;
+      margin: 0.25rem 0.5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .buttons {
+    @include flex(row, nowrap, space-between, center);
+    margin: 2rem;
+    p {
+      background-color: #f8f9fa;
+      border: 1px solid #f8f9fa;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      &:hover {
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+    }
+  }
+  & > p {
+    font-size: 0.8rem;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

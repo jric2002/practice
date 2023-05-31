@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+}
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ok {
+  background-color: rgb(20, 184, 34);
+  color: white;
+}
+.mal {
+  background-color: red;
+  color: white;
+}
+a {
+  background-color: rgb(31, 153, 224);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 0.75rem;
+  margin: 1rem;
+}

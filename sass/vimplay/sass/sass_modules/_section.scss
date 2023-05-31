@@ -1,0 +1,11 @@
+.section-1 {
+  h1 {
+    font-family: "Lobster", sans-serif;
+  }
+  .icon {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

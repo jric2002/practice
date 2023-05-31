@@ -1,0 +1,24 @@
+/* estilos */
+* {
+  font-family: sans-serif;
+}
+body {
+  background: #eeeeee;
+}
+h1 {
+  text-align: center;
+  color: #50bfff;
+  font-size: 40px;
+  text-shadow: -5px 5px 4px #333333;
+}
+table, th, td {
+  border: 2px solid #39b0ff;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 20px;
+}
+th {
+  background: #39b0ff;
+  color: #ffffff;
+}

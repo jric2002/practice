@@ -1,0 +1,9 @@
+@url = "http://localhost/functions.php"
+
+POST {{url}}
+
+Content-Type: application/json
+
+{
+  "numero": 24
+}

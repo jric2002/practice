@@ -1,0 +1,590 @@
+@charset "UTF-8";
+/* General */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* Variables */
+body {
+  background-color: #181818;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "header"
+                      "presentation";
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #181818;
+  border-radius: 10px;
+}
+
+/* Header */
+/* Funciones */
+/* Variables */
+header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: header;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header .area-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .area-1 .menu-btn {
+  font-size: 1.25rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+}
+
+header .area-1 .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+header .area-1 .logo .logo-youtube {
+  background-color: #f00;
+  width: 30px;
+  height: 20px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0.5rem;
+}
+
+header .area-1 .logo .logo-youtube::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #ffffff;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+header .area-1 .logo h1 {
+  font-size: 21px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+header .area-1 .logo h1::after {
+  content: "PE";
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.6rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  padding: 0.2rem;
+}
+
+header .area-1 .logo:hover::after {
+  content: "Página principal de YouTube";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 700px;
+}
+
+header .area-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+header .area-2 input {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  width: 450px;
+  padding: 0.5rem;
+}
+
+header .area-2 input:focus {
+  -webkit-box-shadow: 0 0 0 0.5px #2490fc;
+          box-shadow: 0 0 0 0.5px #2490fc;
+}
+
+header .area-2 div {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+header .area-2 div span {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: auto;
+}
+
+header .area-2 div span:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+header .area-2 div span:hover::after {
+  content: "Buscar";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 425px;
+}
+
+header .area-2 .micro {
+  background-color: transparent;
+}
+
+header .area-2 .micro span {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+header .area-2 .micro span:hover::after {
+  content: "Realiza búsquedas con la voz";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 330px;
+}
+
+header .area-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .area-3 span {
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+header .area-3 span:nth-child(1):hover::after {
+  content: "Crear";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 140px;
+}
+
+header .area-3 span:nth-child(2):hover::after {
+  content: "Apps de YouTube";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 60px;
+}
+
+header .area-3 span:nth-child(3):hover::after {
+  content: "Notificaciones";
+  font-size: 0.75rem;
+  font-family: "Roboto";
+  position: absolute;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  top: 60px;
+  right: 30px;
+}
+
+header .area-3 img {
+  width: 2rem;
+  border-radius: 50%;
+  margin: 0 0 0 0.5rem;
+  cursor: pointer;
+}
+
+/* Presentation */
+/* Funciones */
+/* Variables */
+.presentation {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: presentation;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "menu videos";
+}
+
+.presentation .menu {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: menu;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.presentation .menu::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.presentation .menu::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.presentation .menu::-webkit-scrollbar-track {
+  background-color: #181818;
+  border-radius: 10px;
+}
+
+.presentation .menu::-webkit-scrollbar-corner {
+  color: #181818;
+}
+
+.presentation .menu ul {
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.presentation .menu ul li {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.presentation .menu ul li span {
+  font-size: 1.25rem;
+}
+
+.presentation .menu ul li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.presentation .menu .list-1 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentation .menu .list-2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentation .menu .list-3 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentation .menu .list-4 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentation .menu .list-3 li:first-child {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.presentation .menu .footer {
+  padding: 1rem 2rem;
+}
+
+.presentation .menu .footer p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.presentation .menu .footer p:nth-child(2) {
+  margin: 1rem 0;
+}
+
+.presentation .menu .footer p:nth-child(3) {
+  color: rgba(255, 255, 255, 0.2);
+  cursor: auto;
+}
+
+.presentation .videos {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: videos;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (auto)[2];
+  grid-template-rows: repeat(2, auto);
+}
+
+.presentation .videos .words {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presentation .videos .words ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+}
+
+.presentation .videos .words ul li {
+  padding: 0.25rem 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.presentation .videos .words ul li:first-child {
+  margin-left: 1rem;
+}
+
+.presentation .videos .words ul li:last-child {
+  margin-right: 1rem;
+}
+
+.presentation .videos .words ul li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+
+.presentation .videos .cards {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.presentation .videos .cards > div {
+  width: 240px;
+  margin: 1rem;
+}
+
+.presentation .videos .cards > div > img {
+  width: 100%;
+}
+
+.presentation .videos .cards > div > img:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.presentation .videos .cards > div .after, .presentation .videos .cards > div .list {
+  top: 0;
+}
+
+.presentation .videos .cards > div .after {
+  top: 5px;
+  right: 5px;
+}
+
+.presentation .videos .cards > div .list {
+  top: 20px;
+  right: 5px;
+}
+
+.presentation .videos .cards > div .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.presentation .videos .cards > div .title div img {
+  border-radius: 50%;
+  width: 35px;
+  margin: 0.5rem 1rem 0 0;
+}
+
+.presentation .videos .cards > div .title div:hover {
+  cursor: pointer;
+}
+
+.presentation .videos .cards > div .title div h1 {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.presentation .videos .cards > div .title div p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.presentation .videos .cards > div .title div li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.presentation .videos .cards > div .title div .channel:hover {
+  color: #ffffff;
+}
+/*# sourceMappingURL=main.css.map */

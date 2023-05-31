@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/* General */
+* {
+    padding: 0;
+    margin: 0;
+}
+/* Variables */
+$black-color: #000000;
+$gray-color: #181818;
+$green-color: #98ca3f;
+$light-blue-color: #2490fc;
+$red-color: #f00;
+$white-color: #ffffff;
+$yellow-color: #fcee0a;
+body {
+    background-color: $gray-color;
+    color: $white-color;
+    font-family: "Roboto", sans-serif;
+    display: grid;
+    grid-template-areas: "header"
+                         "presentation";
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: $gray-color;
+        border-radius: 10px;
+    }
+}
+
+/* Header */
+@import "sass_modules/header";
+/* Presentation */
+@import "sass_modules/presentation";

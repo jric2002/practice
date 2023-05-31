@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0) 20px, rgba(0, 0, 0, 0) 40px, gray 40px, gray 41px);
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header h1 {
+  font-family: sans-serif;
+  color: gray;
+  margin: 0.75rem;
+}
+
+.citas div {
+  box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.5);
+  margin: 1.5rem 2rem;
+  border-radius: 5px;
+}
+/* cita 1 */
+.citas .container-1 {
+  background-color: rgb(255, 192, 203);
+}
+.citas .container-1 p:first-child {
+  border: 2px solid rgb(255, 192, 203);
+  background-color: rgb(255, 230, 234);
+}
+.citas .container-1 p:last-child {
+  text-align: center;
+}
+
+/* cita 2 */
+.citas .container-2 {
+  background-color: rgb(49, 168, 49);
+}
+.citas .container-2 p:first-child {
+  border: 2px solid rgb(49, 168, 49);
+  background-color: rgb(114, 228, 114);
+}
+.citas .container-2 p:last-child {
+  text-align: left;
+}
+
+/* cita 3 */
+.citas .container-3 {
+  background-color: rgb(255, 192, 203);
+}
+.citas .container-3 p:first-child {
+  border: 2px solid rgb(255, 192, 203);
+  background-color: rgb(255, 230, 234);
+}
+.citas .container-3 p:last-child {
+  text-align: left;
+}
+
+/* cita 4 */
+.citas .container-4 {
+  background-color: rgb(48, 51, 212);
+}
+.citas .container-4 p:first-child {
+  border: 2px solid rgb(48, 51, 212);
+  background-color: rgb(178, 179, 235);
+}
+.citas .container-4 p:last-child {
+  text-align: right;
+}
+
+/* cita 5 */
+.citas .container-5 {
+  background-color: rgb(49, 168, 49);
+}
+.citas .container-5 p:first-child {
+  border: 2px solid rgb(49, 168, 49);
+  background-color: rgb(114, 228, 114);
+}
+.citas .container-5 p:last-child {
+  text-align: left;
+}
+
+/* cita 6 */
+.citas .container-6 {
+  background-color: rgb(48, 51, 212);
+}
+.citas .container-6 p:first-child {
+  border: 2px solid rgb(48, 51, 212);
+  background-color: rgb(178, 179, 235);
+}
+.citas .container-6 p:last-child {
+  text-align: left;
+}
+
+.citas div p:first-child {
+  padding: 1rem 0.5rem;
+}
+.citas div p:last-child {
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+}

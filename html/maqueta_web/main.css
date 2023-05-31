@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.doc {
+  width: 1000px;
+  margin: 1rem auto;
+  border: 1px solid black;
+}
+div header {
+  margin: 1rem;
+}
+div header h1 {
+  background-color: rgb(30, 24, 109);
+  color: white;
+  padding: 1rem;
+}
+div nav {
+  background-color: rgb(202, 202, 202);
+}
+div nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+div nav ul li {
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+/* Section */
+div .section {
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+div .section .contain-1 .contain {
+  margin: 1rem;
+  background-color: rgb(127, 255, 212);
+  border:  1px solid rgb(143, 143, 146);;
+  padding: 1rem;
+  width: 550px;
+}
+div .section .contain-1 .contain .gray {
+  color: gray;
+}
+div .section .contain-1 .contain p:last-child {
+  text-align: right;
+}
+div .section .contain-1 .contain .cur {
+  font-style: italic;
+}
+div .section .contain-1 .contain div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div .section .contain-1 {
+  margin-bottom: 1rem;
+}
+div .section .contain-1 .image {
+  width: 300px;
+  height: 150px;
+  background-color: yellow;
+}
+
+div .section .contain-2 {
+  margin: 1rem;
+}
+div .section .contain-2 .con {
+  background-color: rgb(144, 144, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+div .section .contain-2 .con .i {
+  width: 150px;
+  height: 150px;
+  background-color: gray;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(173, 173, 173);
+  border-top: 3px solid rgb(102, 102, 102);
+}
+footer p {
+  padding: 1rem;
+}

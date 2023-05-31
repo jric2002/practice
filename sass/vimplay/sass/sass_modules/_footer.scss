@@ -1,0 +1,32 @@
+footer {
+  .social-media {
+    .facebook {
+      &:hover {
+        background-color: #3b5998;
+      }
+    }
+    .twitter {
+      &:hover {
+        background-color: $sky-blue-color;
+      }
+    }
+    .youtube {
+      &:hover {
+        background-color: #f00;
+      }
+    }
+  }
+  .title {
+    font-size: 20px;
+  }
+  .list {
+    list-style: none;
+    padding: 0;
+    li {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+.citas {
+  $style-1: (color-1: rgb(253, 165, 179), color-2: rgb(255, 230, 234));
+  $style-2: (color-1: rgb(31, 161, 139), color-2: rgb(114, 228, 190));
+  $style-3: (color-1: rgb(48, 92, 212), color-2: rgb(178, 196, 235));
+  $border: 3px solid;
+  div {
+    box-shadow: 8px 8px 10px 2px rgba(0, 0, 0, 0.5);
+    margin: 1.25rem 2rem 2.5rem;
+    p:first-child {
+      font: {
+        family: sans-serif;
+        size: 0.9rem;
+        weight: 550;
+      }
+      color: rgb(94, 94, 94);
+      padding: 1.5rem 1rem;
+    }
+    p:last-child {
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.5rem;
+    }
+  }
+  @for $i from 1 through 6 {
+    @if $i == 1 {
+      .container-#{$i} {
+        background-color: map-get($style-1, color-1);
+        p:first-child {
+          background-color: map-get($style-1, color-2);
+          border: $border map-get($style-1, color-1);
+        }
+        p:last-child {
+          text-align: center;
+        }
+      }
+    }
+    @else if $i == 2 {
+      .container-#{$i} {
+        background-color: map-get($style-2, color-1);
+        p:first-child {
+          background-color: map-get($style-2, color-2);
+          border: $border map-get($style-2, color-1);
+        }
+        p:last-child {
+          text-align: left;
+        }
+      }
+    }
+    @else if $i == 3 {
+      .container-#{$i} {
+        background-color: map-get($style-1, color-1);
+        p:first-child {
+          background-color: map-get($style-1, color-2);
+          border: $border map-get($style-1, color-1);
+        }
+        p:last-child {
+          text-align: center;
+        }
+      }
+    }
+    @else if $i == 4 {
+      .container-#{$i} {
+        background-color: map-get($style-3, color-1);
+        p:first-child {
+          background-color: map-get($style-3, color-2);
+          border: $border map-get($style-3, color-1);
+        }
+        p:last-child {
+          text-align: right;
+        }
+      }
+    }
+    @else if $i == 5 {
+      .container-#{$i} {
+        background-color: map-get($style-2, color-1);
+        p:first-child {
+          background-color: map-get($style-2, color-2);
+          border: $border map-get($style-2, color-1);
+        }
+        p:last-child {
+          text-align: left;
+        }
+      }
+    }
+    @else {
+      .container-#{$i} {
+        background-color: map-get($style-3, color-1);
+        p:first-child {
+          background-color: map-get($style-3, color-2);
+          border: $border map-get($style-3, color-1);
+        }
+        p:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

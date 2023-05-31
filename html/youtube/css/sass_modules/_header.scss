@@ -1,0 +1,158 @@
+/* Funciones */
+@mixin flex($direction, $wrap, $just-c, $al-i) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $just-c;
+  align-items: $al-i;
+}
+@mixin text-hover($text, $x-right) {
+  &::after {
+    content: $text;
+    font: {
+      size: 0.75rem;
+      family: "Roboto";
+    }
+    position: absolute;
+    padding: 0.5rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: $white-color;
+    top: 60px;
+    right: $x-right;
+  }
+}
+/* Variables */
+$opacity: rgba(255, 255, 255, 0.1);
+
+header {
+  grid-area: header;
+  @include flex(row, nowrap, space-between, center);
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid $opacity;
+  .area-1 {
+    @include flex(row, nowrap, center, center);
+    .menu-btn {
+      font-size: 1.25rem;
+      margin: 0 1rem 0 0;
+      cursor: pointer;
+    }
+    .logo {
+      @include flex(row, nowrap, center, center);
+      cursor: pointer;
+      .logo-youtube {
+        background-color: $red-color;
+        width: 30px;
+        height: 20px;
+        border-radius: 5px;
+        @include flex(row, nowrap, center, center);
+        margin: 0.5rem;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0; 
+          height: 0;
+          border: {
+            left: 8px solid $white-color;
+            top: 4px solid transparent;
+            bottom: 4px solid transparent;
+          }
+        }
+
+      }
+      h1 {
+        font: {
+          size: 21px;
+          family: "Oswald", sans-serif;
+          weight: 200;
+        }
+        letter-spacing: 0.1px;
+        @include flex(row, nowrap, center, flex-start);
+        &::after {
+          content: "PE";
+          color: rgba(255, 255, 255, 0.5);
+          font: {
+            size: 0.6rem;
+            family: "Roboto", sans-serif;
+            weight: 200;
+          }
+          padding: 0.2rem;
+        }
+      }
+      &:hover {
+        @include text-hover("Página principal de YouTube", 700px);
+      }
+    }
+  }
+  .area-2 {
+    @include flex(row, nowrap, center, stretch);
+    input {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: $white-color;
+      outline: none;
+      border: 1px solid $opacity;
+      font-size: 0.9rem;
+      width: 450px;
+      padding: 0.5rem;
+      &:focus {
+        box-shadow: 0 0 0 0.5px $light-blue-color;
+      }
+    }
+    div {
+      background-color: $opacity;
+      width: 50px;
+      @include flex(row, nowrap, center, center);
+      cursor: pointer;
+      span {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin: auto;
+        &:hover {
+          color: rgba(255, 255, 255, 0.9);
+          @include text-hover("Buscar", 425px);
+        }
+      }
+    }
+    .micro {
+      background-color: transparent;
+      span {
+        font-size: 1.25rem;
+        color: $white-color;
+        &:hover {
+          @include text-hover("Realiza búsquedas con la voz", 330px);
+        }
+      }
+    }
+  }
+  .area-3 {
+    @include flex(row, nowrap, center, center);
+    span {
+      font-size: 1.25rem;
+      padding: 0.25rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+    @for $i from 1 through 3 {
+      @if $i == 1 {
+        span:nth-child(#{$i}):hover {
+          @include text-hover("Crear", 140px);
+        }
+      }
+      @else if $i == 2 {
+        span:nth-child(2):hover {
+          @include text-hover("Apps de YouTube", 60px);
+        }
+      }
+      @else {
+        span:nth-child(3):hover {
+          @include text-hover("Notificaciones", 30px);
+        }
+      }
+    }
+    img {
+      width: 2rem;
+      border-radius: 50%;
+      margin: 0 0 0 0.5rem;
+      cursor: pointer;
+    }
+  }
+}

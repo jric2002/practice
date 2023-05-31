@@ -1,0 +1,8 @@
+header {
+  @include flex(row, nowrap, center, center);
+  h1 {
+    font-family: sans-serif;
+    color: $gray;
+    margin: 1rem 0;
+  }
+}

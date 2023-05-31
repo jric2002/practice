@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/* General */
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0) 20px, rgba(0, 0, 0, 0) 40px, gray 40px, gray 41px);
+}
+/* Funciones */
+@mixin flex($d, $w, $j, $a) {
+  display: flex;
+  flex-direction: $d;
+  flex-wrap: $w;
+  justify-content: $j;
+  align-items: $a;
+}
+/* Variables */
+$gray: rgb(128, 128, 128);
+
+/* Header */
+@import "sass_modules/header";
+
+/* Citas */
+@import "sass_modules/citas";

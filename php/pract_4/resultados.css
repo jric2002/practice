@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(106, 148, 228);
+}
+.resultado {
+  border: 8px solid lightblue;
+  border-radius: 3px;
+  background-color: rgb(245, 236, 115);
+  padding: 1rem;
+  margin: 3rem;
+}

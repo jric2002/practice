@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de la guía 1 y 2</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <h1 class="title">Ejercicios jQuery de la Guía 1 y 2</h1>
+    <p class="author">Author: José Rodolfo</p>
+    <div class="ejercicios">
+      <div class="example">
+        <span class="number">1</span>
+        <div action="" class="form">
+          <h1>Cuestionario de jQuery</h1>
+          <p>¿Quién invento jQuery?</p>
+          <div name="options" id="options">
+            <div for="" id="uno" class="input-radio"><input type="radio" name="preg" value="brendan">Brendan Eich</div><br>
+            <div for="" id="dos" class="input-radio"><input type="radio" name="preg" value="john">John Resig</div><br>
+            <div for="" id="tres" class="input-radio"><input type="radio" name="preg" value="guido">Guido van Rossum</div><br>
+            <div for="" id="cuatro" class="input-radio"><input type="radio" name="preg" value="tim">Tim Berners-Lee</div><br>
+          </div>
+          <button id="boton">Verifica la respuesta</button>
+        </div>
+      </div>
+      <div class="example">
+        <span class="number">2</span>
+        <div action="" class="form">
+          <h1>Cuestionario de jQuery</h1>
+          <p>¿Quién invento jQuery?</p>
+          <select name="" id="trivia-answer">
+            <option value="eich">Brendan Eich</option>
+            <option value="resig">John Resig</option>
+            <option value="rossum">Guido Van Rossum</option>
+            <option value="berners">Tim Berners-Lee</option>
+          </select>
+          <button id="boton-2">Verificar la respuesta</button>
+          <div class="resultado" id="resultado"></div>
+        </div>
+      </div>
+      <div class="example">
+        <span class="number">3</span>
+        <div class="form">
+          <p>Ingrese la tarea a realizar:</p>
+          <input type="text" id="tarea" placeholder="Tarea" size="40">
+          <button id="boton-3">Agregar a lista</button>
+          <div id="formulario">
+            <ol id="lista">
+              <li>Leer el libro</li>
+              <li>Preparar desayuno</li>
+              <li>Ir al trabajo</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

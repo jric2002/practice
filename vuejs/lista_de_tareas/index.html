@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body class="bg-light">
+    <div id="app-1" class="container pt-4">
+      <!-- titulo de la aplicación -->
+      <h2 class="text-center">{{ titulo }}</h2>
+      <!-- Formulario agregar tarea -->
+      <div class="input-group">
+        <input type="text"
+            placeholder="Escribe una nueva tarea"
+            v-model="nuevaTarea"
+            class="form-control"
+            v-on:keyup.enter="agregarTarea">
+        <span class="input-group-btn">
+          <button type="button"
+              v-on:click="agregarTarea"
+              class="btn btn-primary">Agregar</button>
+        </span>
+      </div>
+      <!-- listado de tareas --> 
+      <div class="pt-2">
+        <ul class="list-group">
+          <li v-for="(tarea, indice) in tareas" class="list-group-item" v-bind:class="{'text-decoration-line-through': tarea.terminada, 'bg-success': tarea.terminada, 'text-white': tarea.terminada, 'd-none': tarea.display_none}">
+            {{ tarea.texto }}
+            <span class="float-end">
+              <button type="button" class="btn btn-success btn-xs"
+                  v-bind:class="{'d-none': tarea.terminada}"
+                  v-on:click="tareaTerminada(indice)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"> <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/></svg>
+              </button>
+              <button type="button" class="btn btn-danger btn-xs"
+                  v-bind:class="{'d-none': tarea.terminada}"
+                  v-on:click="borrar(indice)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"> <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/> </svg>
+              </button>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <!-- Referencia Vuej.js -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>

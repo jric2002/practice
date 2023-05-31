@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <h1>JavaScript - Ejercicios</h1>
+    <hr>
+    <div class="author">Autor: José Rodolfo</div>
+    <hr>
+    <h2>Guía 1</h2>
+    <div class="container">
+      <div>
+        <div class="numero">1</div>
+        <p>Diseñe un algoritmo para convertir una longitud dada en metros a pulgadas. Considere que: 1pulgada = 25.4 mm.</p>
+        Metros: <input type="text" id="metros" placeholder="Ejm: 10" required>
+        <input type="button" value="Convertir a pulgadas" id="btn-1">
+        <div id="result-1">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">2</div>
+        <p>Diseñar un algoritmo para leer las longitudes de los tres lados de un triángulo (L1, L2, L3) y calcular el área del mismo de acuerdo con la siguiente fórmula:</p>
+        <img src="img/img-1.png" alt="" width="200px">
+        <img src="img/img-2.png" alt="" width="200px">
+        Lado 1: <input type="text" id="l-1" placeholder="Ejm: 1" required><br>
+        Lado 2: <input type="text" id="l-2" placeholder="Ejm: 2" required><br>
+        Lado 3: <input type="text" id="l-3" placeholder="Ejm: 3" required><br>
+        <input type="button" value="Calcular área" id="btn-2">
+        <div id="result-2">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">3</div>
+        <p>Realizar el algoritmo que calcule la longitud y el área total de tres circunferencias sabiendo que la 1ª de ellas tiene radio R que será introducido por teclado, la 2ª tiene radio 2R y la 3ª tiene radio 3R.</p>
+        Radio: <input type="text" id="radio" placeholder="Ejm: 4" required>
+        <input type="button" value="Calcular" id="btn-3">
+        <div id="result-3">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">4</div>
+        <p>Diseñe un algoritmo que determine la suma de las cifras de un número entero positivo de 4 cifras.</p>
+        Número: <input type="text" id="numero" placeholder="Ejm: 1234" required>
+        <input type="button" value="Sumar cifras" id="btn-4">
+        <div id="result-4">Resultado:</div>
+      </div>
+    </div>
+    <hr>
+    <h2>Guía 2</h2>
+    <div class="container">
+      <div>
+        <div class="numero">1</div>
+        <p>El promedio de prácticas de un curso se calcula en base a cuatro prácticas calificadas de las cuales se elimina la nota menor y se promedian las tres notas más altas. Diseñe un algoritmo que determine la nota eliminada y el promedio de prácticas de un estudiante.</p>
+        Nota 1: <input type="text" id="nota-1" placeholder="Ejm: 12" required><br>
+        Nota 2: <input type="text" id="nota-2" placeholder="Ejm: 13" required><br>
+        Nota 3: <input type="text" id="nota-3" placeholder="Ejm: 14" required><br>
+        Nota 4: <input type="text" id="nota-4" placeholder="Ejm: 15" required><br>
+        <input type="button" value="Calcular promedio" id="button-1">
+        <div id="msg-1">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">2</div>
+        <p>Un negocio tiene dos tipos de clientes: Cliente General y Cliente Afiliado, además recibe dos formas de pago: al Contado o a Plazos. Nos piden implementar un programa que al ingresar el monto de la compra se obtenga el monto del descuento o el monto de recargo y el total a pagar según la siguiente tabla:</p>
+        <img src="img/img-3.png" alt="" width="300px">
+        Monto: <input type="text" id="monto" placeholder="Ejm: 100" required><br>
+        Tipo de Cliente: <input type="text" id="tipo-cliente" placeholder="Ejm: A" required><br>
+        Forma de Pago: <input type="text" id="forma-pago" placeholder="Ejm: P" required><br>
+        <input type="button" id="button-2" value="Calcular">
+        <div id="msg-2">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">3</div>
+        <p>Realizar un algoritmo que muestre el factorial de un número ingresado por teclado.</p>
+        <input type="text" id="numero-factorial" placeholder="Ejm: 5" required>
+        <input type="button" id="button-3" value="Calcular  factorial">
+        <div id="msg-3">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">4</div>
+        <p>Dado un número ingresado por teclado hallar la suma de sus dígitos.</p>
+        <input type="text" id="num" placeholder="Ejm: 25" required>
+        <input type="button" id="button-4" value="Calcular suma">
+        <div id="msg-4">Resultado:</div>
+      </div>
+    </div>
+    <hr>
+    <h2>Guía 3</h2>
+    <div class="container">
+      <div>
+        <div class="numero">1</div>
+        <p>Que muestre por pantalla si un número es par o impar, utilizar una función.</p>
+        <input type="text" id="numb" placeholder="Ejm: 10" required>
+        <input type="button" id="but-1" value="Verificar">
+        <div id="message-1">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">2</div>
+        <p>Crear una función escribirTablaMultiplicar, que reciba como parámetro un número entero, y escriba la tabla de multiplicar de ese número (por ejemplo, para el 3 deberá llegar desde 3x1=3 hasta 3x10=30</p>
+        <input type="text" id="num-t" placeholder="Ejm: 5" required>
+        <input type="button" id="but-2" value="Ver tabla">
+        <div id="message-2">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">3</div>
+        <p>Crear una función esPrimo, que reciba un número y devuelva el valor 1 si es un número primo o 0 en caso contrario.</p>
+        <p><b>Nota:</b> El número 1 no es primo porque solo tiene un divisor.</p>
+        <input type="text" id="num-p" placeholder="Ejm: 13" required>
+        <input type="button" id="but-3" value="Verificar">
+        <div id="message-3">Resultado:</div>
+      </div>
+      <div>
+        <div class="numero">4</div>
+        <p>Implementar una función dibujaTriangulo que reciba un número y devuelva como resultado en la pantalla un triángulo formado por asteriscos, por ejemplo N = 5:</p>
+        <img src="img/img-4.png" alt="" width="200px">
+        <input type="text" id="numero-ast" placeholder="Ejm: 5" required>
+        <input type="button" id="but-4" value="Dibujar triangulo">
+        <div id="message-4">Resultado:</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/guia_1.js"></script>
+    <script type="text/javascript" src="js/guia_2.js"></script>
+    <script type="text/javascript" src="js/guia_3.js"></script>
+  </body>
+</html> 

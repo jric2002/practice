@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/*General*/
+* {
+    padding: 0;
+    margin: 0;
+}
+/* Funciones */
+@mixin flex($d, $w, $j, $a) {
+    display: flex;
+    flex-direction: $d;
+    flex-wrap: $w;
+    justify-content: $j;
+    align-items: $a;
+}
+$white: #fff;
+body {
+    height: 100vh;
+    background-color: $white;
+    font-family: "Roboto", sans-serif;
+}
+
+@import "sass_modules/header";
+@import "sass_modules/section";
+@import "sass_modules/footer";
