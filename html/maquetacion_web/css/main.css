@@ -1,0 +1,286 @@
+:root {
+  --pink-color: rgb(186, 24, 94);
+  --pink-2-color: #C8909A;
+  --red-color: #FF383F;
+  --gray-color: rgb(99, 99, 99);
+  --gray-2-color: #F4F4F4;
+  --gray-3-color: #C2C2C2;
+  --black-color: rgb(0, 0, 0);
+  --green-color: #98ca3f;
+  --white-color: rgb(255, 255, 255);
+  --blue-color: #002029;
+  --blue-2-color: #4B6375;
+  --background-color: #F9F9F9;
+  --black-color-opacity: rgba(0, 0, 0, 0.35);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-areas: "header"
+                      "section-1"
+                      "section-2"
+                      "section-3"
+                      "footer";
+  font-family: sans-serif;
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+.header .logo {
+  padding: 0 0.5rem 0.4rem;
+}
+.header .logo h1 span:first-child {
+  color: var(--pink-color);
+}
+.header .logo h1 span:last-child {
+  color: var(--black-color-opacity);
+}
+.header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.header nav ul li {
+  cursor: pointer;
+  color: var(--gray-color);
+  padding: 1rem ;
+  transition: color 0.5s linear;
+}
+.header nav ul li:hover {
+  color: var(--black-color);
+}
+
+.section-1 {
+  grid-area: section-1;
+  background-image: url("./../img/fondo-1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.section-1 .contenido {
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 1.35rem;
+}
+.section-1 .contenido .navegacion {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  list-style: none;
+}
+.section-1 .contenido .navegacion li {
+  display: flex;
+  cursor: pointer;
+  border: 0.25px solid var(--gray-3-color);
+  background-color: var(--gray-2-color);
+}
+.section-1 .contenido .navegacion li:first-child {
+  border-radius: 10px 0 0 0;
+}
+.section-1 .contenido .navegacion li:nth-child(3) {
+  border-top: 3px solid var(--red-color);
+  border-bottom: none;
+  background-color: var(--white-color);
+}
+.section-1 .contenido .navegacion li:nth-child(3) a {
+  color: var(--red-color);
+}
+
+.section-1 .contenido .navegacion li:last-child {
+  border-radius: 0 10px 0 0;
+}
+.section-1 .contenido .navegacion li a {
+  color: var(--gray-color);
+  text-align: center;
+  text-decoration: none;
+  padding: 1rem 4.7rem;
+}
+.section-1 .contenido .navegacion li a i {
+  font-size: 20px;
+}
+.section-1 .contenido .actividades {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: var(--white-color);
+}
+.section-1 .contenido .actividades h3 {
+  color: var(--gray-color);
+  margin: 3rem 20rem 0.5rem;
+}
+.section-1 .contenido .actividades form {
+  margin: 0.5rem 20rem 3rem;
+}
+.section-1 .contenido .actividades form input[type="text"] {
+  border: 1px solid var(--gray-3-color);
+  width: 370px;
+  font-size: 14px;
+  padding: 0.75rem;
+  border-radius: 3px;
+}
+.section-1 .contenido .actividades form input[type="submit"] {
+  background-color: var(--red-color);
+  color: var(--white-color);
+  outline: none;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 3px;
+  margin-left: 0.25rem;
+}
+
+.section-2 {
+  grid-area: section-2;
+  background-color: var(--background-color);
+  color: var(--blue-2-color);
+  padding: 1.25rem;
+}
+.section-2 > h2 {
+  margin: 2rem 0;
+}
+.section-2 .lugares {
+  display: flex;
+  justify-content: space-between;
+}
+.section-2 .lugares .card {
+  background-color: var(--white-color);
+  border-radius: 3px;
+  width: 300px;
+  box-shadow: 0 3px 2px 0px var(--gray-3-color);
+  position: relative;
+}
+.section-2 .lugares .card .info {
+  color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: absolute;
+}
+.section-2 .lugares .card .info > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.75rem;
+}
+.section-2 .lugares .card .info .image {
+  border-right: 3px solid var(--white-color);
+}
+.section-2 .lugares .card img {
+  width: 100%;
+  height: 200px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+.section-2 .lugares .card .precio span {
+  font-size: 26px;
+}
+.section-2 .lugares .card > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1rem;
+}
+.section-2 .lugares .card > div input[type="button"] {
+  cursor: pointer;
+  background-color: var(--red-color);
+  color: var(--white-color);
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem;
+  transition: background-color 0.25s linear;
+}
+.section-2 .lugares .card > div input[type="button"]:hover {
+  background-color: var(--green-color);
+}
+.section-2 button {
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid var(--pink-2-color);
+  background-color: var(--white-color);
+  color: var(--pink-2-color);
+  font-size: 16px;
+  padding: 0.5rem;
+  margin: 2rem 0.25rem;
+  float: right;
+  transition: background-color, color 0.5s linear;
+}
+.section-2 button:hover {
+  background-color: var(--green-color);
+  color: var(--white-color);
+}
+
+.section-3 {
+  grid-area: section-3;
+  background-color: var(--background-color);
+  color: var(--blue-2-color);
+  padding: 1.25rem;
+}
+.section-3 > h2 {
+  margin: 0 0 1.5rem;
+}
+.section-3 > h2 strong {
+  color: var(--red-color);
+}
+.section-3 .detalles {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.section-3 .detalles .card {
+  border-radius: 3px;
+  background-color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.75rem 0;
+  margin: 1rem;
+}
+.section-3 .detalles .card i {
+  font-size: 75px;
+  padding: 1rem;
+}
+.section-3 .detalles .card > div {
+  padding: 1rem;
+}
+.section-3 .detalles .card > div h3 {
+  margin: 0 0 0.5rem;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
+.footer .redes-sociales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .redes-sociales a {
+  text-decoration: none;
+  color: var(--white-color);
+  padding: 1rem;
+  margin: 1rem;
+  transition: color 0.25s linear;
+}
+.footer .redes-sociales a:hover {
+  color: var(--gray-3-color);
+}
+.footer .redes-sociales a i {
+  font-size: 24px;
+}

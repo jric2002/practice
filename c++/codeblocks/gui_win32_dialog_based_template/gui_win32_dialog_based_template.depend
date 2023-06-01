@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1584205422 source:d:\proyectos\github\practice\c++\codeblocks\gui_win32_dialog_based_template\main.cpp
+	<windows.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1584205424 d:\proyectos\github\practice\c++\codeblocks\gui_win32_dialog_based_template\resource.h
+
+1584205424 source:d:\proyectos\github\practice\c++\codeblocks\gui_win32_dialog_based_template\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+

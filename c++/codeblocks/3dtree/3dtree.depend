@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1665640708 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\3dtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1665640598 e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\3dtree\resource.h
+
+1665644679 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\3dtree\main.cpp
+	<windows.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1665645479 source:d:\proyectos\github\practice\c++\codeblocks\3dtree\main.cpp
+	<windows.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1665640598 d:\proyectos\github\practice\c++\codeblocks\3dtree\resource.h
+
+1665640708 source:d:\proyectos\github\practice\c++\codeblocks\3dtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+

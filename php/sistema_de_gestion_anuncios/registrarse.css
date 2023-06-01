@@ -1,0 +1,132 @@
+header {
+  box-shadow: 0px 0px 7px var(--black-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+header a img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header a img {
+  width: 50px;
+  cursor: pointer;
+}
+header > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header > div a {
+  text-decoration: none;
+  color: var(--black-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+  transition: background-color 0.5s linear;
+  margin: 0 0 0 2rem;
+}
+header > div a:nth-child(2) {
+  margin: 0 0 0 2rem;
+}
+header > div a:hover {
+  background-color: var(--orange-color);
+  color: var(--white-color);
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0px 0px 7px var(--black-color);
+  padding: 2rem;
+  margin: 3rem 0;
+}
+section form > div {
+  margin: 1rem;
+}
+section form > div.izq {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+section form > div.izq h1 {
+  margin: 0 0 1.25rem 0;
+}
+section form > div.izq img {
+  width: 250px;
+  border-radius: 10px;
+  margin: 0 0 1.25rem 0;
+}
+section form > div.izq input, section form > div.izq select {
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 2rem;
+  margin: 0.5rem;
+}
+section form > div.izq input[type="submit"], section form > div.izq input[type="button"] {
+  background-color: var(--orange-color);
+  color: var(--white-color);
+  border: none;
+  transition: background-color 0.25s linear;
+}
+section form > div.izq input[type="submit"]:hover, section form > div.izq input[type="button"]:hover {
+  background-color: var(--green-color);
+}
+section form > div.izq > a {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: color 0.25s linear;
+  margin: 0.5rem;
+}
+section form > div.izq > a:hover {
+  color: var(--green-color);
+}
+section form > div.izq p {
+  color: var(--text-color);
+  font-size: 0.75rem;
+  margin: 0 0.75rem;
+}
+section form > div.izq div.checks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section form > div.izq div.checks span {
+  font-size: 0.9rem;
+}
+section form > div.izq .login {
+  color: var(--orange-color);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+section form > div.izq div.social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section form > div.izq div.social-media svg {
+  margin: 0.5rem 0.75rem;
+}
+section form > div.der {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+section form > div.der img {
+  width: 350px;
+}

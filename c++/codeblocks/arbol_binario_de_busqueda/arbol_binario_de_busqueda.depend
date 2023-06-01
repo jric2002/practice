@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1685575791 source:d:\proyectos\github\practice\c++\codeblocks\arbol_binario_de_busqueda\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1685575781 d:\proyectos\github\practice\c++\codeblocks\arbol_binario_de_busqueda\resource.h
+

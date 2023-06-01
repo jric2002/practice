@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1662594975 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\main.cpp
+	<iostream>
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1662089194 e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\resource.h
+
+1662089164 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1662594975 source:d:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\main.cpp
+	<iostream>
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1662089194 d:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\resource.h
+
+1662089164 source:d:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\2 semana\quadtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1662594975 source:d:\proyectos\github\practice\c++\codeblocks\quadtree\main.cpp
+	<iostream>
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1662089194 d:\proyectos\github\practice\c++\codeblocks\quadtree\resource.h
+
+1662089164 source:d:\proyectos\github\practice\c++\codeblocks\quadtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+

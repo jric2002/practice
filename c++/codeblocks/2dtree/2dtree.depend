@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1663300508 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\2dtree\main.cpp
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"resource.h"
+
+1663300498 e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\2dtree\resource.h
+
+1663300504 source:e:\ing. de sistemas\v semestre\cursos\estructura de datos avanzadas\5 semana\2dtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1663300508 source:d:\proyectos\github\practice\c++\codeblocks\2dtree\main.cpp
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	<string.h>
+	"resource.h"
+
+1663300498 d:\proyectos\github\practice\c++\codeblocks\2dtree\resource.h
+
+1663300504 source:d:\proyectos\github\practice\c++\codeblocks\2dtree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+

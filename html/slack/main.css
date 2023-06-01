@@ -1,0 +1,209 @@
+@charset "UTF-8";
+:root {
+  --bg-color: #541554;
+  --text-color: #ffffff;
+  --yellow-color: #ECB22E;
+  --cyan-color: #4285F4;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: grid;
+  grid-template-areas: "header"
+                      "section"
+                      "footer";
+  background-color: var(--bg-color);
+  font-family: sans-serif;
+}
+header {
+  display: grid;
+  grid-template-areas: "logo nav";
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+header .logo {
+  grid-area: logo;
+}
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  header nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header .menu-btn {
+    display: none;
+  }
+  header nav a {
+    text-decoration: none;
+  }
+  header nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    list-style: none;
+  }
+  header nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  header nav ul li a {
+    color: var(--text-color);
+    padding: 0.5rem;
+  }
+  header nav ul li a:hover {
+    text-decoration: underline;
+  }
+  header nav div a:nth-child(1) {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-color);
+    padding: 0.5rem;
+  }
+  header nav div a:nth-child(1):hover {
+    text-decoration: underline;
+  }
+  header nav div a:nth-child(2) button {
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+    padding: 0.75rem 1rem;
+  }
+  header nav div a:nth-child(3) button {
+    cursor: pointer;
+    color: var(--bg-color);
+    font-weight: bold;
+    background-color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+    padding: 0.75rem 1rem;
+  }
+  header nav div a button {
+    margin: 0 0.5rem;
+  }
+}
+/* Tablet and Mobile */
+@media screen and (max-width: 1280px){
+  header .menu-btn {
+    display: block;
+    z-index: 1;
+  }
+  header .menu-btn svg {
+    width: 30px;
+    fill: var(--text-color);
+  }
+  header nav {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(32,33,36,0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .show {
+    display: block !important;
+    transition: all 2s linear;
+  }
+  header nav ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+  }
+  header nav ul li {
+    margin: 1rem;
+  }
+  header nav ul li a {
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+}
+section {
+  grid-area: section;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+section > div {
+  padding: 2rem;
+}
+section .description {
+  width: 600px;
+}
+section .description p:nth-child(1) {
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 3rem;
+}
+section .description p:nth-child(1) span {
+  color: var(--yellow-color);
+  font-size: 3rem;
+}
+section .description p:nth-child(2) {
+  color: var(--text-color);
+  font-weight: bold;
+  margin: 1rem 0 2rem;
+}
+section .description button {
+  margin: 0.25rem 0;
+}
+section .description .btn-email {
+  cursor: pointer;
+  color: var(--bg-color);
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--text-color);
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+  padding: 1rem;
+}
+section .description .btn-google {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--cyan-color);
+  border: 1px solid var(--cyan-color);
+  border-radius: 3px;
+  padding: 0.2rem 1rem;
+}
+section .description .btn-google svg {
+  width: 25px;
+  background-color: var(--text-color);
+  border-radius: 3px;
+  padding: 0.5rem;
+  margin: 0 0.5rem 0 0;
+}
+section .video {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section .description .frase {
+  color: var(--text-color);
+  font-weight: bold;
+  margin: 1rem 0 2rem;
+}
+section .video video {
+  min-width: 100%;
+}

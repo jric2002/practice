@@ -1,0 +1,34 @@
+section {
+  display: flex;
+  justify-content: center;
+}
+section div h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 5rem 0;
+}
+section > div {
+  padding: 0 3rem;
+}
+section div > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+section div > div ul {
+  list-style: none;
+  margin: 0.1rem 2rem;
+}
+section div > div ul li {
+  text-align: center;
+  display: inline-block;
+  background-color: var(--orange-color);
+  color: var(--white-color);
+  border-radius: 50px;
+  padding: 0.5rem 4rem;
+  margin: 1rem;
+}
+section div svg {
+  width: 350px;
+}

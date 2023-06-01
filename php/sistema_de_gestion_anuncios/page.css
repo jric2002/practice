@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* GENERAL */
+:root {
+	--black-color: #000000;
+	--gray-color: #f7f7f7;
+	--green-color: #98ca3f;
+	--yellow-color: #fcee0a;
+	--sky-blue-color: #2490fc;
+  --orange-color: rgb(255, 146, 56);
+	--white-color: #ffffff;
+	--border-color: #b7b7b7;
+	--text-color: #8f8f8f;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: var(--gray-color, #1f1f1f);
+    font-family: sans-serif;
+}

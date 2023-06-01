@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1685580160 source:d:\proyectos\github\practice\c++\codeblocks\burkhard_keller_tree\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1685580134 d:\proyectos\github\practice\c++\codeblocks\burkhard_keller_tree\resource.h
+

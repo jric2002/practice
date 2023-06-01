@@ -1,0 +1,155 @@
+:root {
+  --width-button: 200px;
+  --height-button: 50px;
+  --bg-color: #DFDFDF;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  padding: 0.5rem 6rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.buttons > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+.buttons > div button {
+  box-shadow: 1px 1px 5px 2px #AFAFAF;
+  margin: 1rem;
+}
+.buttons > div button {
+  cursor: pointer;
+  width: var(--width-button);
+  height: var(--height-button);
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: calc(var(--height-button) / 2);
+  position: relative;
+  transform: scale(1);
+  transition: transform 0.25s ease-in-out;
+}
+.buttons > div button:hover {
+  transform: scale(1.15);
+}
+.buttons > div .download {
+  background-color: #92C545;
+}
+.buttons > div .download > div i {
+  color: #92C545;
+}
+.buttons > div .upload {
+  background-color: #EC1A2F;
+}
+.buttons > div .upload > div i {
+  color: #EC1A2F;
+}
+.buttons > div .e-mail {
+  background-color: #FFA510;
+}
+.buttons > div .e-mail > div i {
+  color: #FFA510;
+}
+.buttons > div .contact-us {
+  background-color: #2880B8;
+}
+.buttons > div .contact-us > div i {
+  color: #2880B8;
+}
+.buttons > div .support {
+  background-color: #34495F;
+}
+.buttons > div .support > div i {
+  color: #34495F;
+}
+.buttons > div .search {
+  background-color: #9A58B4;
+}
+.buttons > div .search > div i {
+  color: #9A58B4;
+}
+.buttons > div .website {
+  background-color: #7F8C8E;
+}
+.buttons > div .website > div i {
+  color: #7F8C8E;
+}
+.buttons > div .home {
+  background-color: #B91D81;
+}
+.buttons > div .home > div i {
+  color: #B91D81;
+}
+/* Column 2 */
+.buttons > div .cloud {
+  background-color: #15AFDB;
+}
+.buttons > div .cloud > div i {
+  color: #15AFDB;
+}
+.buttons > div .settings {
+  background-color: #812F91;
+}
+.buttons > div .settings > div i {
+  color: #812F91;
+}
+.buttons > div .informations {
+  background-color: #6026C9;
+}
+.buttons > div .informations > div i {
+  color: #6026C9;
+}
+.buttons > div .cancel {
+  background-color: #E51667;
+}
+.buttons > div .cancel > div i {
+  color: #E51667;
+}
+.buttons > div .approve {
+  background-color: #0EAC82;
+}
+.buttons > div .approve > div i {
+  color: #0EAC82;
+}
+.buttons > div .delete {
+  background-color: #576474;
+}
+.buttons > div .delete > div i {
+  color: #576474;
+}
+.buttons > div .profile {
+  background-color: #3EAF4A;
+}
+.buttons > div .profile > div i {
+  color: #3EAF4A;
+}
+.buttons > div .discussion {
+  background-color: #F96701;
+}
+.buttons > div .discussion > div i {
+  color: #F96701;
+}
+.buttons > div button > div i {
+  width: var(--height-button);
+  height: var(--height-button);
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+}

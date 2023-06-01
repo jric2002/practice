@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pontificia Universidad Católica del Perú | PUCP</title>
+    <meta name="description" content="La PUCP es reconocida por su pluralidad, la calidad de su enseñanza, investigaciones, responsabilidad social, apoyo a la cultura y su acción inspirada en la doctrina social de la iglesia. Es una de las 25 mejores de América Latina y la única peruana entre las 500 mejores del mundo en los rankings internacionales.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style type="text/css">
+      :root {
+        --c-primary: #163297;
+        --c-secondary: #042354;
+        --c-secondary-transparent: rgba(4, 35, 84, 0.9);
+        --c-white: #ffffff;
+        --c-light-blue: #2841dd;
+        --fs-primary: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid px-5" style="background-color: var(--c-primary);">
+      <div class="row justify-content-between align-items-center" style="font-size: var(--fs-primary);">
+        <div class="col-2">
+          <div class="dropdown m-2">
+            <button class="btn btn-link text-decoration-none border border-1 border-white rounded-0 dropdown-toggle text-white" id="dropdown-toggle-menu" data-bs-toggle="dropdown" style="font-size: var(--fs-primary);">Escoge tu perfil</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdown-toggle-menu" style="background-color: var(--c-primary);">
+              <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Estudiantes</a></li>
+              <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Postulantes</a></li>
+              <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Profesores</a></li>
+              <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Administrativos</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-10">
+          <ul class="nav justify-content-end align-items-center">
+            <li class="nav-item"><a href="#" class="nav-link text-white"><span class="text-muted">&#9679;</span> INTRANET Y CORREO</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white"><span class="text-muted">&#9679;</span> BIBLIOTECA</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white"><span class="text-muted">&#9679;</span> PAIDEIA</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white"><span class="text-muted">&#9679;</span> CENTURIA</a></li>
+            <li class="nav-item d-flex justify-content-center align-items-center">
+              <span class="text-muted">&#9679;</span>
+              <div class="dropdown">
+                <button class="btn btn-link text-decoration-none dropdown-toggle text-white" id="dropdown-toggle-menu-mas" data-bs-toggle="dropdown" style="font-size: var(--fs-primary);">MÁS</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdown-toggle-menu-mas" style="background-color: var(--c-primary);">
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Bolsa de trabajo</a></li>
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Blogs de PUCP</a></li>
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Directorio de unidades</a></li>
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Directorio de servicios</a></li>
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Certificaciones digitales</a></li>
+                  <li><a href="#" class="dropdown-item text-white" style="font-size: var(--fs-primary);">Ver más herramientas informáticas</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-globe2 text-muted"></i> ESPAÑOL</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid py-4 px-5 border-bottom border-dark border-2" style="background-color: var(--c-secondary);">
+      <div class="row justify-content-between align-items-center">
+        <div class="col">
+          <img src="./img/logo.svg" alt="PUCP - Logo">
+        </div>
+        <div class="col d-flex justify-content-end align-items-center">
+          <div class="border border-white rounded-0">
+            <input type="text" class="border-0 bg-transparent px-2 py-1 text-white" name="search" id="search" placeholder="Buscar en toda la PUCP" style="outline: none;">
+            <i class="bi bi-search text-white px-2"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-2" style="background-color: var(--c-secondary);">
+      <div class="row justify-content-center align-items-center">
+        <div class="col">
+          <ul class="nav justify-content-center align-items-center" style="font-size: calc(var(--fs-primary) + 5px);">
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">La Universidad</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Admisión</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Pregrado</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Posgrado</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Formación Continua</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Investigación</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Publicaciones</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Internacional</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white px-4">Noticias y eventos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-2">
+      <div class="row mx-5 my-2">
+        <div class="col-6 position-relative shadow p-0">
+          <img src="./img/image-1.jpeg" alt="" class="w-100 he" style="z-index: -1;">
+          <button class="btn btn-link border-0 rounded-0 text-white text-decoration-none position-absolute fw-bold" style="background-color: var(--c-secondary); top: 53%; left: 5%;">RETORNO SEGURO</button>
+          <h1 class="position-absolute text-white shadow" style="text-shadow: 0px 0px 8px rgb(0, 0, 0); font-size: calc(var(--fs-primary) + 14px); top: 65%; left: 5%;">El semestre 2022-2 será mayoritariamente<br/>presencial para las carreras de pregrado de la PUCP</h1>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-stretch p-2">
+          <div class="card">
+            <img src="./img/image-2.png" class="card-image-top w-100" alt="">
+            <div class="card-body">
+              <h5 class="card-title" style="color: var(--c-primary);">INSTITUCIONAL</h5>
+              <p class="card-text">Responde la encuesta digital para participar en el proceso de reacreditación internacional PUCP</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-stretch p-2">
+          <div class="card">
+            <img src="./img/image-3.jpeg" class="card-image-top w-100" alt="">
+            <div class="card-body">
+              <h5 class="card-title" style="color: var(--c-primary);">BIENESTAR</h5>
+              <p class="card-text">Se inicia investigación que busca mejorar el bienestar de los estudiantes PUCP</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-2">
+      <div class="row mx-5 my-2">
+        <div class="col-4 position-relative p-2">
+          <img src="./img/image-10.svg" class="w-100" alt="">
+          <h1 class="position-absolute text-white" style="font-size: calc(var(--fs-primary) + 9px); top: 33%; left: 5%;">Facultades y departamentos</h1>
+          <button class="btn btn-dark position-absolute rounded-circle" style="top: 30%; right: 5%;">
+            <i class="bi bi-chevron-right fw-bold" style="font-size: calc(var(--fs-primary) + 5px);"></i>
+          </button>
+        </div>
+        <div class="col-4 position-relative p-2">
+          <img src="./img/image-11.svg" class="w-100" alt="">
+          <h1 class="position-absolute text-white" style="font-size: calc(var(--fs-primary) + 9px); top: 33%; left: 5%;">Centros e institutos</h1>
+          <button class="btn btn-dark position-absolute rounded-circle" style="top: 30%; right: 5%;">
+            <i class="bi bi-chevron-right fw-bold" style="font-size: calc(var(--fs-primary) + 5px);"></i>
+          </button>
+        </div>
+        <div class="col-4 position-relative p-2">
+          <img src="./img/image-12.svg" class="w-100" alt="">
+          <h1 class="position-absolute text-white" style="font-size: calc(var(--fs-primary) + 9px); top: 33%; left: 5%;">Medical Cloud PUCP</h1>
+          <button class="btn btn-dark position-absolute rounded-circle" style="top: 30%; right: 5%;">
+            <i class="bi bi-chevron-right fw-bold" style="font-size: calc(var(--fs-primary) + 5px);"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-2">
+      <div class="row mx-5 mb-2">
+        <h2 class="fw-bold" style="color: var(--c-secondary);">Agenda PUCP</h2>
+      </div>
+      <div class="row mx-5 my-2">
+        <div class="col-4 p-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-7" style="height: 220px;">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: var(--c-primary); font-size: var(--fs-primary);">CONVERSATORIO</h5>
+                  <p class="card-text fw-bold" style="color: var(--c-secondary); font-size: calc(var(--fs-primary) + 5px);">Hablemos de Deporte | Mayo 2022</p>
+                  <p class="card-text"><small class="text-muted">11/5/2022</small></p>
+                </div>
+              </div>
+              <div class="col-5">
+                <img src="./img/image-4.png" class="w-100 h-100" style="object-fit: cover; object-position: 50%;" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 p-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-7" style="height: 220px;">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: var(--c-primary); font-size: var(--fs-primary);">CONVERSATORIO</h5>
+                  <p class="card-text fw-bold" style="color: var(--c-secondary); font-size: calc(var(--fs-primary) + 5px);">Cine | 10° Festival de cine francés</p>
+                  <p class="card-text"><small class="text-muted">15/5/2022</small></p>
+                </div>
+              </div>
+              <div class="col-5">
+                <img src="./img/image-5.jpeg" class="w-100 h-100" style="object-fit: cover; object-position: 50%;" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 p-2">
+          <div class="card" style="max-width: 540px;">
+            <img src="./img/image-6.png" class="w-100 h-20" style="object-fit: cover; object-position: 50% 50%;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="row mx-5 my-2">
+        <div class="col-4 p-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-7" style="height: 250px;">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: var(--c-primary); font-size: var(--fs-primary);">CHARLA</h5>
+                  <p class="card-text fw-bold" style="color: var(--c-secondary); font-size: calc(var(--fs-primary) + 5px);">Charla | Finanzas Familiares</p>
+                  <p class="card-text"><small class="text-muted">19/5/2022</small></p>
+                </div>
+              </div>
+              <div class="col-5">
+                <img src="./img/image-7.png" class="w-100 h-100" style="object-fit: cover; object-position: 50%;" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 p-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-7" style="height: 250px;">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold" style="color: var(--c-primary); font-size: var(--fs-primary);">CONGRESO</h5>
+                  <p class="card-text fw-bold" style="color: var(--c-secondary); font-size: calc(var(--fs-primary) + 5px);">III Congreso ODUCAL Perú 2022 | Las Universidades Católicas Peruanas Amazonía</p>
+                  <p class="card-text"><small class="text-muted">2/6/2022</small></p>
+                </div>
+              </div>
+              <div class="col-5">
+                <img src="./img/image-8.jpeg" class="w-100 h-100" style="object-fit: cover; object-position: 50%;" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 p-2">
+          <div class="card" style="max-width: 540px;">
+            <img src="./img/image-9.jpeg" class="w-100 h-20" style="object-fit: cover; object-position: 50% 50%;" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="row mx-5 my-2">
+        <div class="col">
+          <button class="btn btn-link text-white text-decoration-none rounded-0" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px);">VER AGENDA PUCP</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid position-relative d-flex flex-column justify-content-center align-items-center px-1 py-2">
+      <img src="./img/image-17.jpg" alt="" class="position-absolute w-100 h-100" style="z-index: -1;">
+      <h1 class="text-white fw-bold my-5" style="text-shadow: 0 0 5px rgb(0, 0, 0);">PUCP en Cifras</h1>
+      <div class="container text-white text-center">
+        <div class="row">
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <p style="font-size: calc(var(--fs-primary) + 5px);">Fundada en</p>
+            <h1 class="fw-bold">1917</h1>
+          </div>
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <p style="font-size: calc(var(--fs-primary) + 5px);">La universidad</p>
+            <h1 class="fw-bold">#1</h1>
+            <p style="font-size: calc(var(--fs-primary) + 5px);">en Perú</p>
+            <p style="font-size: calc(var(--fs-primary) + 1px);">según el ranking QS<br>Mundial 2022</p>
+          </div>
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <h1 class="fw-bold">31,167</h1>
+            <p style="font-size: calc(var(--fs-primary) + 5px);">estudiantes de pregrado y posgrado</p>
+          </div>
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <h1 class="fw-bold">52</h1>
+            <p style="font-size: calc(var(--fs-primary) + 5px);">carreras de<br>admisión 2020-2</p>
+          </div>
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <h1 class="fw-bold">109</h1>
+            <p style="font-size: calc(var(--fs-primary) + 5px);">programas de posgrado</p>
+          </div>
+          <div class="col m-1 py-4" style="background-color: var(--c-secondary-transparent);">
+            <h1 class="fw-bold">535</h1>
+            <p style="font-size: calc(var(--fs-primary) + 5px);">Investigadores<br>inscritos en<br>RENACYT</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-link text-white text-decoration-none rounded-0 m-5" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px);">VER TODAS LAS CIFRAS <i class="bi bi-chevron-right"></i></button>
+    </div>
+    <div class="container-fluid px-1 py-2">
+      <div class="row mx-5 my-3">
+        <h2 class="fw-bold" style="color: var(--c-secondary);">Más información:</h2>
+        <div class="col position-relative m-2" style="max-width: 332px;">
+          <img src="./img/image-16.jpg" class="w-100" style="z-index: -1;" alt="">
+          <button class="btn btn-link fw-bold text-white position-absolute text-decoration-none rounded-0 m-5" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px); top: 60%; right: 0.1%;">Estudiantes <i class="bi bi-chevron-right"></i></button>
+        </div>
+        <div class="col position-relative m-2" style="max-width: 332px;">
+          <img src="./img/image-15.jpg" class="w-100" style="z-index: -1;" alt="">
+          <button class="btn btn-link fw-bold text-white position-absolute text-decoration-none rounded-0 m-5" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px); top: 60%; right: 0.1%;">Postulantes <i class="bi bi-chevron-right"></i></button>
+        </div>
+        <div class="col position-relative m-2" style="max-width: 332px;">
+          <img src="./img/image-14.jpg" class="w-100" style="z-index: -1;" alt="">
+          <button class="btn btn-link fw-bold text-white position-absolute text-decoration-none rounded-0 m-5" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px); top: 60%; right: 0.1%;">Profesores <i class="bi bi-chevron-right"></i></button>
+        </div>
+        <div class="col position-relative m-2" style="max-width: 332px;">
+          <img src="./img/image-13.jpg" class="w-100" style="z-index: -1;" alt="">
+          <button class="btn btn-link fw-bold text-white position-absolute text-decoration-none rounded-0 m-5" style="background-color: var(--c-light-blue); font-size: calc(var(--fs-primary) + 5px); top: 60%; right: 0.1%;">Administrativos <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-5 text-white border-bottom border-white" style="background-color: var(--c-secondary);">
+      <div class="row mx-5 my-2">
+        <div class="col">
+          <h5 class="fw-bold my-2">UBICACIÓN</h3>
+          <p class="text-muted my-3">Campus principal<br>Av. Universitaria 1801, San Miguel, 15088<br>Lima, Perú</p>
+          <div class="d-flex justify-content-between align-items-center border border-start-0 border-end-0 border-white">
+            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> Cómo llegar</p>
+            <i class="bi bi-chevron-right"></i>
+          </div>
+          <div class="d-flex justify-content-between align-items-center border border-top-0 border-start-0 border-end-0 border-white">
+            <p class="my-2">Ver mapa del campus</p>
+            <i class="bi bi-chevron-right"></i>
+          </div>
+        </div>
+        <div class="col">
+          <h5 class="fw-bold my-2">CONTACTO</h3>
+          <p class="text-muted my-3">Central telefónica 626-2000<br>Desde provincias 0800-1-7827 (servicio gratuito)</p>
+          <div class="d-flex justify-content-between align-items-stretch">
+            <div class="text-center px-4 py-0 rounded-3" style="background-color: var(--c-light-blue);">
+              <h6 class="fw-bold my-3 px-2">Enviar mensaje</h6>
+              <img src="./img/image-19.png" class="px-3 pb-1" alt="">
+            </div>
+            <div class="text-center px-3 py-0 rounded-3" style="background-color: var(--c-white);">
+              <h6 class="fw-bold my-3 px-2" style="color: var(--c-secondary);">Libro de<br>reclamaciones</h6>
+              <img src="./img/image-18.gif" class="px-3 pb-1" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h5 class="fw-bold my-2">SOBRE ESTE SITIO</h3>
+          <div class="d-flex justify-content-between align-items-center border border-start-0 border-end-0 border-white">
+            <p class="my-2">Mapa del sitio</p>
+            <i class="bi bi-chevron-right"></i>
+          </div>
+          <div class="d-flex justify-content-between align-items-center border border-top-0 border-bottom-0 border-start-0 border-end-0 border-white">
+            <p class="my-2">Términos y condiciones de uso</p>
+            <i class="bi bi-chevron-right"></i>
+          </div>
+          <div class="d-flex justify-content-between align-items-center border border-start-0 border-end-0 border-white">
+            <p class="my-2">Política de privacidad</p>
+            <i class="bi bi-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid px-1 py-2 text-white" style="background-color: var(--c-secondary);">
+      <div class="row mx-5 my-2">
+        <div class="col">
+          <p class="my-3">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <p class="m-0">SÍGUENOS EN:&nbsp;</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-linkedin" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-twitter" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-facebook" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-youtube" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-instagram" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+            <div class="rounded-circle m-1 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; background-color: var(--c-light-blue);">
+              <i class="text-white bi bi-tiktok" style="font-size: calc(var(--fs-primary) + 7px);"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

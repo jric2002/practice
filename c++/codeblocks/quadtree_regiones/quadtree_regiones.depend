@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1663811856 source:d:\proyectos\github\practice\c++\codeblocks\quadtree_regiones\main.cpp
+	<windows.h>
+	<windowsx.h>
+	<commctrl.h>
+	<stdio.h>
+	"resource.h"
+
+1662690162 d:\proyectos\github\practice\c++\codeblocks\quadtree_regiones\resource.h
+
+1662690169 source:d:\proyectos\github\practice\c++\codeblocks\quadtree_regiones\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
