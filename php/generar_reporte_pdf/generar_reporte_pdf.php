@@ -25,7 +25,7 @@ if (isset($_POST["consulta"])) {
           $estado = TRUE;
           // Genera el Reporte en PDF
           $pdf = new FPDF();
-          $ancho_celda = 60;
+          $ancho_celda = 62;
           $alto_celda = 10;
           $pdf->AddPage();
           // Título del documento
@@ -69,7 +69,7 @@ if (isset($_POST["consulta"])) {
           $estado = TRUE;
           // Genera el Reporte en PDF
           $pdf = new FPDF();
-          $ancho_celda = 60;
+          $ancho_celda = 62;
           $alto_celda = 10;
           $pdf->AddPage();
           // Título del documento
@@ -112,6 +112,15 @@ if (isset($_POST["consulta"])) {
       * {
         font-family: sans-serif;
       }
+      :root {
+        --black-color: #000000;
+        --gray-color: #0f0f12;
+        --second-color-gray: #8b949e;
+        --green-color: #98ca3f;
+        --yellow-color: #fcee0a;
+        --sky-blue-color: #2490fc;
+        --white-color: #ffffff;
+      }
       h1 {
         text-align: center;
       }
@@ -127,6 +136,15 @@ if (isset($_POST["consulta"])) {
       }
       form input[type="number"] {
         width: 3rem;
+      }
+      form input[type="submit"] {
+        color: var(--white-color);
+        background-color: var(--green-color);
+        transition: background-color 0.25s linear;
+      }
+      form input[type="submit"]:hover {
+        color: var(--black-color);
+        background-color: var(--white-color);
       }
       section.resultado table {
         border-collapse: collapse;
@@ -202,16 +220,14 @@ if (isset($_POST["consulta"])) {
           <input type="submit" value="Buscar" id="buscar">`,
         fn: `
           <label for="fmin">Mínimo:</label>
-          <input type="date" name="fmin" id="fmin" value="1940-01-01">
+          <input type="date" name="fmin" id="fmin" value="1950-01-01">
           <label for="fmax">Máximo:</label>
           <input type="date" name="fmax" id="fmax" value="1960-01-01">
           <input type="submit" value="Buscar" id="buscar">`
       }
-      let c = CONSULTA.value;
-      DATOS_ENTRADA.innerHTML = consultas[c];
+      DATOS_ENTRADA.innerHTML = consultas[CONSULTA.value];
       CONSULTA.addEventListener("change", function() {
-        c = CONSULTA.value;
-        DATOS_ENTRADA.innerHTML = consultas[c];
+        DATOS_ENTRADA.innerHTML = consultas[CONSULTA.value];
       });
     </script>
   </body>

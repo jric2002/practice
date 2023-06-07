@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS genders (
 );
 INSERT INTO users (name, gender, email, username, password) VALUES
 ("miguel", NULL, "miguel@gmail.com", "miguel", "miguel");
-SET FOREIGN_KEY_CHECKS = 1;
 INSERT INTO artists (name) VALUES
 ("OneRepublic"),
 ("Danny Ocean"),
@@ -64,7 +63,50 @@ INSERT INTO artists (name) VALUES
 ("Laura Pausini"),
 ("Nacho"),
 ("Yandel"),
-("Bad Bunny");
+("Bad Bunny"),
+("Beyonce"),
+("Drake"),
+("Rihanna"),
+("Ed Sheeran"),
+("Adele"),
+("Kendrick Lamar"),
+("Taylor Swift"),
+("The Weeknd"),
+("Justin Bieber"),
+("Billie Eilish"),
+("Post Malone"),
+("Ariana Grande"),
+("Bruno Mars"),
+("Kanye West"),
+("Lady Gaga"),
+("Travis Scott"),
+("Nicki Minaj"),
+("SZA"),
+("J Balvin"),
+("Dua Lipa"),
+("Calvin Harris"),
+("Shawn Mendes"),
+("Camila Cabello"),
+("Lizzo"),
+("Sam Smith"),
+("The Chainsmokers"),
+("Maroon 5"),
+("Imagine Dragons"),
+("Halsey"),
+("Cardi B"),
+("Selena Gomez"),
+("FKA Twigs"),
+("Doja Cat"),
+("Megan Thee Stallion"),
+("Lil Nas X"),
+("Tame Impala"),
+("Miley Cyrus"),
+("The 1975"),
+("Disclosure"),
+("Anderson .Paak"),
+("Sufjan Stevens"),
+("Florence + The Machine"),
+("Childish Gambino");
 INSERT INTO songs (title, artist, duration, location) VALUES
 ("Me Rehúso", 2, "00:03:25", "1"),
 ("As It Was", 3, "00:02:45", "2"),
@@ -74,3 +116,4 @@ INSERT INTO songs (title, artist, duration, location) VALUES
 INSERT INTO collaborations (song, feat) VALUES
 (5, 6),
 (5, 7);
+SET FOREIGN_KEY_CHECKS = 1;

@@ -20,6 +20,7 @@ if (isset($_POST["artista"])) {
   }
 }
 ?>
+<?php if (!isset($_POST["realtime"])):?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -31,24 +32,31 @@ if (isset($_POST["artista"])) {
       * {
         font-family: sans-serif;
       }
-      table {
+      h1 {
+        text-align: center;
+      }
+      form input {
+        padding: 0.5rem;
+      }
+      section.resultado table {
         border-collapse: collapse;
       }
-      th, td {
+      section.resultado table thead tr th, section.resultado table tbody tr td {
         border: 1px solid black;
         padding: 0.5rem 1rem;
       }
     </style>
   </head>
   <body>
-    <h1>Buscar Artista</h1>
-    <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-      <label for="artista">Artista</label>
-      <input type="search" name="artista" id="artista"/>
+    <h1>BUSCAR ARTISTA</h1>
+    <form action=".<?php echo $_SERVER["PHP_SELF"]?>" method="post" class="form" id="form">
+      <label for="artista">Artista:</label>
+      <input type="search" name="artista" id="artista" placeholder="Buscar"/>
       <input type="submit" value="Buscar"/>
     </form>
-    <?php if ($estado):?>
-    <section class="resultado">
+    <section class="resultado" id="resultado">
+      <?php endif;?>
+      <?php if ($estado):?>
       <p>Resultado de búsqueda "<strong><?php echo $b;?></strong>"</p>
       <p>Cantidad de resultados: <strong><?php echo count($rs);?></strong></p>
       <?php if (count($rs) != 0):?>
@@ -71,7 +79,33 @@ if (isset($_POST["artista"])) {
         </tbody>
       </table>
       <?php endif;?>
+      <?php endif;?>
+<?php if (!isset($_POST["realtime"])):?>
     </section>
-    <?php endif;?>
+    <script type="text/javascript">
+      const FORM = document.getElementById("form");
+      const ARTISTA = document.getElementById("artista");
+      const RESULTADO = document.getElementById("resultado");
+      const PROTOCOL = window.location.protocol;
+      const HOST = window.location.host;
+      const PATHNAME = window.location.pathname;
+      const URL = PROTOCOL + "//" + HOST;
+      function requestPost() {
+        const REQUEST = new XMLHttpRequest();
+        REQUEST.open("POST", URL + PATHNAME);
+        REQUEST.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        REQUEST.onload = function() {
+          if (REQUEST.status === 200) {
+            RESULTADO.innerHTML = REQUEST.responseText;
+          }
+          else {
+            console.log("Error en la solicitud");
+          }
+        };
+        REQUEST.send("artista=" + encodeURIComponent(ARTISTA.value) + "&realtime=" + encodeURIComponent("1"));
+      }
+      ARTISTA.addEventListener("input", requestPost);
+    </script>
   </body>
 </html>
+<?php endif;?>
