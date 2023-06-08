@@ -28,6 +28,8 @@ if (isset($_POST["artista"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar</title>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <style>
       * {
         font-family: sans-serif;
@@ -60,7 +62,7 @@ if (isset($_POST["artista"])) {
       <p>Resultado de búsqueda "<strong><?php echo $b;?></strong>"</p>
       <p>Cantidad de resultados: <strong><?php echo count($rs);?></strong></p>
       <?php if (count($rs) != 0):?>
-      <table>
+      <table class="table" id="table">
         <thead>
           <tr>
           <?php foreach ($fs as $f):?>
@@ -82,6 +84,10 @@ if (isset($_POST["artista"])) {
       <?php endif;?>
 <?php if (!isset($_POST["realtime"])):?>
     </section>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script type="text/javascript">
       const FORM = document.getElementById("form");
       const ARTISTA = document.getElementById("artista");
@@ -97,6 +103,7 @@ if (isset($_POST["artista"])) {
         REQUEST.onload = function() {
           if (REQUEST.status === 200) {
             RESULTADO.innerHTML = REQUEST.responseText;
+            new DataTable("#table");
           }
           else {
             console.log("Error en la solicitud");
@@ -104,6 +111,7 @@ if (isset($_POST["artista"])) {
         };
         REQUEST.send("artista=" + encodeURIComponent(ARTISTA.value) + "&realtime=" + encodeURIComponent("1"));
       }
+      new DataTable("#table");
       ARTISTA.addEventListener("input", requestPost);
     </script>
   </body>
