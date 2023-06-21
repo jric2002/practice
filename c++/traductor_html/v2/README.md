@@ -54,16 +54,17 @@ fdocumento
 ```
 documento
   encabezado
-    titulo "2 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
+    titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    e1 "2 ejemplo" fe1
-    e2 "subtitulo" fe2
-    p "párrafo 1" fp
-    a "http://localhost" "Ir a inicio" fa
-    p "Fin del página web" fp
+    # Comentario de linea
+    /* Esto es un
+    comentario multilinea */
+    e1 id="e1id" class="e1class" "Hola mundo" fe1
+    e2 "Autor" fe2
+    p "Esto es un párrafo" fp
+    a href="http://localhost" "Ir a la página principal" fa
+    img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
 fdocumento
 ```
@@ -72,213 +73,17 @@ fdocumento
 ```
 documento
   encabezado
-    titulo "3 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
+    titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    e1 "3 ejemplo" fe1
-    e2 "subtitulo" fe2
-    p "párrafo 1" fp
-    img "http://localhost/sub-1.jpg" "sub-1"
-    e2 "subtitulo" fe2
-    p "párrafo 2" fp
-    img "http://localhost/sub-2.jpg" "sub-2"
-    a "http://localhost" "Ir a inicio" fa
-    p "Fin de la página web" fp
-  fcuerpo
-fdocumento
-```
-
-### 4 ejemplo
-```
-documento
-  encabezado
-    titulo "4 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
-  fencabezado
-  cuerpo
-    e1 "4 ejemplo" fe1
-    div
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 1" fp
-        img "http://localhost/sub-1.jpg" "sub-1"
-      fdiv
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 2" fp
-        img "http://localhost/sub-2.jpg" "sub-2"
-      fdiv
-      a "http://localhost" "Ver más" fa
-    fdiv
-    div
-      a "http://localhost" "Ir a inicio" fa
-      p "Fin de la página web" fp
-    fdiv
-  fcuerpo
-fdocumento
-```
-
-### 5 ejemplo
-```
-documento
-  encabezado
-    titulo "5 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
-  fencabezado
-  cuerpo
-    e1 "5 ejemplo" fe1
-    e2 "subtitulo" fe2
-    p "párrafo 1" fp
-    img "http://localhost/sub-1.jpg" "sub-1"
-    e2 "subtitulo" fe2
-    p "párrafo 2" fp
-    img "http://localhost/sub-2.jpg" "sub-2"
-    p "parráfo 3" fp
-    img
-    a "http://localhost" "Ir a inicio" fa
-    p "Fin de la página web" fp
-  fcuerpo
-fdocumento
-```
-
-### 6 ejemplo
-```
-documento
-  encabezado
-    titulo "6 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
-  fencabezado
-  cuerpo
-    e1 "6 ejemplo"
-    e2 "subtitulo" fe2
-    p "párrafo 1"
-    img "http://localhost/sub-1.jpg" "sub-1"
-    e2 "subtitulo" fe2
-    p "párrafo 2" fp
-    img "http://localhost/sub-2.jpg" "sub-2"
-    a "http://localhost" "Ir a inicio" fa
-    p "Fin de la página web" fp
-    p
-    fp
-  fcuerpo
-fdocumento
-```
-
-### 7 ejemplo
-```
-documento
-  encabezado
-    titulo ftitulo
-    css
-    js "./main.js"
-  fencabezado
-  cuerpo
-    e1 fe1
-    div
-      div
-        p
-        img "http://localhost/sub-1.jpg" "sub-1"
-      fdiv
-      div
-        e2 "subtitulo"
-        p "párrafo 2" fp
-        img "http://localhost/sub-2.jpg" "sub-2"
-      fdiv
-    fdiv
-    a "http://localhost" fa
-  fcuerpo
-fdocumento
-```
-
-### 8 ejemplo
-```
-documento
-  encabezado
-    titulo "8 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
-  fencabezado
-  cuerpo
-    e1 "8 ejemplo" fe1
-    div
-      div
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 1" fp
-        img "http://localhost/sub-1.jpg" "sub-1"
-      fdiv
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 2" fp
-        img "http://localhost/sub-2.jpg" "sub-2"
-        div fdiv
-      fdiv
-    fdiv
-    div
-      a "http://localhost" "Ir a inicio" fa
-      p "Fin de la página web" fp
-    fdiv
-  fcuerpo
-fdocumento
-```
-
-### 9 ejemplo
-```
-documento
-  encabezado
-    titulo "9 ejemplo" ftitulo
-    css "./main.js"
-  fencabezado
-  cuerpo
-    e1 "9 ejemplo" fe1
-    div
-      div
-        e2 fe2
-        p fp
-        img
-      fdiv
-      div
-        e2 "subtitulo" fe2
-        p fp
-        img "http://localhost/sub-2.jpg"
-        div fdiv
-      fdiv
-    fdiv
-    div
-      a "http://localhost" "Ir a inicio" fa
-      p "Fin de la página web" fp
-    fdiv
-    js
-  fcuerpo
-fdocumento
-```
-
-### 10 ejemplo
-```
-documento
-  encabezado
-    titulo "10 ejemplo" ftitulo
-    css "./main.js"
-  fencabezado
-  cuerpo
-    e1 "10 ejemplo" fe1
-    div
-      e2 "Subtitulo" fe2
-    fdiv
-    div
-      div
-        e2 "subtitulo" fe2
-        p "párrafo 1" fp
-        a "http://localhost" "Ver más.." fa
-        img "http://localhost/sub-1.jpg" "sub-1"
-      fdiv
-    fdiv
-    js "./main.js"
+    # Comentario de linea
+    /* Esto es un
+    comentario multilinea */
+    e1 id="e1id" fe1
+    e2 class="e2class" "Autor" fe2
+    p "Esto es un párrafo" fp
+    a href="http://localhost" "Ir a la página principal" fa
+    img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
 fdocumento
 ```
