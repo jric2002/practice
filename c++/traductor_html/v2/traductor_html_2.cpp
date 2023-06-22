@@ -163,17 +163,23 @@ class Analisis{
   private:
     int i;
     char cad[1000];
+    int linea;
     int estado;
-    string cadena;
-    //22 SON LOS ESTADOS DEL AUTOMATA
-    //14 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
-    int tTransicion[12][9];
+    string atributo, etiqueta_u, cadena;
+    //15 SON LOS ESTADOS DEL AUTOMATA
+    //9 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
+    int tTransicion[15][9];
     TablaSimbolos ts;
   public:
     Analisis(char input[100]){
       //Aquí hacer la apertura de archivo de texto plano
       strcpy(cad,input);
       i=0;
+      ts.Insertar("#", MICHI, "pclave", vacio, vacio);
+      ts.Insertar("*", ASTERISCO, "pclave", vacio, vacio);
+      ts.Insertar("/", SLASH, "pclave", vacio, vacio);
+      ts.Insertar("=", IGUAL, "pclave", vacio, vacio);
+      ts.Insertar("\"", COMILLA_DOBLE, "pclave", vacio, vacio);
       ts.Insertar("documento", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fdocumento", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("encabezado", ETIQUETA_L, "pclave", vacio, vacio);
@@ -199,47 +205,42 @@ class Analisis{
       ts.Insertar("img", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("div", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fdiv", ETIQUETA_L, "pclave", vacio, vacio);
-      for(int ii=0;ii<12;ii++){
+      for(int ii=0;ii<15;ii++){
         for(int jj=0;jj<9;jj++){
           tTransicion[ii][jj]=ERROR;
         }
       }
-      tTransicion[0][DOCUMENTO]=1;
-      tTransicion[1][ENCABEZADO]=2;
-      tTransicion[2][TITULO]=3;
-      tTransicion[3][CADENA]=4;
-      tTransicion[4][FTITULO]=2;
-      tTransicion[2][JS]=6;
-      tTransicion[6][CADENA]=2;
-      tTransicion[2][CSS]=5;
-      tTransicion[5][CADENA]=2;
-      tTransicion[2][FENCABEZADO]=7;
-      tTransicion[7][CUERPO]=8;
-      tTransicion[8][E1]=9;
-      tTransicion[9][CADENA]=10;
-      tTransicion[10][FE1]=8;
-      tTransicion[8][E2]=11;
-      tTransicion[11][CADENA]=12;
-      tTransicion[12][FE2]=8;
-      tTransicion[8][P]=13;
-      tTransicion[13][CADENA]=14;
-      tTransicion[14][FP]=8;
-      tTransicion[8][A]=15;
-      tTransicion[15][CADENA]=16;
-      tTransicion[16][FA]=8;
-      tTransicion[16][CADENA]=17;
-      tTransicion[17][FA]=8;
-      tTransicion[8][IMG]=18;
-      tTransicion[18][CADENA]=19;
-      tTransicion[19][CADENA]=8;
-      tTransicion[8][FCUERPO]=20;
-      tTransicion[20][FDOCUMENTO]=21;
+      tTransicion[0][ETIQUETA_L]=1;
+      tTransicion[0][ETIQUETA_U]=1;
+      tTransicion[1][ATRIBUTO]=2;
+      tTransicion[1][COMILLA_DOBLE]=7;
+      tTransicion[1][ETIQUETA_L]=0;
+      tTransicion[1][ETIQUETA_U]=0;
+      tTransicion[2][IGUAL]=3;
+      tTransicion[3][COMILLA_DOBLE]=4;
+      tTransicion[4][CADENA]=5;
+      tTransicion[5][COMILLA_DOBLE]=6;
+      tTransicion[6][ATRIBUTO]=2;
+      tTransicion[6][ETIQUETA_L]=0;
+      tTransicion[6][ETIQUETA_U]=0;
+      tTransicion[6][COMILLA_DOBLE]=7;
+      tTransicion[7][CADENA]=8;
+      tTransicion[8][COMILLA_DOBLE]=9;
+      tTransicion[9][ETIQUETA_L]=0;
+      tTransicion[9][ETIQUETA_U]=0;
+      tTransicion[0][MICHI]=10;
+      tTransicion[10][CADENA]=0;
+      tTransicion[0][SLASH]=11;
+      tTransicion[11][ASTERISCO]=12;
+      tTransicion[12][CADENA]=13;
+      tTransicion[13][ASTERISCO]=14;
+      tTransicion[14][SLASH]=0;
     }
     bool iselement(char c){
       char elements[100];
       /*AQUI DEBEN DE DEFINIR LOS CARACTERES QUE NO SEAN LETRAS O NUMEROS Y QUE CORRESPONDAN AL LENGUAJE*/
       /*NO DEBEN DE REPETIR CARACTERES*/
-      strcpy(elements,"\"");/*<- AQUI*/
+      strcpy(elements,"=\"*/#");/*<- AQUI*/
       int elements_cont=0;
       while(elements[elements_cont]!='\0'){
         if(elements[elements_cont]==c)
@@ -251,6 +252,9 @@ class Analisis{
     int getToken(){
       while(cad[i]==' ' || cad[i]=='\t' || cad[i]=='\n'){
         i++;
+        if (cad[i]=='\n') {
+          linea++;
+        }
       }
       if(cad[i]=='\0'){
         return FIN;
@@ -259,37 +263,63 @@ class Analisis{
       else if(isalpha(cad[i])){
         char tmp[100];
         int tmp_cont=0;
-        while(isalpha(cad[i]) || isdigit(cad[i])){
-          tmp[tmp_cont]=cad[i];
-          tmp_cont++;
-          i++;
+        if (cad[i-1] == '"') {
+          while(cad[i] != '"'){
+            tmp[tmp_cont]=cad[i];
+            tmp_cont++;
+            i++;
+          }
+          cadena = tmp;
+          return CADENA;
         }
-        tmp[tmp_cont]='\0';
+        else if (cad[i-1] == '#') {
+          while(cad[i] != '\n'){
+            tmp[tmp_cont]=cad[i];
+            tmp_cont++;
+            i++;
+          }
+          cadena = tmp;
+          return CADENA;
+        }
+        else if (cad[i-2] == '/' && cad[i-1] == '*') {
+          while(cad[i] != '*' && cad[i+1] != '/'){
+            tmp[tmp_cont]=cad[i];
+            tmp_cont++;
+            i++;
+          }
+          cadena = tmp;
+          return CADENA;
+        }
+        else {
+          while(isalnum(cad[i])){
+            tmp[tmp_cont]=cad[i];
+            tmp_cont++;
+            i++;
+          }
+          tmp[tmp_cont]='\0';
+          if (cad[i] == '=') {
+            atributo = tmp;
+            return ATRIBUTO;
+          }
+          Atributos attr;
+          string lex=tmp;
+          //buscando en la tabla de simbolos
+          if(ts.BuscarPClave(lex,attr)){
+            return attr.token;
+          }
+          etiqueta_u = tmp;
+          return ETIQUETA_U;
+        }
+      }
+      else if(iselement(cad[i])){
         Atributos attr;
-        string lex=tmp;
-        //buscando en la tabla de simbolos
+        string lex;
+        lex += cad[i];
+        i++;
         if(ts.BuscarPClave(lex,attr)){
           return attr.token;
         }
         return ERROR;
-      }
-      else if(iselement(cad[i])){
-        char tmp[100];
-        int tmp_cont=0;
-        i++;
-        while(cad[i] != '\"'){
-          tmp[tmp_cont]=cad[i];
-          tmp_cont++;
-          i++;
-        }
-        i++;
-        Atributos attr;
-        string lex=tmp;
-        if(ts.BuscarPClave(lex,attr)){
-          return attr.token;
-        }
-        cadena=tmp;
-        return CADENA;
       }
       else{
         i++;
@@ -298,6 +328,7 @@ class Analisis{
     }
     bool Lexico(){
       i=0;
+      linea = 1;
       int token=0;
       while(true){
         token=getToken();
@@ -305,10 +336,16 @@ class Analisis{
         if(token==FIN){
           return true;
         }
-        else if(token==CADENA){
+        else if(token==ETIQUETA_U){
           Atributos attr;
-          if(!ts.Buscar(cadena,attr)){
-            ts.Insertar(cadena,CADENA,"cadena",null,null);
+          if(!ts.Buscar(etiqueta_u,attr)){
+            ts.Insertar(etiqueta_u,ETIQUETA_U,"pusuario",null,null);
+          }
+        }
+        else if (token==ATRIBUTO) {
+          Atributos attr;
+          if(!ts.Buscar(atributo, attr)){
+            ts.Insertar(atributo,ATRIBUTO,"atributo",null,null);
           }
         }
         else if(token==ERROR){
@@ -317,31 +354,43 @@ class Analisis{
           return false;
         }
       }
-      // ts.Mostrar();
+      ts.Mostrar();
     }
     bool Sintactico(){
       i=0;
+      linea = 1;
       int token=0;
       estado=0;
       while(true){
         token=getToken();
         if(token==FIN){
-          if(estado==21)/*VERIFICAR EL ESTADO FINAL*/
+          if(estado==0)/*VERIFICAR EL ESTADO FINAL*/
             return true;
-          Error(2000);
+          Error(200);
           return false;
         }
-        // cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
+        cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
         estado=tTransicion[estado][token];
         if(estado==ERROR){
-          Error(400);
+          Error(201);
           return false;
         }
       }
       return false;
     }
     bool Semantico(){
-      return true;
+      i=0;
+      linea = 1;
+      int token=0;
+      estado=0;
+      while(true){
+        token=getToken();
+        if(token==FIN){
+          return true;
+        }
+        // Comprobar las etiquetas de cierre
+      }
+      return false;
     }
     bool Ejecucion(){
       return true;
@@ -359,13 +408,14 @@ class Analisis{
     void Error(int nroError){
       cout<<"Error "<<nroError<<": ";
       if(nroError==100){
-        cout<<"Detallar el error 100";
+        cout<<"Error 100 A. Lexico";
       }
-      else if(nroError==2000){
-        cout<<"Detallar el error 2000";
+      else if(nroError==200){
+        cout<<"Error 200 A. Sintactico";
       }
-      else if(nroError==400){
-        cout<<"Detallar el error 400";
+      else if(nroError==300){
+        cout<<"Error 300 A. Semantico" << endl
+        <<"Linea "<<linea<<", '"<<cad[i]<<"'"<<endl;
       }
       else if(nroError==1500){
         cout<<"Detallar el error 1500";
@@ -409,7 +459,6 @@ int main()
     else {
       cout << "[-] Analisis Lexico: FALLO" << endl;
     }
-    obj->Sintactico();
     f.close();
   }
   else {
