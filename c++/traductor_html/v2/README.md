@@ -38,14 +38,15 @@ documento
     titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    # Comentario de linea
-    /* Esto es un
-    comentario multilinea */
+    #Comentario de linea
+    /*Esto es un
+    comentario multilinea*/
     e1 "Hola mundo" fe1
     e2 "Autor" fe2
-    p "Esto es un párrafo" fp
-    a href="http://localhost" "Ir a la página principal" fa
+    p "Esto es un parrafo" fp
+    a href="http://localhost" "Ir a la pagina principal" fa
     img src="http://localhost/cat.jpg" alt="Es un gato" fimg
+    usuario "Jose" fusuario
   fcuerpo
 fdocumento
 ```
@@ -57,14 +58,16 @@ documento
     titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    # Comentario de linea
-    /* Esto es un
-    comentario multilinea */
-    e1 id="e1id" class="e1class" "Hola mundo" fe1
+    #Comentario de linea
+    e1 "Hola mundo" fe1
     e2 "Autor" fe2
-    p "Esto es un párrafo" fp
-    a href="http://localhost" "Ir a la página principal" fa
+    p "Esto es un parrafo" fp
+    a href="http://localhost" "Ir a la pagina principal" fa
     img src="http://localhost/cat.jpg" alt="Es un gato" fimg
+    div id="contenedor"
+      a "hola mundo" fa
+    fdiv
+    usuario "Jose" fusuario
   fcuerpo
 fdocumento
 ```
@@ -76,13 +79,15 @@ documento
     titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    # Comentario de linea
-    /* Esto es un
-    comentario multilinea */
-    e1 id="e1id" fe1
-    e2 class="e2class" "Autor" fe2
-    p "Esto es un párrafo" fp
-    a href="http://localhost" "Ir a la página principal" fa
+    #Comentario de linea
+    /*Esto es un
+    comentario multilinea*/
+    div id="header" class="header"
+      e1 "Hola mundo" fe1
+      usuario "Jose" fusuario
+      p "Esto es un parrafo" fp
+    fdiv
+    a href="http://localhost" "Ir a la pagina principal" fa
     img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
 fdocumento

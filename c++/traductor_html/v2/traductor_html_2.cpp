@@ -1,24 +1,24 @@
 /******* EJEMPLOS DEL LENGUAJE GRAFICADOR *******
 documento
   encabezado
-    titulo "1 ejemplo" ftitulo
-    css "./main.js"
-    js "./main.js"
+    titulo "Hola mundo" ftitulo
   fencabezado
   cuerpo
-    e1 "1 ejemplo" fe1
-    e2 "subtitulo" fe2
-    p "párrafo 1" fp
-    img "http://localhost/sub-1.jpg" "sub-1"
-    e2 "subtitulo" fe2
-    p "párrafo 2" fp
-    img "http://localhost/sub-2.jpg" "sub-2"
-    a "http://localhost" "Ir a inicio" fa
-    p "Fin de la página web" fp
+    #Comentario de linea
+    e1 "Hola mundo" fe1
+    e2 "Autor" fe2
+    p "Esto es un parrafo" fp
+    a href="http://localhost" "Ir a la pagina principal" fa
+    img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
 fdocumento
 
 ******** PALABRAS CLAVE Y SIGNOS QUE CORRESPONDEN AL LENGUAJE *******
+#
+*
+/
+=
+"
 documento
 fdocumento
 encabezado
@@ -55,6 +55,7 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #include <list>
 #include <fstream>
 #include <cstring>
+#include <stack>
 
 #define MICHI              0
 #define SLASH              1
@@ -165,10 +166,10 @@ class Analisis{
     char cad[1000];
     int linea;
     int estado;
-    string atributo, etiqueta_u, cadena;
-    //15 SON LOS ESTADOS DEL AUTOMATA
+    string atributo, etiqueta, cadena;
+    //14 SON LOS ESTADOS DEL AUTOMATA
     //9 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
-    int tTransicion[15][9];
+    int tTransicion[14][9];
     TablaSimbolos ts;
   public:
     Analisis(char input[100]){
@@ -203,9 +204,10 @@ class Analisis{
       ts.Insertar("a", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fa", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("img", ETIQUETA_L, "pclave", vacio, vacio);
+      ts.Insertar("fimg", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("div", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fdiv", ETIQUETA_L, "pclave", vacio, vacio);
-      for(int ii=0;ii<15;ii++){
+      for(int ii=0;ii<14;ii++){
         for(int jj=0;jj<9;jj++){
           tTransicion[ii][jj]=ERROR;
         }
@@ -213,28 +215,26 @@ class Analisis{
       tTransicion[0][ETIQUETA_L]=1;
       tTransicion[0][ETIQUETA_U]=1;
       tTransicion[1][ATRIBUTO]=2;
-      tTransicion[1][COMILLA_DOBLE]=7;
-      tTransicion[1][ETIQUETA_L]=0;
-      tTransicion[1][ETIQUETA_U]=0;
+      tTransicion[1][COMILLA_DOBLE]=6;
+      tTransicion[1][ETIQUETA_L]=1;
+      tTransicion[1][ETIQUETA_U]=1;
+      tTransicion[1][SLASH]=10;
+      tTransicion[1][MICHI]=9;
       tTransicion[2][IGUAL]=3;
       tTransicion[3][COMILLA_DOBLE]=4;
       tTransicion[4][CADENA]=5;
-      tTransicion[5][COMILLA_DOBLE]=6;
-      tTransicion[6][ATRIBUTO]=2;
-      tTransicion[6][ETIQUETA_L]=0;
-      tTransicion[6][ETIQUETA_U]=0;
-      tTransicion[6][COMILLA_DOBLE]=7;
-      tTransicion[7][CADENA]=8;
-      tTransicion[8][COMILLA_DOBLE]=9;
-      tTransicion[9][ETIQUETA_L]=0;
-      tTransicion[9][ETIQUETA_U]=0;
-      tTransicion[0][MICHI]=10;
-      tTransicion[10][CADENA]=0;
-      tTransicion[0][SLASH]=11;
-      tTransicion[11][ASTERISCO]=12;
-      tTransicion[12][CADENA]=13;
-      tTransicion[13][ASTERISCO]=14;
-      tTransicion[14][SLASH]=0;
+      tTransicion[5][COMILLA_DOBLE]=1;
+      tTransicion[6][CADENA]=7;
+      tTransicion[7][COMILLA_DOBLE]=8;
+      tTransicion[8][ETIQUETA_L]=0;
+      tTransicion[8][ETIQUETA_U]=0;
+      tTransicion[0][MICHI]=9;
+      tTransicion[9][CADENA]=0;
+      tTransicion[0][SLASH]=10;
+      tTransicion[10][ASTERISCO]=11;
+      tTransicion[11][CADENA]=12;
+      tTransicion[12][ASTERISCO]=13;
+      tTransicion[13][SLASH]=0;
     }
     bool iselement(char c){
       char elements[100];
@@ -303,11 +303,11 @@ class Analisis{
           }
           Atributos attr;
           string lex=tmp;
+          etiqueta = tmp;
           //buscando en la tabla de simbolos
           if(ts.BuscarPClave(lex,attr)){
             return attr.token;
           }
-          etiqueta_u = tmp;
           return ETIQUETA_U;
         }
       }
@@ -338,8 +338,8 @@ class Analisis{
         }
         else if(token==ETIQUETA_U){
           Atributos attr;
-          if(!ts.Buscar(etiqueta_u,attr)){
-            ts.Insertar(etiqueta_u,ETIQUETA_U,"pusuario",null,null);
+          if(!ts.Buscar(etiqueta,attr)){
+            ts.Insertar(etiqueta,ETIQUETA_U,"pusuario",null,null);
           }
         }
         else if (token==ATRIBUTO) {
@@ -364,7 +364,7 @@ class Analisis{
       while(true){
         token=getToken();
         if(token==FIN){
-          if(estado==0)/*VERIFICAR EL ESTADO FINAL*/
+          if(estado==0 || estado==1)/*VERIFICAR EL ESTADO FINAL*/
             return true;
           Error(200);
           return false;
@@ -383,12 +383,30 @@ class Analisis{
       linea = 1;
       int token=0;
       estado=0;
+      stack<string> pila;
       while(true){
         token=getToken();
         if(token==FIN){
-          return true;
+          break;
         }
         // Comprobar las etiquetas de cierre
+        if(token==ETIQUETA_L || token==ETIQUETA_U) {
+          if (!pila.empty() && (etiqueta.substr(1, string::npos) == pila.top())) {
+            pila.pop();
+          }
+          else {
+            pila.push(etiqueta);
+          }
+          cout << "tag: " << etiqueta << endl;
+        }
+      }
+      if (pila.empty()) {
+        return true;
+      }
+      cout << "Error: La pila no esta vacia" << endl;
+      while (!pila.empty()) {
+        cout << "tag: " << pila.top() << endl;
+        pila.pop();
       }
       return false;
     }

@@ -6,9 +6,11 @@ documento
     #Comentario de linea
     /*Esto es un
     comentario multilinea*/
-    e1 "Hola mundo" fe1
-    e2 "Autor" fe2
-    p "Esto es un parrafo" fp
+    div id="header" class="header"
+      e1 "Hola mundo" fe1
+      usuario "Jose" fusuario
+      p "Esto es un parrafo" fp
+    fdiv
     a href="http://localhost" "Ir a la pagina principal" fa
     img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
