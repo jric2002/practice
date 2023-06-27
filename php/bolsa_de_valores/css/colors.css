@@ -1,0 +1,14 @@
+@charset "UTF-8";
+:root {
+  --black-color-1: #000000;
+  --black-color-2: #1D1D1D;
+  --black-color-3: #2A2A2A;
+  --black-color-4: #757575;
+  --black-color-5: #2A2A2A;
+  --green-color: #98ca3f;
+  --yellow-color: #fcee0a;
+  --sky-blue-color: #2490fc;
+  --red-color: #e91429;
+  --white-color: #ffffff;
+  --border-color: rgb(217, 218, 220);
+}
