@@ -251,10 +251,10 @@ class Analisis{
     }
     int getToken(){
       while(cad[i]==' ' || cad[i]=='\t' || cad[i]=='\n'){
-        i++;
         if (cad[i]=='\n') {
           linea++;
         }
+        i++;
       }
       if(cad[i]=='\0'){
         return FIN;
@@ -333,6 +333,7 @@ class Analisis{
       while(true){
         token=getToken();
         cout<<"Lexico: "<<token<<endl;
+        cout << "linea "<<linea << endl;
         if(token==FIN){
           return true;
         }
@@ -403,11 +404,11 @@ class Analisis{
       if (pila.empty()) {
         return true;
       }
-      cout << "Error: La pila no esta vacia" << endl;
-      while (!pila.empty()) {
+      // cout << "Error: La pila no esta vacia" << endl;
+      /* while (!pila.empty()) {
         cout << "tag: " << pila.top() << endl;
         pila.pop();
-      }
+      } */
       return false;
     }
     bool Ejecucion(){
@@ -426,7 +427,7 @@ class Analisis{
     void Error(int nroError){
       cout<<"Error "<<nroError<<": ";
       if(nroError==100){
-        cout<<"Error 100 A. Lexico";
+        cout<<"Error: No se reconoce el caracter "<<cad[i-1]<<" en la linea "<<linea;
       }
       else if(nroError==200){
         cout<<"Error 200 A. Sintactico";
@@ -434,12 +435,6 @@ class Analisis{
       else if(nroError==300){
         cout<<"Error 300 A. Semantico" << endl
         <<"Linea "<<linea<<", '"<<cad[i]<<"'"<<endl;
-      }
-      else if(nroError==1500){
-        cout<<"Detallar el error 1500";
-      }
-      else if(nroError==1600){
-        cout<<"Detallar el error 1600";
       }
     }
 };
