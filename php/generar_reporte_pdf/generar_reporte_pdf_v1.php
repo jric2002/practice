@@ -40,15 +40,23 @@ if (isset($_POST["consulta"])) {
           $pdf->Ln();
           // Datos de la tabla
           $pdf->SetFont("Arial", "", 14);
+          $s_total = 0;
           foreach($r as $row){
             foreach($row as $k => $v) {
               if ($k == "salario") {
+                $s_total += $v;
                 $v = str_pad($v, $cifras, "0", STR_PAD_LEFT);
               }
               $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
             }
             $pdf->Ln();
           }
+          // Total de salario
+          $pdf->SetFont("Arial", "B", 14);
+          $pdf->Cell($ancho_celda * 2, $alto_celda, "Total de salario", 1, 0, "C");
+          $s_total = str_pad($s_total, $cifras, "0", STR_PAD_LEFT);
+          $pdf->SetFont("Arial", "", 14);
+          $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
           $pdf->Output();
         }
       }
@@ -96,8 +104,10 @@ if (isset($_POST["consulta"])) {
       else {
         $mensaje = "Fecha de nacimiento mínimo y máximo no esta definido";
       }
+      break;
     default:
       $mensaje = "Esa consulta no es válida";
+      break;
   }
 }
 ?>
@@ -185,26 +195,26 @@ if (isset($_POST["consulta"])) {
         <?php endif;?>
       <?php endif;?>
       </div>
+      <?php if ($estado):?>
       <table>
-        <?php if ($estado):?>
-          <thead>
-            <tr>
-            <?php foreach($fields as $f):?>
-              <th><?php print_r($f->name);?></th>
-            <?php endforeach;?>
-            </tr>
-          </thead>
-          <tbody>
-          <?php foreach($r as $row):?>
-            <tr>
-              <?php foreach($row as $k => $v):?>
-                <td><?php echo $v;?></td>
-              <?php endforeach;?>
-            </tr>
+        <thead>
+          <tr>
+          <?php foreach($fields as $f):?>
+            <th><?php print_r($f->name);?></th>
           <?php endforeach;?>
-          </tbody>
-        <?php endif;?>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($r as $row):?>
+          <tr>
+            <?php foreach($row as $k => $v):?>
+              <td><?php echo $v;?></td>
+            <?php endforeach;?>
+          </tr>
+        <?php endforeach;?>
+        </tbody>
       </table>
+      <?php endif;?>
     </section>
     <script type="text/javascript">
       const DATOS_ENTRADA = document.getElementById("datos-entrada");
