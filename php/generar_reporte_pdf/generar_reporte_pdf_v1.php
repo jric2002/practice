@@ -23,41 +23,6 @@ if (isset($_POST["consulta"])) {
           $fields = $r->fetch_fields();
           $r = $r->fetch_all(MYSQLI_ASSOC);
           $estado = TRUE;
-          // Genera el Reporte en PDF
-          $pdf = new FPDF();
-          $ancho_celda = 62;
-          $alto_celda = 10;
-          $pdf->AddPage();
-          // Título del documento
-          $pdf->SetFont("Arial", "B", 20);
-          $pdf->Cell(0, 10, "Reporte de la Consulta", 0, 1, "C");
-          $pdf->Ln(10);
-          // Encabezado de la tabla
-          $pdf->SetFont("Arial", "B", 16);
-          $pdf->Cell($ancho_celda, $alto_celda, "Nombre", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Apellido", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Salario", 1, 0, "C");
-          $pdf->Ln();
-          // Datos de la tabla
-          $pdf->SetFont("Arial", "", 14);
-          $s_total = 0;
-          foreach($r as $row){
-            foreach($row as $k => $v) {
-              if ($k == "salario") {
-                $s_total += $v;
-                $v = str_pad($v, $cifras, "0", STR_PAD_LEFT);
-              }
-              $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
-            }
-            $pdf->Ln();
-          }
-          // Total de salario
-          $pdf->SetFont("Arial", "B", 14);
-          $pdf->Cell($ancho_celda * 2, $alto_celda, "Total de salario", 1, 0, "C");
-          $s_total = str_pad($s_total, $cifras, "0", STR_PAD_LEFT);
-          $pdf->SetFont("Arial", "", 14);
-          $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
-          $pdf->Output();
         }
       }
       else {
@@ -75,30 +40,6 @@ if (isset($_POST["consulta"])) {
           $fields = $r->fetch_fields();
           $r = $r->fetch_all(MYSQLI_ASSOC);
           $estado = TRUE;
-          // Genera el Reporte en PDF
-          $pdf = new FPDF();
-          $ancho_celda = 62;
-          $alto_celda = 10;
-          $pdf->AddPage();
-          // Título del documento
-          $pdf->SetFont("Arial", "B", 20);
-          $pdf->Cell(0, 10, "Reporte de la Consulta", 0, 1, "C");
-          $pdf->Ln(10);
-          // Encabezado de la tabla
-          $pdf->SetFont("Arial", "B", 16);
-          $pdf->Cell($ancho_celda, $alto_celda, "Nombre", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Apellido", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Fecha de nacimiento", 1, 0, "C");
-          $pdf->Ln();
-          // Datos de la tabla
-          $pdf->SetFont("Arial", "", 14);
-          foreach($r as $row){
-            foreach($row as $k => $v) {
-              $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
-            }
-            $pdf->Ln();
-          }
-          $pdf->Output();
         }
       }
       else {
@@ -222,9 +163,9 @@ if (isset($_POST["consulta"])) {
       var consultas = {
         salario: `
           <label for="min">Mínimo:</label>
-          <input type="text" name="min" id="min">
+          <input type="text" name="min" id="min" value="3000">
           <label for="max">Máximo:</label>
-          <input type="text" name="max" id="max">
+          <input type="text" name="max" id="max" value="5000">
           <label for="cifras">Cifras:</label>
           <input type="number" name="cifras" class="cifras" id="cifras" min="0" value="0">
           <input type="submit" value="Buscar" id="buscar">`,

@@ -37,17 +37,24 @@ if (isset($_POST["consulta"])) {
           $pdf->Ln();
           // Datos de la tabla
           $pdf->SetFont("Arial", "", 14);
+          $s_total = 0;
           foreach($r as $row){
             foreach($row as $k => $v) {
               if ($k == "salario") {
+                $s_total += $v;
                 $v = str_pad($v, $cifras, "0", STR_PAD_LEFT);
               }
               $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
             }
             $pdf->Ln();
           }
-          $pdf->Output();
-          echo "REPORTE SALARIO";
+          // Total de salario
+          $pdf->SetFont("Arial", "B", 14);
+          $pdf->Cell($ancho_celda * 2, $alto_celda, "Total de salario", 1, 0, "C");
+          $s_total = str_pad($s_total, $cifras, "0", STR_PAD_LEFT);
+          $pdf->SetFont("Arial", "", 14);
+          $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
+          $pdf->Output("F", "./reporte_pdf.pdf");
         }
       }
       else {
@@ -87,8 +94,7 @@ if (isset($_POST["consulta"])) {
             }
             $pdf->Ln();
           }
-          $pdf->Output();
-          echo "R. FECHA DE NACIMIETO";
+          $pdf->Output("F", "reporte_pdf.pdf");
         }
       }
       else {
