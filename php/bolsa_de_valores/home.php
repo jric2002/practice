@@ -10,6 +10,12 @@ else {
   header("Location: ./index.php");
   exit();
 }
+include_once("./connection.php");
+$query = $connection->prepare("SELECT * FROM acciones");
+$query->execute();
+$r = $query->get_result();
+$fields = $r->fetch_fields();
+$r = $r->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
   <html lang="es">
@@ -42,12 +48,24 @@ else {
       </div>
     </header>
     <section class="datos">
-      <div class="empresa">
-        <h1 class="nombre"></h1>
-        <p class="precio_accion"></p>
-        <p class="variacion"></p>
-        <p class="tiempo"></p>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>EMPRESA</th>
+            <th>PRECIO</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($r as $row):?>
+          <tr>
+            <?php foreach($row as $k => $v):?>
+              <td><?php echo $v;?></td>
+            <?php endforeach;?>
+          </tr>
+        <?php endforeach;?>
+        </tbody>
+      </table>
     </section>
   </body>
 </html>
