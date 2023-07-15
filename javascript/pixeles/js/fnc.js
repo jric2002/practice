@@ -10,6 +10,7 @@ function mostrarImagen()
   canvas.width = image.width;
   canvas.height = image.height;
   ctx.drawImage(image, 0, 0, image.width, image.height);
+  console.log(canvas.width + ", " + canvas.height);
   escalaGrises(canvas);
 }
 function escalaGrises(canvas){
