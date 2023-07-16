@@ -5,9 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recortar imagen</title>
+    <script defer type="text/javascript" src="./js/opencv-4.8.0.js"></script>
     <script defer type="text/javascript" src="./js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
   </head>
   <body>
-    <canvas id="canvas"></canvas>
+    <div class="images">
+      <div>
+        <h1>Imágen 1</h1>
+        <img src="./img/rain-1.jpg" id="image-1" alt="image-1">
+      </div>
+      <div>
+        <h1>Imágen 2</h1>
+        <img src="./img/rain-2.jpg" id="image-2" alt="image-2">
+      </div>
+    </div>
+    <div class="img-pan">
+      <h1>Imágen Panorámica</h1>
+      <canvas id="canvas"></canvas>
+    </div>
   </body>
 </html>
