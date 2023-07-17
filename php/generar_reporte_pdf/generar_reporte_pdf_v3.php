@@ -67,7 +67,6 @@
       const DATOS_ENTRADA = document.getElementById("datos-entrada");
       const CONSULTA = document.getElementById("consulta");
       const RESULTADO = document.getElementById("resultado");
-      const PDF_VIEWER = document.getElementById("pdf-viewer");
       var consultas = {
         salario: {
           contenido_form: `

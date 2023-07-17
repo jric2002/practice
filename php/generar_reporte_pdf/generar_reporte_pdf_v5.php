@@ -4,11 +4,40 @@ const HOSTNAME = "localhost";
 const USERNAME = "root";
 const PASSWORD = "admin";
 const DATABASE_NAME = "empresa";
+$database_name = DATABASE_NAME;
 $connection = new mysqli(HOSTNAME, USERNAME, PASSWORD, DATABASE_NAME);
 $fields = NULL;
 $r = NULL;
 if (isset($_POST["consulta"])) {
   switch ($_POST["consulta"]) {
+    case "tc":
+      $query = $connection->prepare("SELECT TABLE_NAME AS table_name FROM information_schema.tables WHERE table_schema=?");
+      $query->bind_param("s", $database_name);
+      if ($query->execute()) {
+        $tablas = $query->get_result();
+        $tablas = $tablas->fetch_all(MYSQLI_ASSOC);
+        $tc = array();
+        foreach ($tablas as $t) {
+          foreach ($t as $k => $v) {
+            $tc[$v]= array();
+            $query = $connection->prepare("SELECT COLUMN_NAME AS column_name FROM information_schema.columns WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?");
+            $query->bind_param("ss", $database_name, $v);
+            if ($query->execute()) {
+              $cols = $query->get_result();
+              $cols = $cols->fetch_all(MYSQLI_ASSOC);
+              foreach ($cols as $cl) {
+                foreach ($cl as $kc => $vc) {
+                  $tc[$v][] = $vc;
+                }
+              }
+            }
+          }
+        }
+        header("Content-Type: application/json");
+        echo json_encode($tc);
+      }
+      exit();
+      break;
     case "salario":
       if (isset($_POST["min"]) && isset($_POST["max"]) && isset($_POST["cifras"])) {
         $min = intval($_POST["min"]);
@@ -44,29 +73,14 @@ if (isset($_POST["consulta"])) {
                 $s_total += $v;
                 $v = str_pad($v, $cifras, "0", STR_PAD_LEFT);
               }
-              $pdf->Cell($ancho_celda, $alto_celda, iconv("UTF-8", "ISO-8859-1//TRANSLIT", $v), 1, 0, "C");
+              $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
             }
             $pdf->Ln();
           }
-          $pdf->Ln();
           // Total de salario
           $pdf->SetFont("Arial", "B", 14);
           $pdf->Cell($ancho_celda * 2, $alto_celda, "Total de salario", 1, 0, "C");
           $s_total = str_pad($s_total, $cifras, "0", STR_PAD_LEFT);
-          $pdf->SetFont("Arial", "", 14);
-          $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
-          $pdf->Ln();
-          // 13 %  del total del salario
-          $pdf->SetFont("Arial", "B", 14);
-          $pdf->Cell($ancho_celda * 2, $alto_celda, "13% del Total de Salario", 1, 0, "C");
-          $s_total_13 = str_pad((0.13 * $s_total), $cifras, "0", STR_PAD_LEFT);
-          $pdf->SetFont("Arial", "", 14);
-          $pdf->Cell($ancho_celda, $alto_celda, $s_total_13, 1, 0, "C");
-          $pdf->Ln();
-          // Total
-          $pdf->SetFont("Arial", "B", 14);
-          $pdf->Cell($ancho_celda * 2, $alto_celda, "Suma Total de Salario", 1, 0, "C");
-          $s_total = str_pad((1.13 * $s_total), $cifras, "0", STR_PAD_LEFT);
           $pdf->SetFont("Arial", "", 14);
           $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
           $pdf->Output("F", "./reporte_pdf.pdf");
@@ -106,7 +120,7 @@ if (isset($_POST["consulta"])) {
           $pdf->SetFont("Arial", "", 14);
           foreach($r as $row){
             foreach($row as $k => $v) {
-              $pdf->Cell($ancho_celda, $alto_celda, iconv("UTF-8", "ISO-8859-1//TRANSLIT", $v), 1, 0, "C");
+              $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
             }
             $pdf->Ln();
           }
@@ -134,6 +148,7 @@ if (isset($_POST["consulta"])) {
     <style>
       * {
         font-family: sans-serif;
+        font-size: 1rem;
       }
       :root {
         --black-color: #000000;
@@ -147,8 +162,7 @@ if (isset($_POST["consulta"])) {
       h1 {
         text-align: center;
       }
-      form select.consulta, form div.datos-entrada {
-        font-size: 1rem;
+      form select.consulta, form div.datos-entrada, form input[type="submit"] {
         margin: 0 0 1rem;
       }
       form input {
@@ -172,7 +186,19 @@ if (isset($_POST["consulta"])) {
     </style>
   </head>
   <body>
-    <form action=".<?php echo $_SERVER["PHP_SELF"];?>" method="post" class="form" id="form">
+    <div class="consulta">
+      <div class="tablas">
+        <h1>Tablas</h1>
+        <select name="tabla" id="tabla">
+        </select>
+      </div>
+      <div class="campos"></div>
+      <div class="agrupacion">
+        <div class="campo-opcion">
+        </div>
+      </div>
+    </div>
+    <form action="./<?php echo $_SERVER["PHP_SELF"];?>" method="post" class="form" id="form">
       <h1>GENERADOR DE REPORTE</h1>
       <label for="consulta">Consulta:</label>
       <select name="consulta" class="consulta" id="consulta">
@@ -180,6 +206,7 @@ if (isset($_POST["consulta"])) {
         <option value="fn">Fecha de nacimiento</option>
       </select>
       <div class="datos-entrada" id="datos-entrada"></div>
+      <input type="submit" value="Buscar" id="buscar">
     </form>
     <section class="resultado" id="resultado">
       <!-- <div class="parametros"></div> -->
@@ -193,17 +220,16 @@ if (isset($_POST["consulta"])) {
       const DATOS_ENTRADA = document.getElementById("datos-entrada");
       const CONSULTA = document.getElementById("consulta");
       const RESULTADO = document.getElementById("resultado");
-      const PDF_VIEWER = document.getElementById("pdf-viewer");
+      const TABLA = document.getElementById("tabla");
       var consultas = {
         salario: {
           contenido_form: `
             <label for="min">Mínimo:</label>
             <input type="text" name="min" id="min" value="3000">
             <label for="max">Máximo:</label>
-            <input type="text" name="max" id="max" value="6000">
+            <input type="text" name="max" id="max" value="5000">
             <label for="cifras">Cifras:</label>
-            <input type="number" name="cifras" class="cifras" id="cifras" min="0" value="0">
-            <input type="submit" value="Buscar" id="buscar">`,
+            <input type="number" name="cifras" class="cifras" id="cifras" min="0" value="0">`,
           data: function() {
             const MIN = document.getElementById("min");
             const MAX = document.getElementById("max");
@@ -216,8 +242,7 @@ if (isset($_POST["consulta"])) {
             <label for="fmin">Mínimo:</label>
             <input type="date" name="fmin" id="fmin" value="1950-01-01">
             <label for="fmax">Máximo:</label>
-            <input type="date" name="fmax" id="fmax" value="1960-01-01">
-            <input type="submit" value="Buscar" id="buscar">`,
+            <input type="date" name="fmax" id="fmax" value="1960-01-01">`,
           data: function() {
             const FMIN = document.getElementById("fmin");
             const FMAX = document.getElementById("fmax");
@@ -229,6 +254,39 @@ if (isset($_POST["consulta"])) {
       CONSULTA.addEventListener("change", function() {
         DATOS_ENTRADA.innerHTML = consultas[CONSULTA.value]["contenido_form"];
       });
+      async function requestTC(url, data) {
+        return await new Promise((resolve, reject) => {
+          const REQUEST = new XMLHttpRequest();
+          REQUEST.open("POST", url);
+          REQUEST.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          REQUEST.addEventListener("load", function(e) {
+            if (REQUEST.status === 200) {
+              resolve({
+                error: false,
+                value: REQUEST.responseText
+              });
+            }
+            else {
+              reject({
+                error: true,
+                message: "Ha ocurrido un error en la solicitud"
+              });
+            }
+          });
+          // console.log(d);
+          REQUEST.send(data);
+        });
+      }
+      requestTC(URL + (FORM.getAttribute("action")).slice(1), "consulta=tc").then((r) => {
+        let d = JSON.parse(r["value"]);
+        let tabla_contenido = ``;
+        for (tn in d) {
+          tabla_contenido += `<option value="${tn}" selected>${tn}</option>`;
+        }
+        TABLA.innerHTML = tabla_contenido;
+      }).catch((e) => {
+        console.log(e);
+      })
       FORM.addEventListener("submit", function(event) {
         event.preventDefault();
         const REQUEST = new XMLHttpRequest();
