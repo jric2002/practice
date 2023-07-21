@@ -15,7 +15,7 @@ function init() {
     controls.maxDistance = 1500;
 
     let materialArray = [];
-    let texture_ft = new THREE.TextureLoader().load('imgs/arid_ft.jpg');
+    let texture_ft = new THREE.TextureLoader().load('imgs/lic_unap.jpg');
     let texture_bk = new THREE.TextureLoader().load('imgs/arid_bk.jpg');
     let texture_up = new THREE.TextureLoader().load('imgs/arid_up.jpg');
     let texture_dn = new THREE.TextureLoader().load('imgs/arid_dn.jpg');

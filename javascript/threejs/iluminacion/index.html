@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iluminación - Three.js</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      h1 {
+        margin: 0.5rem 0;
+      }
+    </style>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@v0.154.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@v0.154.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script defer type="module" src="./js/main.js"></script>
+  </head>
+  <body>
+    <h1>Iluminación</h1>
+    <p>Para este ejemplo se esta usando una Iluminación ambiental y un punto de luz.</p>
+    <ol>
+      <li>Iluminación Ambiental: Noche</li>
+      <li>Punto de Luz: Actua como una linterna y ésta se mueve con la cámara</li>
+    </ol>
+    <!-- <p>Movimiento de la cámara.</p>
+    <ul>
+      <li>Tecla W: Mover hacia arriba</li>
+      <li>Tecla S: Mover hacia abajo</li>
+      <li>Tecla A: Mover hacia la izquierda</li>
+      <li>Tecla D: Mover hacia la derecha</li>
+    </ul> -->
+    <canvas id="canvas"></canvas>
+  </body>
+</html>
