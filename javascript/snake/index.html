@@ -12,17 +12,121 @@
     <script defer type="text/javascript" src="./js/main.js"></script>
   </head>
   <body>
-    <div class="game">
-      <div class="wrapper">
-        <h2 class="btn-main-menu" id="btn-main-menu">Menú Principal</h2>
-        <div class="main-menu" id="main-menu">
-          <h1 class="name-game">SNAKE</h1>
-          <div class="sub-menu-1">
-            <button class="play">Jugar</button>
-            <button class="how-to-play">¿Cómo jugar?</button>
-          </div>
+    <div class="game" id="game">
+      <div class="main-menu" id="main-menu">
+        <h1 class="name-game">SNAKE</h1>
+        <div class="sub-menu-1" id="sub-menu-1">
+          <button class="btn-play" id="btn-play">Jugar</button>
+          <button class="btn-ajustes" id="btn-ajustes">Ajustes</button>
+          <button class="btn-how-to-play" id="btn-how-to-play">¿Cómo jugar?</button>
         </div>
+        <div class="sub-menu-2" id="sub-menu-2">
+          <ol>
+            <li><button class="level" level="1">Nivel 1</button></li>
+            <li><button class="level" level="2">Nivel 2</button></li>
+            <li><button class="level" level="3">Nivel 3</button></li>
+            <li><button class="level" level="4">Nivel 4</button></li>
+            <li><button class="level" level="5">Nivel 5</button></li>
+          </ol>
+        </div>
+        <div class="sub-menu-3" id="sub-menu-3">
+          <label for="snake-speed">Velocidad</label>
+          <select name="snake-speed" id="snake-speed">
+            <option value="slow">Lento</option>
+            <option value="normal">Normal</option>
+            <option value="fast">Rápido</option>
+          </select>
+        </div>
+        <div class="sub-menu-4" id="sub-menu-4">
+          <p>Para jugar debes usar las teclas</p>
+          <ul class="instrucciones">
+            <li><strong>W o Flecha Arriba</strong>: Hacia arriba</li>
+            <li><strong>S o Flecha Abajo</strong>: Hacia abajo</li>
+            <li><strong>A o Flecha Izquierda</strong>: Hacia la izquierda</li>
+            <li><strong>D o Flecha Derecha</strong>: Hacia la derecha</li>
+            <li><strong>Espacio</strong>: Pausar el juego</li>
+          </ul>
+          <table class="objetos">
+            <thead>
+              <tr>
+                <th>Objeto</th>
+                <th>Nombre</th>
+                <th>Función</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="apple">
+                    <span></span>
+                  </div>
+                </td>
+                <td>Manzana</td>
+                <td>Alimento del Snake</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="snake">
+                    <span class="s-head"></span>
+                    <span class="s-body"></span>
+                    <span class="s-body"></span>
+                  </div>
+                </td>
+                <td>Snake</td>
+                <td>Snake se come la Manzana</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="wall">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </td>
+                <td>Pared</td>
+                <td>Obstáculo para el Snake</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn-volver-atras" id="btn-volver-atras">Volver atrás</button>
+      </div>
+      <div class="play" id="play">
+        <h2 class="btn-main-menu" id="btn-main-menu" nb="1">Menú Principal</h2>
         <div class="game-details">
+          <div class="info">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2000 2000" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <style type="text/css">
+                  <![CDATA[
+                    .fil0 {fill:black;fill-rule:nonzero}
+                    .fil2 {fill:url(#id0)}
+                    .fil1 {fill:url(#id1)}
+                    .fil3 {fill:url(#id2)}
+                  ]]>
+                </style>
+                <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="464.441" y1="1289.69" x2="1514.89" y2="1289.69">
+                <stop offset="0" style="stop-opacity:1; stop-color:#378B4E"/>
+                <stop offset="1" style="stop-opacity:1; stop-color:#99CC33"/>
+                </linearGradient>
+                <linearGradient id="id1" gradientUnits="objectBoundingBox" xlink:href="#id0" x1="0%" y1="50%" x2="100%" y2="50%">
+                </linearGradient>
+                <linearGradient id="id2" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="226.669" y1="1247.37" x2="1773.37" y2="1247.37">
+                </linearGradient>
+              </defs>
+              <g id="Layer_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <path class="fil0" d="M227 1535c0,45 37,82 82,82l1382 0c72,0 111,-88 58,-140 -15,-15 -36,-25 -58,-25l-1135 0c-84,0 -158,-21 -162,-124l-31 -402 0 0c-6,-66 -89,-63 -94,0l-42 609zm1279 -1104l10 10c37,37 -19,94 -56,56l-27 -26 -125 0c-17,50 -65,88 -122,88l-110 0 0 323 125 0c129,0 202,142 140,245l91 0c129,0 203,142 140,245l119 0c143,0 217,175 115,278 -30,29 -70,47 -115,47l-1382 0c-89,0 -162,-73 -162,-162l0 0c0,-1 0,-2 0,-3l43 -612c8,-114 137,-161 212,-87 23,22 37,53 40,86l0 0 16 208 139 0c-63,-108 14,-245 140,-245l67 0 0 -454c0,-69 56,-125 126,-125l256 0c60,0 105,39 121,88l126 0 27 -27c37,-37 93,19 56,56 -3,4 -7,7 -10,11zm-510 451l0 -363c0,-22 18,-40 40,-40l150 0c63,0 63,-96 0,-96l-256 0c-25,0 -46,20 -46,45l0 454 112 0zm205 245c72,0 110,-88 58,-141 -15,-15 -36,-24 -58,-24l-464 0c-72,0 -111,88 -58,141 15,15 35,24 58,24l464 0zm231 245c73,0 111,-88 59,-141 -15,-15 -36,-24 -59,-24l-968 0 9 115c2,18 1,32 18,41 16,8 41,9 65,9l876 0z"/>
+                <path class="fil1" d="M737 1127l464 0c72,0 110,-88 58,-141 -15,-15 -36,-24 -58,-24l-464 0c-72,0 -111,88 -58,141 15,15 35,24 58,24z"/>
+                <path class="fil1" d="M884 882l112 0 0 -363c0,-22 18,-40 40,-40l150 0c63,0 63,-96 0,-96l-256 0c-25,0 -46,20 -46,45l0 454z"/>
+                <path class="fil2" d="M1432 1207l-968 0 9 115c2,18 1,32 18,41 16,8 41,9 65,9l876 0c73,0 111,-88 59,-141 -15,-15 -36,-24 -59,-24z"/>
+                <path class="fil3" d="M363 926l0 0zm1328 526l-1135 0c-84,0 -158,-21 -162,-124l-31 -402c-6,-66 -89,-63 -94,0l-42 609c0,45 37,82 82,82l1382 0c72,0 111,-88 58,-140 -15,-15 -36,-25 -58,-25z"/>
+              </g>
+            </svg>
+            <h4 class="current-level" id="current-level">
+              Level: 1
+            </h4>
+          </div>
           <div class="info">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56.673 56.673" style="enable-background:new 0 0 56.673 56.673;" xml:space="preserve">
               <g>
@@ -59,6 +163,78 @@
     </div>
     <div class="game-over" id="game-over">
       <h2>GAME OVER</h2>
+      <div class="opciones">
+        <button id="restart" nb="1">
+          <svg viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 3.8.1 (29687) - http://www.bohemiancoding.com/sketch -->
+            <title>arrow_repeat [#238]</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1">
+                <g id="Dribbble-Light-Preview" transform="translate(-222.000000, -7080.000000)">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path d="M174.034934,6926.99996 C173.480532,6926.99996 173.030583,6927.44796 173.030583,6927.99996 L173.030583,6930.99994 L178.052339,6930.99994 C178.606741,6930.99994 179.05669,6930.49994 179.05669,6929.94795 L179.05669,6929.92095 C179.05669,6929.36895 178.606741,6928.99995 178.052339,6928.99995 L175.039285,6928.99995 L175.039285,6927.99996 C175.039285,6927.44796 174.589336,6926.99996 174.034934,6926.99996 M180.988058,6929.99995 C180.487891,6929.99995 180.071085,6930.36694 179.999776,6930.85894 C179.520701,6934.16792 176.319833,6936.61391 172.736308,6935.86392 C170.462456,6935.38792 168.623489,6933.55693 168.145418,6931.29294 C167.32888,6927.42296 170.287699,6923.99998 174.034934,6923.99998 L174.034934,6925.99997 L179.05669,6922.99998 L174.034934,6920 L174.034934,6921.99999 C169.070425,6921.99999 165.157472,6926.48297 166.156802,6931.60494 C166.765439,6934.72392 169.290378,6937.23791 172.42295,6937.8439 C177.169514,6938.7619 181.369712,6935.51592 181.990401,6931.12594 C182.074766,6930.52994 181.591673,6929.99995 180.988058,6929.99995" id="arrow_repeat-[#238]"></path>
+                    </g>
+                </g>
+            </g>
+          </svg>
+          Reiniciar
+        </button>
+        <button id="btn-main-menu" nb="2">
+          <svg viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 3.8.1 (29687) - http://www.bohemiancoding.com/sketch -->
+            <title>menu_navigation_grid [#1528]</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1">
+                <g id="Dribbble-Light-Preview" transform="translate(-139.000000, -200.000000)">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path d="M101.9,57.009 C101.9,57.56 101.38235,58 100.80275,58 L97.65275,58 C97.0742,58 96.65,57.56 96.65,57.009 L96.65,54.009 C96.65,53.458 97.0742,53 97.65275,53 L100.80275,53 C101.38235,53 101.9,53.458 101.9,54.009 L101.9,57.009 Z M100.80275,51 L97.65275,51 C95.9129,51 94.55,52.352 94.55,54.009 L94.55,57.009 C94.55,58.666 95.9129,60 97.65275,60 L100.80275,60 C102.5426,60 104,58.666 104,57.009 L104,54.009 C104,52.352 102.5426,51 100.80275,51 L100.80275,51 Z M90.35,57.009 C90.35,57.56 89.83235,58 89.25275,58 L86.10275,58 C85.5242,58 85.1,57.56 85.1,57.009 L85.1,54.009 C85.1,53.458 85.5242,53 86.10275,53 L89.25275,53 C89.83235,53 90.35,53.458 90.35,54.009 L90.35,57.009 Z M89.25275,51 L86.10275,51 C84.3629,51 83,52.352 83,54.009 L83,57.009 C83,58.666 84.3629,60 86.10275,60 L89.25275,60 C90.9926,60 92.45,58.666 92.45,57.009 L92.45,54.009 C92.45,52.352 90.9926,51 89.25275,51 L89.25275,51 Z M101.9,46.009 C101.9,46.56 101.38235,47 100.80275,47 L97.65275,47 C97.0742,47 96.65,46.56 96.65,46.009 L96.65,43.009 C96.65,42.458 97.0742,42 97.65275,42 L100.80275,42 C101.38235,42 101.9,42.458 101.9,43.009 L101.9,46.009 Z M100.80275,40 L97.65275,40 C95.9129,40 94.55,41.352 94.55,43.009 L94.55,46.009 C94.55,47.666 95.9129,49 97.65275,49 L100.80275,49 C102.5426,49 104,47.666 104,46.009 L104,43.009 C104,41.352 102.5426,40 100.80275,40 L100.80275,40 Z M90.35,46.009 C90.35,46.56 89.83235,47 89.25275,47 L86.10275,47 C85.5242,47 85.1,46.56 85.1,46.009 L85.1,43.009 C85.1,42.458 85.5242,42 86.10275,42 L89.25275,42 C89.83235,42 90.35,42.458 90.35,43.009 L90.35,46.009 Z M89.25275,40 L86.10275,40 C84.3629,40 83,41.352 83,43.009 L83,46.009 C83,47.666 84.3629,49 86.10275,49 L89.25275,49 C90.9926,49 92.45,47.666 92.45,46.009 L92.45,43.009 C92.45,41.352 90.9926,40 89.25275,40 L89.25275,40 Z" id="menu_navigation_grid-[#1528]"></path>
+                    </g>
+                </g>
+            </g>
+          </svg>
+          Menú Principal
+        </button>
+      </div>
+    </div>
+    <div class="pause" id="pause">
+      <h2>SNAKE</h2>
+      <p>PRESIONA LA TECLA ESPACIO PARA CONTINUAR</p>
+      <div class="opciones">
+        <button id="restart" nb="2">
+          <svg viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 3.8.1 (29687) - http://www.bohemiancoding.com/sketch -->
+            <title>arrow_repeat [#238]</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1">
+                <g id="Dribbble-Light-Preview" transform="translate(-222.000000, -7080.000000)">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path d="M174.034934,6926.99996 C173.480532,6926.99996 173.030583,6927.44796 173.030583,6927.99996 L173.030583,6930.99994 L178.052339,6930.99994 C178.606741,6930.99994 179.05669,6930.49994 179.05669,6929.94795 L179.05669,6929.92095 C179.05669,6929.36895 178.606741,6928.99995 178.052339,6928.99995 L175.039285,6928.99995 L175.039285,6927.99996 C175.039285,6927.44796 174.589336,6926.99996 174.034934,6926.99996 M180.988058,6929.99995 C180.487891,6929.99995 180.071085,6930.36694 179.999776,6930.85894 C179.520701,6934.16792 176.319833,6936.61391 172.736308,6935.86392 C170.462456,6935.38792 168.623489,6933.55693 168.145418,6931.29294 C167.32888,6927.42296 170.287699,6923.99998 174.034934,6923.99998 L174.034934,6925.99997 L179.05669,6922.99998 L174.034934,6920 L174.034934,6921.99999 C169.070425,6921.99999 165.157472,6926.48297 166.156802,6931.60494 C166.765439,6934.72392 169.290378,6937.23791 172.42295,6937.8439 C177.169514,6938.7619 181.369712,6935.51592 181.990401,6931.12594 C182.074766,6930.52994 181.591673,6929.99995 180.988058,6929.99995" id="arrow_repeat-[#238]"></path>
+                    </g>
+                </g>
+            </g>
+          </svg>
+          Reiniciar
+        </button>
+        <button id="btn-main-menu" nb="3">
+          <svg viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 3.8.1 (29687) - http://www.bohemiancoding.com/sketch -->
+            <title>menu_navigation_grid [#1528]</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1">
+                <g id="Dribbble-Light-Preview" transform="translate(-139.000000, -200.000000)">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path d="M101.9,57.009 C101.9,57.56 101.38235,58 100.80275,58 L97.65275,58 C97.0742,58 96.65,57.56 96.65,57.009 L96.65,54.009 C96.65,53.458 97.0742,53 97.65275,53 L100.80275,53 C101.38235,53 101.9,53.458 101.9,54.009 L101.9,57.009 Z M100.80275,51 L97.65275,51 C95.9129,51 94.55,52.352 94.55,54.009 L94.55,57.009 C94.55,58.666 95.9129,60 97.65275,60 L100.80275,60 C102.5426,60 104,58.666 104,57.009 L104,54.009 C104,52.352 102.5426,51 100.80275,51 L100.80275,51 Z M90.35,57.009 C90.35,57.56 89.83235,58 89.25275,58 L86.10275,58 C85.5242,58 85.1,57.56 85.1,57.009 L85.1,54.009 C85.1,53.458 85.5242,53 86.10275,53 L89.25275,53 C89.83235,53 90.35,53.458 90.35,54.009 L90.35,57.009 Z M89.25275,51 L86.10275,51 C84.3629,51 83,52.352 83,54.009 L83,57.009 C83,58.666 84.3629,60 86.10275,60 L89.25275,60 C90.9926,60 92.45,58.666 92.45,57.009 L92.45,54.009 C92.45,52.352 90.9926,51 89.25275,51 L89.25275,51 Z M101.9,46.009 C101.9,46.56 101.38235,47 100.80275,47 L97.65275,47 C97.0742,47 96.65,46.56 96.65,46.009 L96.65,43.009 C96.65,42.458 97.0742,42 97.65275,42 L100.80275,42 C101.38235,42 101.9,42.458 101.9,43.009 L101.9,46.009 Z M100.80275,40 L97.65275,40 C95.9129,40 94.55,41.352 94.55,43.009 L94.55,46.009 C94.55,47.666 95.9129,49 97.65275,49 L100.80275,49 C102.5426,49 104,47.666 104,46.009 L104,43.009 C104,41.352 102.5426,40 100.80275,40 L100.80275,40 Z M90.35,46.009 C90.35,46.56 89.83235,47 89.25275,47 L86.10275,47 C85.5242,47 85.1,46.56 85.1,46.009 L85.1,43.009 C85.1,42.458 85.5242,42 86.10275,42 L89.25275,42 C89.83235,42 90.35,42.458 90.35,43.009 L90.35,46.009 Z M89.25275,40 L86.10275,40 C84.3629,40 83,41.352 83,43.009 L83,46.009 C83,47.666 84.3629,49 86.10275,49 L89.25275,49 C90.9926,49 92.45,47.666 92.45,46.009 L92.45,43.009 C92.45,41.352 90.9926,40 89.25275,40 L89.25275,40 Z" id="menu_navigation_grid-[#1528]"></path>
+                    </g>
+                </g>
+            </g>
+          </svg>
+          Menú Principal
+        </button>
+      </div>
     </div>
   </body>
 </html>
