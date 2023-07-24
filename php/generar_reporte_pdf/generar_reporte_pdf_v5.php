@@ -149,6 +149,8 @@ if (isset($_POST["consulta"])) {
       * {
         font-family: sans-serif;
         font-size: 1rem;
+        padding: 0;
+        margin: 0;
       }
       :root {
         --black-color: #000000;
@@ -158,8 +160,12 @@ if (isset($_POST["consulta"])) {
         --yellow-color: #fcee0a;
         --sky-blue-color: #2490fc;
         --white-color: #ffffff;
+        --border-radius-g: 10px;
       }
-      h1 {
+      form {
+        margin: 1rem;
+      }
+      form h1 {
         text-align: center;
       }
       form select.consulta, form div.datos-entrada, form input[type="submit"] {
@@ -183,18 +189,92 @@ if (isset($_POST["consulta"])) {
         color: var(--white-color);
         background-color: var(--green-color);
       }
+      .gen-rep {
+        color: var(--white-color);
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: var(--border-radius-g);
+        display: grid;
+        grid-template-areas: "title"
+                              "consulta";
+        margin: 1rem;
+      }
+      .gen-rep h1 {
+        grid-area: title;
+        font-size: 1.5rem;
+        border-bottom: 1px solid var(--white-color);
+        text-align: center;
+        padding: 0.5rem;
+      }
+      .gen-rep .consulta {
+        grid-area: consulta;
+        display: grid;
+        grid-template-areas: "tbs cps agrp";
+      }
+      .gen-rep .consulta .tbs select {
+        border-radius: var(--border-radius-g);
+        padding: 0.25rem 0.5rem;
+        margin: 1rem 0;
+      }
+      .tbs {
+        grid-area: tbs;
+      }
+      .cps {
+        grid-area: cps;
+      }
+      .agrp {
+        grid-area: agrp;
+      }
+      .tbs, .cps, .agrp {
+        background-color: rgba(0, 0, 0, 0.25);
+        border-radius: var(--border-radius-g);
+        padding: 1rem;
+        margin: 0.5rem;
+      }
+      .gen-rep .consulta .cps .campos {
+        margin: 0.75rem 0;
+      }
+      .gen-rep .consulta .cps .campos > div {
+        background-color: var(--sky-blue-color);
+        border-radius: var(--border-radius-g);
+        padding: 0.75rem;
+        margin: 0.25rem 0;
+      }
+      .gen-rep .consulta .agrp .campo-opcion .co {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.25rem 0;
+      }
+      .gen-rep .consulta .agrp .campo-opcion .co .cp-agrp {
+        background-color: var(--sky-blue-color);
+        border-radius: var(--border-radius-g) 0 0 var(--border-radius-g);
+        padding: 0.75rem;
+      }
+      .gen-rep .consulta .agrp .campo-opcion .co .opc {
+        background-color: var(--green-color);
+        border-radius: 0 var(--border-radius-g) var(--border-radius-g) 0;
+        position: relative;
+        height: 100%;
+      }
     </style>
   </head>
   <body>
-    <div class="consulta">
-      <div class="tablas">
-        <h1>Tablas</h1>
-        <select name="tabla" id="tabla">
-        </select>
-      </div>
-      <div class="campos"></div>
-      <div class="agrupacion">
-        <div class="campo-opcion">
+    <div class="gen-rep">
+      <h1>GENERADOR DE REPORTE</h1>
+      <div class="consulta">
+        <div class="tbs">
+          <h1>Tablas</h1>
+          <select name="tablas" id="tablas">
+          </select>
+          <div class="tablas-seleccionadas" id="tablas-seleccionadas"></div>
+        </div>
+        <div class="cps">
+          <h1>Campos</h1>
+          <div class="campos" id="campos"></div>
+        </div>
+        <div class="agrp">
+          <h1>Agrupación</h1>
+          <div class="campo-opcion" id="campo-opcion" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </div>
       </div>
     </div>
@@ -220,7 +300,11 @@ if (isset($_POST["consulta"])) {
       const DATOS_ENTRADA = document.getElementById("datos-entrada");
       const CONSULTA = document.getElementById("consulta");
       const RESULTADO = document.getElementById("resultado");
-      const TABLA = document.getElementById("tabla");
+      const TABLA = document.getElementById("tablas");
+      const TABLAS_SELECT = document.getElementById("tablas-seleccionadas");
+      const CAMPOS = document.getElementById("campos");
+      const CAMPO_OPCION = document.getElementById("campo-opcion");
+      let datos_tc;
       var consultas = {
         salario: {
           contenido_form: `
@@ -278,15 +362,52 @@ if (isset($_POST["consulta"])) {
         });
       }
       requestTC(URL + (FORM.getAttribute("action")).slice(1), "consulta=tc").then((r) => {
-        let d = JSON.parse(r["value"]);
+        datos_tc = JSON.parse(r["value"]);
+        console.log(datos_tc);
         let tabla_contenido = ``;
-        for (tn in d) {
-          tabla_contenido += `<option value="${tn}" selected>${tn}</option>`;
+        for (tn in datos_tc) {
+          tabla_contenido += `<option value="${tn}">${tn}</option>`;
         }
         TABLA.innerHTML = tabla_contenido;
       }).catch((e) => {
         console.log(e);
-      })
+      });
+      TABLA.addEventListener("change", () => {
+        TABLAS_SELECT.innerHTML += `<div>${TABLA.value}</div>`;
+        for (c of datos_tc[TABLA.value]) {
+          CAMPOS.innerHTML += `<div draggable="true" ondragstart="drag(event)" class="cp-agrp">${TABLA.value}.${c}</div>`
+        }
+      });
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+      let current_co;
+      function drag(event) {
+        CAMPO_OPCION.style.height = "100%";
+        // event.dataTransfer.setData("campo", event.target.outerHTML);
+        current_co = event.target;
+      }
+      function drop(event) {
+        event.preventDefault();
+        current_co.innerHTML += `<select name="opcion" class="opcion" id="opcion">
+                                  <option value="sum">SUM</option>
+                                  <option value="count">COUNT</option>
+                                  <option value="avg">AVG</option>
+                                </select>`;
+        event.target.innerHTML += current_co.innerHTML;
+        // let data = event.dataTransfer.getData("campo");
+        /* event.target.innerHTML += `<div class="co">
+          ${(current_co.outerHTML)}
+          <div class="opc">
+            <select name="opcion" class="opcion" id="opcion">
+              <option value="sum">SUM</option>
+              <option value="count">COUNT</option>
+              <option value="avg">AVG</option>
+            </select>
+            </div>
+            </div>`; */
+        current_co.remove();
+      }
       FORM.addEventListener("submit", function(event) {
         event.preventDefault();
         const REQUEST = new XMLHttpRequest();

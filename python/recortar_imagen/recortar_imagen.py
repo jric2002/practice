@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 # Cargar las dos imágenes
-img1 = cv2.imread("./img/rain-1.jpg")
-img2 = cv2.imread("./img/rain-2.jpg")
+img1 = cv2.imread("./img/rs-rain-1.jpg")
+img2 = cv2.imread("./img/rs-rain-2.jpg")
 # Convertir las imágenes a escala de grises
 gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)

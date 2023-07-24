@@ -5,6 +5,7 @@ const current_level_element = document.getElementById("current-level");
 const score_element = document.getElementById("score");
 const high_score_element = document.getElementById("high-score");
 const game_over_element = document.getElementById("game-over");
+const snake_speed_element = document.getElementById("snake-speed");
 const pause_element = document.getElementById("pause");
 const btn_main_menu = document.querySelectorAll("#btn-main-menu");
 const btn_restart = document.querySelectorAll("#restart");
@@ -28,6 +29,7 @@ let velocity_snake = {
   "normal": 120,
   "fast": 60
 };
+let current_velocity = velocity_snake[snake_speed_element.value];
 let velocity_x = 0, velocity_y = 0;
 let set_interval_id;
 let score = 0;
@@ -133,11 +135,11 @@ const levels = {
       return true;
     }
   }
-}
+};
 const changeFoodPosition = function() {
   do {
-    food_x = Math.floor(Math.random() * 30) + 1;
-    food_y = Math.floor(Math.random() * 30) + 1;
+    food_x = Math.floor(Math.random() * (29 - 2 + 1) + 2);
+    food_y = Math.floor(Math.random() * (29 - 2 + 1) + 2);
   } while (levels[current_level].verifyFoodPosition() === false);
 };
 const handleGameOver = function() {
@@ -228,7 +230,7 @@ btn_restart.forEach((e, i, a) => {
       if (!stop_game) {
         snakeGame();
       }
-    }, velocity_snake["normal"]);
+    }, current_velocity);
   });
 });
 btn_play.addEventListener("click", () => {
@@ -253,6 +255,9 @@ btn_volver_atras.addEventListener("click", () => {
   sub_menu_3.style.display = "none";
   sub_menu_4.style.display = "none";
 });
+snake_speed_element.addEventListener("change", () => {
+  current_velocity = velocity_snake[snake_speed_element.value];
+});
 btn_levels.forEach((e, i, a) => {
   e.addEventListener("click", (event) => {
     play.style.display = "block";
@@ -272,7 +277,7 @@ btn_levels.forEach((e, i, a) => {
       if (!stop_game) {
         snakeGame();
       }
-    }, velocity_snake["normal"]);
+    }, current_velocity);
   });
 });
 document.addEventListener("keydown", (e) => {
