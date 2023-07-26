@@ -38,11 +38,13 @@ if (isset($_POST["consulta"])) {
       }
       exit();
       break;
-    case "salario":
-      if (isset($_POST["min"]) && isset($_POST["max"]) && isset($_POST["cifras"])) {
-        $min = intval($_POST["min"]);
-        $max = intval($_POST["max"]);
-        $cifras = intval($_POST["cifras"]);
+    case "custom":
+      header("Content-Type: application/json");
+      echo json_encode(json_decode($_POST["datos"]));
+      if (isset($_POST["datos"])) {
+        $min = 2000;
+        $max = 6000;
+        $cifras = 0;
         $query = $connection->prepare("SELECT nombre, apellido, salario FROM empleado WHERE salario BETWEEN ? AND ?");
         $query->bind_param("ii", $min, $max);
         if ($query->execute()) {
@@ -84,53 +86,9 @@ if (isset($_POST["consulta"])) {
           $pdf->SetFont("Arial", "", 14);
           $pdf->Cell($ancho_celda, $alto_celda, $s_total, 1, 0, "C");
           $pdf->Output("F", "./reporte_pdf.pdf");
-          exit();
         }
       }
-      else {
-        echo "Salario mínimo y máximo no esta definido";
-      }
-      break;
-    case "fn":
-      if (isset($_POST["fmin"]) && isset($_POST["fmax"])) {
-        $fmin = $_POST["fmin"];
-        $fmax = $_POST["fmax"];
-        $query = $connection->prepare("SELECT nombre, apellido, fecha_n FROM empleado WHERE fecha_n BETWEEN ? AND ?");
-        $query->bind_param("ss", $fmin, $fmax);
-        if ($query->execute()) {
-          $r = $query->get_result();
-          $fields = $r->fetch_fields();
-          $r = $r->fetch_all(MYSQLI_ASSOC);
-          // Genera el Reporte en PDF
-          $pdf = new FPDF();
-          $ancho_celda = 62;
-          $alto_celda = 10;
-          $pdf->AddPage();
-          // Título del documento
-          $pdf->SetFont("Arial", "B", 20);
-          $pdf->Cell(0, 10, "Reporte de la Consulta", 0, 1, "C");
-          $pdf->Ln(10);
-          // Encabezado de la tabla
-          $pdf->SetFont("Arial", "B", 16);
-          $pdf->Cell($ancho_celda, $alto_celda, "Nombre", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Apellido", 1, 0, "C");
-          $pdf->Cell($ancho_celda, $alto_celda, "Fecha de nacimiento", 1, 0, "C");
-          $pdf->Ln();
-          // Datos de la tabla
-          $pdf->SetFont("Arial", "", 14);
-          foreach($r as $row){
-            foreach($row as $k => $v) {
-              $pdf->Cell($ancho_celda, $alto_celda, $v, 1, 0, "C");
-            }
-            $pdf->Ln();
-          }
-          $pdf->Output("F", "reporte_pdf.pdf");
-          exit();
-        }
-      }
-      else {
-        echo "Fecha de nacimiento mínimo y máximo no esta definido";
-      }
+      exit();
       break;
     default:
       echo "Esa consulta no es válida";
@@ -162,33 +120,6 @@ if (isset($_POST["consulta"])) {
         --white-color: #ffffff;
         --border-radius-g: 10px;
       }
-      form {
-        margin: 1rem;
-      }
-      form h1 {
-        text-align: center;
-      }
-      form select.consulta, form div.datos-entrada, form input[type="submit"] {
-        margin: 0 0 1rem;
-      }
-      form input {
-        font-size: 1rem;
-      }
-      form input[type="text"] {
-        width: 6rem;
-      }
-      form input[type="number"] {
-        width: 3rem;
-      }
-      form input[type="submit"] {
-        color: var(--white-color);
-        background-color: var(--sky-blue-color);
-        transition: background-color 0.25s linear;
-      }
-      form input[type="submit"]:hover {
-        color: var(--white-color);
-        background-color: var(--green-color);
-      }
       .gen-rep {
         color: var(--white-color);
         background-color: rgba(0, 0, 0, 0.5);
@@ -215,6 +146,12 @@ if (isset($_POST["consulta"])) {
         padding: 0.25rem 0.5rem;
         margin: 1rem 0;
       }
+      .gen-rep .consulta .tbs .tablas-seleccionadas > div {
+        background-color: var(--gray-color);
+        border-radius: var(--border-radius-g);
+        padding: 0.75rem;
+        margin: 0.25rem 0;
+      }
       .tbs {
         grid-area: tbs;
       }
@@ -239,27 +176,45 @@ if (isset($_POST["consulta"])) {
         padding: 0.75rem;
         margin: 0.25rem 0;
       }
-      .gen-rep .consulta .agrp .campo-opcion .co {
+      .gen-rep .consulta .agrp .campo-opcion {
+        border-radius: var(--border-radius-g);
+        margin: 0.75rem 0;
+      }
+      .gen-rep .consulta .agrp .campo-opcion .cp-agrp {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0.25rem 0;
-      }
-      .gen-rep .consulta .agrp .campo-opcion .co .cp-agrp {
         background-color: var(--sky-blue-color);
         border-radius: var(--border-radius-g) 0 0 var(--border-radius-g);
         padding: 0.75rem;
+        margin: 0.25rem 0;
       }
-      .gen-rep .consulta .agrp .campo-opcion .co .opc {
-        background-color: var(--green-color);
+      .gen-rep .consulta .agrp .campo-opcion .opcion {
+        color: var(--white-color);
+        background-color: var(--gray-color);
         border-radius: 0 var(--border-radius-g) var(--border-radius-g) 0;
-        position: relative;
-        height: 100%;
+        border: none;
+        margin: 0 0 0 0.5rem;
+      }
+      .gen-rep input[type="submit"] {
+        color: var(--white-color);
+        background-color: var(--sky-blue-color);
+        font-weight: bold;
+        border: none;
+        border-radius: 0 0 var(--border-radius-g) var(--border-radius-g);
+        padding: 0.75rem;
+        transition: background-color 0.25s linear;
+      }
+      .gen-rep input[type="submit"]:hover {
+        background-color: var(--green-color);
+      }
+      .resultado {
+        margin: 1rem;
       }
     </style>
   </head>
   <body>
-    <div class="gen-rep">
+    <form class="gen-rep" class="form" id="form" action=".<?php echo $_SERVER["PHP_SELF"];?>" method="post">
       <h1>GENERADOR DE REPORTE</h1>
       <div class="consulta">
         <div class="tbs">
@@ -270,23 +225,14 @@ if (isset($_POST["consulta"])) {
         </div>
         <div class="cps">
           <h1>Campos</h1>
-          <div class="campos" id="campos"></div>
+          <div class="campos" id="campos" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </div>
         <div class="agrp">
           <h1>Agrupación</h1>
           <div class="campo-opcion" id="campo-opcion" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </div>
       </div>
-    </div>
-    <form action="./<?php echo $_SERVER["PHP_SELF"];?>" method="post" class="form" id="form">
-      <h1>GENERADOR DE REPORTE</h1>
-      <label for="consulta">Consulta:</label>
-      <select name="consulta" class="consulta" id="consulta">
-        <option value="salario" selected>Salario</option>
-        <option value="fn">Fecha de nacimiento</option>
-      </select>
-      <div class="datos-entrada" id="datos-entrada"></div>
-      <input type="submit" value="Buscar" id="buscar">
+      <input type="submit" value="ACEPTAR">
     </form>
     <section class="resultado" id="resultado">
       <!-- <div class="parametros"></div> -->
@@ -305,39 +251,6 @@ if (isset($_POST["consulta"])) {
       const CAMPOS = document.getElementById("campos");
       const CAMPO_OPCION = document.getElementById("campo-opcion");
       let datos_tc;
-      var consultas = {
-        salario: {
-          contenido_form: `
-            <label for="min">Mínimo:</label>
-            <input type="text" name="min" id="min" value="3000">
-            <label for="max">Máximo:</label>
-            <input type="text" name="max" id="max" value="5000">
-            <label for="cifras">Cifras:</label>
-            <input type="number" name="cifras" class="cifras" id="cifras" min="0" value="0">`,
-          data: function() {
-            const MIN = document.getElementById("min");
-            const MAX = document.getElementById("max");
-            const CIFRAS = document.getElementById("cifras");
-            return ("min=" + encodeURIComponent(MIN.value) + "&max=" + encodeURIComponent(MAX.value) + "&cifras=" + encodeURIComponent(CIFRAS.value));
-          }
-        },
-        fn: {
-          contenido_form: `
-            <label for="fmin">Mínimo:</label>
-            <input type="date" name="fmin" id="fmin" value="1950-01-01">
-            <label for="fmax">Máximo:</label>
-            <input type="date" name="fmax" id="fmax" value="1960-01-01">`,
-          data: function() {
-            const FMIN = document.getElementById("fmin");
-            const FMAX = document.getElementById("fmax");
-            return ("fmin=" + encodeURIComponent(FMIN.value) + "&fmax=" + encodeURIComponent(FMAX.value));
-          }
-        }
-      };
-      DATOS_ENTRADA.innerHTML = consultas[CONSULTA.value]["contenido_form"];
-      CONSULTA.addEventListener("change", function() {
-        DATOS_ENTRADA.innerHTML = consultas[CONSULTA.value]["contenido_form"];
-      });
       async function requestTC(url, data) {
         return await new Promise((resolve, reject) => {
           const REQUEST = new XMLHttpRequest();
@@ -363,7 +276,7 @@ if (isset($_POST["consulta"])) {
       }
       requestTC(URL + (FORM.getAttribute("action")).slice(1), "consulta=tc").then((r) => {
         datos_tc = JSON.parse(r["value"]);
-        console.log(datos_tc);
+        // console.log(datos_tc);
         let tabla_contenido = ``;
         for (tn in datos_tc) {
           tabla_contenido += `<option value="${tn}">${tn}</option>`;
@@ -373,9 +286,9 @@ if (isset($_POST["consulta"])) {
         console.log(e);
       });
       TABLA.addEventListener("change", () => {
-        TABLAS_SELECT.innerHTML += `<div>${TABLA.value}</div>`;
+        TABLAS_SELECT.innerHTML += `<div table="${TABLA.value}">${TABLA.value}</div>`;
         for (c of datos_tc[TABLA.value]) {
-          CAMPOS.innerHTML += `<div draggable="true" ondragstart="drag(event)" class="cp-agrp">${TABLA.value}.${c}</div>`
+          CAMPOS.innerHTML += `<div draggable="true" ondragstart="drag(event)" cp-agrp="" class="cp-agrp" table="${TABLA.value}" col="${c}">${TABLA.value}.${c}</div>`
         }
       });
       function allowDrop(event) {
@@ -383,45 +296,54 @@ if (isset($_POST["consulta"])) {
       }
       let current_co;
       function drag(event) {
-        CAMPO_OPCION.style.height = "100%";
         // event.dataTransfer.setData("campo", event.target.outerHTML);
         current_co = event.target;
+        CAMPO_OPCION.style.padding = `0 0 ${(current_co.offsetHeight + "px")} 0`;
+        CAMPO_OPCION.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        current_co.style.backgroundColor = "var(--green-color)";
       }
       function drop(event) {
         event.preventDefault();
-        current_co.innerHTML += `<select name="opcion" class="opcion" id="opcion">
-                                  <option value="sum">SUM</option>
-                                  <option value="count">COUNT</option>
-                                  <option value="avg">AVG</option>
-                                </select>`;
-        event.target.innerHTML += current_co.innerHTML;
-        // let data = event.dataTransfer.getData("campo");
-        /* event.target.innerHTML += `<div class="co">
-          ${(current_co.outerHTML)}
-          <div class="opc">
-            <select name="opcion" class="opcion" id="opcion">
-              <option value="sum">SUM</option>
-              <option value="count">COUNT</option>
-              <option value="avg">AVG</option>
-            </select>
-            </div>
-            </div>`; */
-        current_co.remove();
+        if (current_co.hasAttribute("cp-agrp") != event.target.hasAttribute("cp-agrp")) {
+          // current_co.removeAttribute("draggable");
+          current_co.innerHTML += `<select name="opcion" class="opcion" id="opcion">
+                                    <option value="SUM">SUM</option>
+                                    <option value="COUNT">COUNT</option>
+                                    <option value="AVG">AVG</option>
+                                  </select>`;
+          event.target.innerHTML += current_co.outerHTML;
+          current_co.remove();
+        }
+        CAMPO_OPCION.style.padding = "0 0 0 0";
+        CAMPO_OPCION.style.backgroundColor = "transparent";
+        current_co.style.backgroundColor = "var(--sky-blue-color)";
       }
       FORM.addEventListener("submit", function(event) {
         event.preventDefault();
+        let datos = {};
+        let tls = TABLAS_SELECT.querySelectorAll("div[table]");
+        tls.forEach((e, i, a) => {
+          datos[e.getAttribute("table")] = {};
+        });
+        let agrupacion = CAMPO_OPCION.querySelectorAll("div");
+        agrupacion.forEach((e, i, a) => {
+          let opt = e.querySelector("select");
+          datos[e.getAttribute("table")][e.getAttribute("col")] = opt.value;
+        });
+        // console.log(datos);
         const REQUEST = new XMLHttpRequest();
         REQUEST.open("POST", URL + (FORM.getAttribute("action")).slice(1));
         REQUEST.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         REQUEST.addEventListener("load", function(e) {
           if (REQUEST.status === 200) {
+            console.log(JSON.parse(REQUEST.responseText));
             RESULTADO.innerHTML = `<embed src="./reporte_pdf.pdf" class="pdf-viewer" id="pdf-viewer" type="application/pdf" width="100%" height="720px"/>`;
           }
           else {
             console.log("Error en la solicitud");
           }
         });
-        let d = "consulta=" + encodeURIComponent(CONSULTA.value) + "&" + consultas[CONSULTA.value]["data"]();
+        let d = "consulta=custom&datos=" + encodeURIComponent(JSON.stringify(datos));
         // console.log(d);
         REQUEST.send(d);
       });
