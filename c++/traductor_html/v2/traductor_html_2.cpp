@@ -188,6 +188,8 @@ class Analisis{
       ts.Insertar("fdocumento", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("encabezado", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fencabezado", ETIQUETA_L, "pclave", vacio, vacio);
+      ts.Insertar("meta", ETIQUETA_L, "pclave", vacio, vacio);
+      ts.Insertar("fmeta", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("cuerpo", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fcuerpo", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("titulo", ETIQUETA_L, "pclave", vacio, vacio);
@@ -448,7 +450,6 @@ class Analisis{
         }
         else if(token==CADENA_C) {
           if(token_ant!=token){
-            cout<<"ASDF"<<endl;
             codigo_html += ">\n";
           }
           agregarEspacios(pila.size());
@@ -458,7 +459,7 @@ class Analisis{
         }
         else if(token==CADENA_A) {
           codigo_html += cadena_a;
-          codigo_html += "\"";
+          codigo_html += '"';
         }
         else if(token==ATRIBUTO) {
           codigo_html += " ";
@@ -467,13 +468,13 @@ class Analisis{
         }
         else if(token==ETIQUETA_L || token==ETIQUETA_U) {
           if(token_ant==ETIQUETA_L || token_ant==ETIQUETA_U || token_ant==CADENA_A) {
-            if (etiqueta!="fcss" && etiqueta!="fimg") {
+            if (etiqueta!="fcss" && etiqueta!="fimg" && etiqueta!="fmeta") {
               codigo_html += ">\n";
             }
           }
           if (!pila.empty() && (etiqueta.substr(1, string::npos) == pila.top()) && etiqueta.at(0) == 'f') {
             pila.pop();
-            if (etiqueta!="fcss" && etiqueta!="fimg") {
+            if (etiqueta!="fcss" && etiqueta!="fimg"  && etiqueta!="fmeta") {
               agregarEspacios(pila.size());
               codigo_html += "</";
             }
@@ -529,6 +530,9 @@ class Analisis{
               }
               else if(etiqueta == "encabezado") {
                 codigo_html += "head";
+              }
+              else if(etiqueta == "meta") {
+                codigo_html += "meta";
               }
               else if(etiqueta == "cuerpo") {
                 codigo_html += "body";

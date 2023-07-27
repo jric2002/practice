@@ -1,17 +1,16 @@
 documento
   encabezado
-    titulo "Hola mundo" ftitulo
+    meta charset="utf-8" fmeta
+    titulo "RONALDO" ftitulo
     css href="style.css" fcss
   fencabezado
   cuerpo
-    #Comentario de linea
-    /*Esto es un
-    comentario multilinea*/
-    div id="header" class="header"
+    div id="header"
       e1 "Hola mundo" fe1
       usuario "Jose" fusuario
       p "Esto es un parrafo" fp
     fdiv
+    #Este es un link
     a href="http://localhost" "Ir a la pagina principal" fa
     img src="http://localhost/cat.jpg" alt="Es un gato" fimg
   fcuerpo
