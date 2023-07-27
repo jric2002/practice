@@ -5,6 +5,8 @@ documento
     css href="style.css" fcss
   fencabezado
   cuerpo
+    /*Esto es un
+    comentario multilinea*/
     div id="header"
       e1 "Hola mundo" fe1
       usuario "Jose" fusuario
