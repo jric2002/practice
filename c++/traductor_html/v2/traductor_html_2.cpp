@@ -65,7 +65,9 @@ LAS PALABRAS RESERVADAS DEBEN ESTAR EN MINUSCULA
 #define ATRIBUTO           5
 #define IGUAL              6
 #define COMILLA_DOBLE      7
-#define CADENA             8
+#define CADENA_A           8
+#define CADENA_E           9
+#define CADENA_C           10
 
 #define FIN     666
 #define ERROR   999
@@ -166,10 +168,11 @@ class Analisis{
     char cad[1000];
     int linea;
     int estado;
-    string atributo, etiqueta, cadena;
+    string atributo, etiqueta, cadena_a, cadena_e, cadena_c;
+    string codigo_html;
     //14 SON LOS ESTADOS DEL AUTOMATA
     //9 SON LOS ELEMENTOS QUE PERTENECEN AL LENGUAJE
-    int tTransicion[14][9];
+    int tTransicion[14][11];
     TablaSimbolos ts;
   public:
     Analisis(char input[100]){
@@ -190,7 +193,9 @@ class Analisis{
       ts.Insertar("titulo", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("ftitulo", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("css", ETIQUETA_L, "pclave", vacio, vacio);
+      ts.Insertar("fcss", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("js", ETIQUETA_L, "pclave", vacio, vacio);
+      ts.Insertar("fjs", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("e1", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fe1", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("e2", ETIQUETA_L, "pclave", vacio, vacio);
@@ -208,7 +213,7 @@ class Analisis{
       ts.Insertar("div", ETIQUETA_L, "pclave", vacio, vacio);
       ts.Insertar("fdiv", ETIQUETA_L, "pclave", vacio, vacio);
       for(int ii=0;ii<14;ii++){
-        for(int jj=0;jj<9;jj++){
+        for(int jj=0;jj<11;jj++){
           tTransicion[ii][jj]=ERROR;
         }
       }
@@ -222,19 +227,25 @@ class Analisis{
       tTransicion[1][MICHI]=9;
       tTransicion[2][IGUAL]=3;
       tTransicion[3][COMILLA_DOBLE]=4;
-      tTransicion[4][CADENA]=5;
+      tTransicion[4][CADENA_A]=5;
       tTransicion[5][COMILLA_DOBLE]=1;
-      tTransicion[6][CADENA]=7;
+      tTransicion[6][CADENA_E]=7;
       tTransicion[7][COMILLA_DOBLE]=8;
       tTransicion[8][ETIQUETA_L]=0;
       tTransicion[8][ETIQUETA_U]=0;
       tTransicion[0][MICHI]=9;
-      tTransicion[9][CADENA]=0;
+      tTransicion[9][CADENA_C]=0;
       tTransicion[0][SLASH]=10;
       tTransicion[10][ASTERISCO]=11;
-      tTransicion[11][CADENA]=12;
+      tTransicion[11][CADENA_C]=12;
       tTransicion[12][ASTERISCO]=13;
       tTransicion[13][SLASH]=0;
+    }
+    void agregarEspacios(int n) {
+      while(n>0) {
+        codigo_html += "\t";
+        n--;
+      }
     }
     bool iselement(char c){
       char elements[100];
@@ -264,13 +275,18 @@ class Analisis{
         char tmp[100];
         int tmp_cont=0;
         if (cad[i-1] == '"') {
+          char ct = cad[i-2];
           while(cad[i] != '"'){
             tmp[tmp_cont]=cad[i];
             tmp_cont++;
             i++;
           }
-          cadena = tmp;
-          return CADENA;
+          if(ct == '=') {
+            cadena_a = tmp;
+            return CADENA_A;
+          }
+          cadena_e = tmp;
+          return CADENA_E;
         }
         else if (cad[i-1] == '#') {
           while(cad[i] != '\n'){
@@ -278,8 +294,8 @@ class Analisis{
             tmp_cont++;
             i++;
           }
-          cadena = tmp;
-          return CADENA;
+          cadena_c = tmp;
+          return CADENA_C;
         }
         else if (cad[i-2] == '/' && cad[i-1] == '*') {
           while(cad[i] != '*' && cad[i+1] != '/'){
@@ -287,8 +303,8 @@ class Analisis{
             tmp_cont++;
             i++;
           }
-          cadena = tmp;
-          return CADENA;
+          cadena_c = tmp;
+          return CADENA_C;
         }
         else {
           while(isalnum(cad[i])){
@@ -332,8 +348,8 @@ class Analisis{
       int token=0;
       while(true){
         token=getToken();
-        cout<<"Lexico: "<<token<<endl;
-        cout << "linea "<<linea << endl;
+        // cout<<"Lexico: "<<token<<endl;
+        // cout << "linea "<<linea << endl;
         if(token==FIN){
           return true;
         }
@@ -370,14 +386,13 @@ class Analisis{
           Error(200);
           return false;
         }
-        cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
+        // cout<<"(e"<<estado<<",t"<<token<<")"<<endl;
         estado=tTransicion[estado][token];
         if(estado==ERROR){
           Error(201);
           return false;
         }
       }
-      return false;
     }
     bool Semantico(){
       i=0;
@@ -388,17 +403,18 @@ class Analisis{
       while(true){
         token=getToken();
         if(token==FIN){
+          return true;
           break;
         }
         // Comprobar las etiquetas de cierre
         if(token==ETIQUETA_L || token==ETIQUETA_U) {
-          if (!pila.empty() && (etiqueta.substr(1, string::npos) == pila.top())) {
+          if (!pila.empty() && (etiqueta.substr(1, string::npos) == pila.top()) && etiqueta.at(0) == 'f') {
             pila.pop();
           }
           else {
             pila.push(etiqueta);
           }
-          cout << "tag: " << etiqueta << endl;
+          // cout << "tag: " << etiqueta << endl;
         }
       }
       if (pila.empty()) {
@@ -412,17 +428,192 @@ class Analisis{
       return false;
     }
     bool Ejecucion(){
-      return true;
-    }
-    void Analizar(){
-      if(Lexico()){
-        if(Sintactico()){
-          if(Semantico()){
-            Ejecucion();
-            //ts.Mostrar();
+      i=0;
+      linea = 1;
+      int token=0, token_ant=-1;
+      estado=0;
+      stack<string> pila;
+      codigo_html += "<!DOCTYPE html>\n";
+      while(true){
+        token=getToken();
+        if(token==FIN){
+          return true;
+          break;
+        }
+        if(token==CADENA_E) {
+          codigo_html += ">\n";
+          agregarEspacios(pila.size());
+          codigo_html += cadena_e;
+          codigo_html += '\n';
+        }
+        else if(token==CADENA_C) {
+          if(token_ant!=token){
+            cout<<"ASDF"<<endl;
+            codigo_html += ">\n";
+          }
+          agregarEspacios(pila.size());
+          codigo_html += "<!-- ";
+          codigo_html += cadena_c;
+          codigo_html += " -->\n";
+        }
+        else if(token==CADENA_A) {
+          codigo_html += cadena_a;
+          codigo_html += "\"";
+        }
+        else if(token==ATRIBUTO) {
+          codigo_html += " ";
+          codigo_html += atributo;
+          codigo_html += "=\"";
+        }
+        else if(token==ETIQUETA_L || token==ETIQUETA_U) {
+          if(token_ant==ETIQUETA_L || token_ant==ETIQUETA_U || token_ant==CADENA_A) {
+            if (etiqueta!="fcss" && etiqueta!="fimg") {
+              codigo_html += ">\n";
+            }
+          }
+          if (!pila.empty() && (etiqueta.substr(1, string::npos) == pila.top()) && etiqueta.at(0) == 'f') {
+            pila.pop();
+            if (etiqueta!="fcss" && etiqueta!="fimg") {
+              agregarEspacios(pila.size());
+              codigo_html += "</";
+            }
+            if (token==ETIQUETA_L) {
+              if(etiqueta == "fdocumento") {
+                codigo_html += "html";
+              }
+              else if(etiqueta == "fencabezado") {
+                codigo_html += "head";
+              }
+              else if(etiqueta == "fcuerpo") {
+                codigo_html += "body";
+              }
+              else if(etiqueta == "ftitulo") {
+                codigo_html += "title";
+              }
+              else if(etiqueta == "fjs") {
+                codigo_html += "script";
+              }
+              else if(etiqueta == "fe1") {
+                codigo_html += "h1";
+              }
+              else if(etiqueta == "fe2") {
+                codigo_html += "h2";
+              }
+              else if(etiqueta == "fe3") {
+                codigo_html += "h3";
+              }
+              else if(etiqueta == "fe4") {
+                codigo_html += "h4";
+              }
+              else if(etiqueta == "fp") {
+                codigo_html += "p";
+              }
+              else if(etiqueta == "fa") {
+                codigo_html += "a";
+              }
+              else if(etiqueta == "fdiv") {
+                codigo_html += "div";
+              }
+            }
+            else if(token==ETIQUETA_U) {
+              codigo_html += etiqueta;
+            }
+          }
+          else {
+            agregarEspacios(pila.size());
+            pila.push(etiqueta);
+            codigo_html += "<";
+            if(token==ETIQUETA_L) {
+              if(etiqueta == "documento") {
+                codigo_html += "html";
+              }
+              else if(etiqueta == "encabezado") {
+                codigo_html += "head";
+              }
+              else if(etiqueta == "cuerpo") {
+                codigo_html += "body";
+              }
+              else if(etiqueta == "titulo") {
+                codigo_html += "title";
+              }
+              else if(etiqueta == "css") {
+                codigo_html += "link";
+              }
+              else if(etiqueta == "js") {
+                codigo_html += "script";
+              }
+              else if(etiqueta == "e1") {
+                codigo_html += "h1";
+              }
+              else if(etiqueta == "e2") {
+                codigo_html += "h2";
+              }
+              else if(etiqueta == "e3") {
+                codigo_html += "h3";
+              }
+              else if(etiqueta == "e4") {
+                codigo_html += "h4";
+              }
+              else if(etiqueta == "p") {
+                codigo_html += "p";
+              }
+              else if(etiqueta == "a") {
+                codigo_html += "a";
+              }
+              else if(etiqueta == "img") {
+                codigo_html += "img";
+              }
+              else if(etiqueta == "div") {
+                codigo_html += "div";
+              }
+            }
+            else if(token==ETIQUETA_U) {
+              codigo_html += etiqueta;
+            }
           }
         }
+        token_ant = token;
       }
+      return false;
+    }
+    void Analizar(){
+      if (Lexico()) {
+      cout << "[+] Analisis Lexico: BIEN" << endl;
+      if (Sintactico()) {
+        cout << "[+] Analisis Sintatico: BIEN" << endl;
+        if (Semantico()) {
+          cout << "[+] Analisis Semantico: BIEN" << endl;
+          if (Ejecucion()) {
+            char file_name[] = "index.html";
+            char c;
+            string s;
+            ofstream f;
+            f.open(file_name);
+            if (f.is_open()) {
+              f.write(codigo_html.c_str(), codigo_html.size());
+              f.close();
+              cout << "[+] Se ha creado un archivo index.html con todo el codigo" << endl;
+            }
+            else {
+              cout << "No se puede abrir el archivo " << file_name << endl;
+            }
+          }
+          else {
+            cout << "[-] Ha ocurrido un error en la traduccion" << endl;
+          }
+          // ts.Mostrar();
+        }
+        else {
+          cout << "[-] Analisis Semantico: FALLO" << endl;
+        }
+      }
+      else {
+        cout << "[-] Analisis Sintatico: FALLO" << endl;
+      }
+    }
+    else {
+      cout << "[-] Analisis Lexico: FALLO" << endl;
+    }
     }
     void Error(int nroError){
       cout<<"Error "<<nroError<<": ";
@@ -453,25 +644,7 @@ int main()
     // cout << contenido << endl;
     strcpy(codigo, contenido.c_str());
     Analisis *obj = new Analisis(codigo);
-    // obj->Analizar();
-    if (obj->Lexico()) {
-      cout << "[+] Analisis Lexico: BIEN" << endl;
-      if (obj->Sintactico()) {
-        cout << "[+] Analisis Sintatico: BIEN" << endl;
-        if (obj->Semantico()) {
-          cout << "[+] Analisis Semantico: BIEN" << endl;
-        }
-        else {
-          cout << "[-] Analisis Semantico: FALLO" << endl;
-        }
-      }
-      else {
-        cout << "[-] Analisis Sintatico: FALLO" << endl;
-      }
-    }
-    else {
-      cout << "[-] Analisis Lexico: FALLO" << endl;
-    }
+    obj->Analizar();
     f.close();
   }
   else {

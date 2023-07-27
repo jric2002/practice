@@ -1,6 +1,7 @@
 documento
   encabezado
     titulo "Hola mundo" ftitulo
+    css href="style.css" fcss
   fencabezado
   cuerpo
     #Comentario de linea
