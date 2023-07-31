@@ -37,7 +37,7 @@ def draw_voronoi(img, subdiv) :
             ifacet_arr.append(f)
         ifacet = np.array(ifacet_arr, np.int)
         color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        cv2.fillConvexPoly(img, ifacet, color, cv2.CV_AA, 0);
+        cv2.fillConvexPoly(img, ifacet, color, cv2.CV_AA, 0)
         ifacets = np.array([ifacet])
         cv2.polylines(img, ifacets, True, (0, 0, 0), 1, cv2.CV_AA, 0)
         cv2.circle(img, (centers[i][0], centers[i][1]), 3, (0, 0, 0), cv2.cv.CV_FILLED, cv2.CV_AA, 0)
@@ -51,16 +51,16 @@ if __name__ == '__main__':
     delaunay_color = (255,255,255)
     points_color = (0, 0, 255)
     # Read in the image.
-    img = cv2.imread("image.jpg");
+    img = cv2.imread("image.jpg")
     # Keep a copy around
-    img_orig = img.copy();
+    img_orig = img.copy()
     # Rectangle to be used with Subdiv2D
     size = img.shape
     rect = (0, 0, size[1], size[0])
     # Create an instance of Subdiv2D
-    subdiv = cv2.Subdiv2D(rect);
+    subdiv = cv2.Subdiv2D(rect)
     # Create an array of points.
-    points = [];
+    points = []
     # Read in the points from a text file
     with open("points.txt") as file :
         for line in file :
@@ -73,11 +73,11 @@ if __name__ == '__main__':
         if animate :
             img_copy = img_orig.copy()
             # Draw delaunay triangles
-            draw_delaunay( img_copy, subdiv, (255, 255, 255) );
+            draw_delaunay( img_copy, subdiv, (255, 255, 255) )
             cv2.imshow(win_delaunay, img_copy)
             cv2.waitKey(100)
     # Draw delaunay triangles
-    draw_delaunay( img, subdiv, (255, 255, 255) );
+    draw_delaunay( img, subdiv, (255, 255, 255) )
     # Draw points
     for p in points :
         draw_point(img, p, (0,0,255))
