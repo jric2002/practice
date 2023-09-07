@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
       cout << line;
       tl++;
     }
-    cout << "\ntotal chars: " << tl << endl;
+    cout << "\ntotal lines: " << tl << endl;
     f.close();
   }
   else {

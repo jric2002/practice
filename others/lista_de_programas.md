@@ -1,4 +1,5 @@
 # Windows programs
+* KMS (msguides) para activar windows y office
 * Microsoft Office (Word, PowerPoint, Excel, entre otros)
 * Adobe (Photoshop)
 * CorelDRAW
@@ -68,3 +69,4 @@
 * PHP
 * NodeJs
 * WSL (Windows Subsystem Linux)
+* MikTeX
