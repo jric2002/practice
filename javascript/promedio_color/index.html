@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color promedio de una imagen</title>
+    <script defer type="text/javascript" src="./js/main.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+      input {
+        padding: 1rem;
+        margin: 2rem;
+      }
+      h1 {
+        color: black;
+        background-color: white;
+        margin: 0.5rem;
+      }
+      img {
+        margin: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="file" name="image" id="file" accept="image/*">
+      <h1 id="colorhex"></h1>
+      <img src="" alt="" id="image" width="400px">
+    </div>
+  </body>
+</html>
