@@ -87,3 +87,13 @@ Debes tener en cuenta que la *mayoría* de los entornos de escritorio tienen un 
 [Display Manager (DM)](https://wiki.archlinux.org/title/display_manager).  
 [Window Manager (WM)](https://wiki.archlinux.org/title/window_manager).  
 [Desktop Environment (DE)](https://wiki.archlinux.org/title/desktop_environment) = Display Manager + window Manager
+
+## Recursos para personalizar
+* https://medium.com/@neviogomez91/arch-linux-customization-a-beginners-guide-fd12d417f00c
+* https://github.com/adi1090x/widgets
+* https://github.com/gh0stzk/dotfiles
+* https://atareao.es/tutorial/polybar/primeros-pasos-con-tu-propia-barra-de-estado/
+* https://github.com/rxyhn/tokyo
+https://github.com/elkowar/eww
+* https://github.com/polybar/polybar
+* https://github.com/adi1090x/polybar-themes
