@@ -97,3 +97,4 @@ Debes tener en cuenta que la *mayoría* de los entornos de escritorio tienen un 
 https://github.com/elkowar/eww
 * https://github.com/polybar/polybar
 * https://github.com/adi1090x/polybar-themes
+* https://platzi.com/blog/como-personalizar-tu-terminal/
