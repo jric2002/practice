@@ -41,7 +41,7 @@
 * Firefox
 * Brave
 * Microsoft Edge
-* Dia
+* Dia (Diseño base de datos)
 * ffmpeg
 * Git
 * gnusim8085
@@ -70,3 +70,5 @@
 * NodeJs
 * WSL (Windows Subsystem Linux)
 * MikTeX
+* IrfanView
+* DaVinci Resolve
