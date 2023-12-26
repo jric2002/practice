@@ -68,17 +68,65 @@ Instalar GRUB.
 grub-install --target=i386-pc /dev/sda
 ```
 
+Durante el inicio del sistema operativos, por defecto no se muestra mucha información, pero es posible cambiar ese comportamiento para que se muestre todo el proceso de inicio, modificando el archivo `/etc/default/grub`.  
+Para ello solo debemos borrar la palabra `quiet` de la linea en donde se encuentra esta variable `GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"`.
+
+También puede cambiar el tiempo de espera del GRUB en la variable `GRUB_TIMEOUT=5`
+
 Generar archivo de configuración del cargador de arranque.
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+## Root y usuarios
+Se debe crear una contraseña para el root y la creación de usuarios es opcional.
+```
+passwd root
+```
+
+Para la creación de usuarios se puede el comando `useradd`. Se recomienda instalar sudo y crear un grupo wheel o sudo para ciertos usuarios.
+
+## Final
 Ahora que ya tenemos instalado arch linux, debemos apagar la máquina virtual y quitar la ISO.
 ```
 shutdown now
 ```
 
 Ahora solo debe iniciar la máquina virtual.
+
+## Configurar DHCP Automático
+Es probable que algunos instalen algun paquete que se encargue de manera rapida configurar la interfaz de red, pero en este opte por hacerlo con un servicio que ya viene instalado junto a los paquetes basicos.  
+Tenemos que levantar (activar) la interfaz de red.
+```
+ip link set dev <interface> up
+```
+
+Esto configurará las direcciones IP de manera automática en un red local.
+```
+systemctl enable systemd-networkd
+systemctl start systemd-networkd
+systemctl enable systemd-resolved
+systemctl start systemd-resolved
+```
+
+Además, tendremos que modificar y/o crear el siguiente archivo: `/etc/systemd/network/20-wired.network` con el siguiente contenido. Debes reemplazar `<interface>` con el nombre la interfaz de red.
+```
+[Match]
+Name=<interface>
+
+[Network]
+DHCP=yes
+```
+
+Por último, debemos reiniciar los servicios `systemd-networkd` y `systemd-resolved`.
+```
+sudo systemctl restart systemd-networkd
+sudo systemctl restart systemd-resolved
+```
+
+## Habilitar repositorio multilib
+Es necesario habilitar el repositorio multilib, ya que algunos programas suelen necesitar recursos de 32 bits.  
+El archivo a modificar se encuentra en `/etc/pacman.conf`
 
 ## Personalizar
 Si quieres tener un entorno de escritorio, entonces puedes instalar GNOME, Mate, LXQT, XFCE, KDE.
@@ -98,3 +146,7 @@ https://github.com/elkowar/eww
 * https://github.com/polybar/polybar
 * https://github.com/adi1090x/polybar-themes
 * https://platzi.com/blog/como-personalizar-tu-terminal/
+
+## Notas importantes
+- Instalar de nuevo Arch Linux y probar display managers para ver si se puede ajustar las proporciones del greeter.
+- Cambiar la cantidad de minutos de espera despues de varios intentos en la contraseña del greeter (display manager)
