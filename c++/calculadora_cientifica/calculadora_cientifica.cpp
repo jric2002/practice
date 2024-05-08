@@ -6,6 +6,7 @@
 #include <map>
 #include <cmath>
 #define PI 3.14159265
+/* Author: José Rodolfo */
 using namespace std;
 template <typename T>
 class Calculadora {
