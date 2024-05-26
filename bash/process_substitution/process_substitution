@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+while read -p "name: " name; do
+	echo "Tu nombre es $name"
+done < <(echo "José")
