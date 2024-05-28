@@ -7,17 +7,17 @@ int Employee::count = 0;
 int Employee::getCount() {
   return count;
 }
-Employee::Employee(const char *first, const char *last, Date fn, Date fc, Time hi, Time hs) {
+Employee::Employee(const char *first, const char *last) {
   firstName = new char[strlen(first) + 1];
   assert(firstName != 0);
   strcpy(firstName, first);
   lastName = new char[strlen(last) + 1];
   assert(lastName != 0);
   strcpy(lastName, last);
-  fecha_nac = fn;
+  /* fecha_nac = fn;
   fecha_contra = fc;
   hora_inicio = hi;
-  hora_salida = hs;
+  hora_salida = hs; */
   ++count;
   cout << "Employee constructor for " << firstName << " " << lastName << " called." << endl;
 }

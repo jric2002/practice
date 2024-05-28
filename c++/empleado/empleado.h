@@ -4,7 +4,7 @@
 #include "time.h"
 class Employee {
   public:
-    Employee(const char *, const char *, Date, Date, Time, Time);
+    Employee(const char *, const char *);
     ~Employee();
     const char *getFirstName() const;
     const char *getLastName() const;
