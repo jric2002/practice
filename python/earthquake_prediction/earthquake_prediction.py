@@ -9,7 +9,7 @@ from mpl_toolkits.basemap import Basemap
 # read_file = pd.read_excel("D:\Temp\IGP_datos_sismicos (1).xlsx")
 # read_file.to_csv("D:\Temp\IGP_datos_sismicos (1).csv", index = None, header = True)
 # Lee el archivo .csv generado anteriormente
-data = pd.read_csv("D:\Temp\IGP_datos_sismicos (1).csv")
+data = pd.read_csv("./IGP_datos_sismicos (1).csv")
 # Renombrar variables (nombre de la columna) del archivo .csv
 data = data.rename(columns = {
   data.columns[0]: "fecha_UTC",
