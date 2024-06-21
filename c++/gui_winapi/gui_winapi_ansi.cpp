@@ -5,12 +5,15 @@
 #include <tchar.h>
 /* Author: José Rodolfo (jric2002) */
 /* Declaration */
+/* Para compilar este archivo abre tu consola y ejecuta el siguiente comando:
+g++ -mconsole -mwindows gui_winapi_ansi.cpp -o output.exe
+*/
 // Compile with: /D_UNICODE /DUNICODE /DWIN32 /D_WINDOWS /c
 // Global variables
 // The main window class name.
 static TCHAR szWindowClass[] = _T("DesktopApp");
 // The string that appears in the application's title bar.
-static TCHAR szTitle[] = _T("My first program");
+static TCHAR szTitle[] = _T("José Rodolfo");
 // Stored instance handle for use in Win32 API calls such as FindResource
 HINSTANCE hInst;
 // Forward declarations of functions included in this code module:

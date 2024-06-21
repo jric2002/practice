@@ -3,6 +3,9 @@
 /* Author: José Rodolfo (jric2002) */
 using namespace std;
 /* Declaration */
+/* Para compilar este archivo abre tu consola y ejecuta el siguiente comando:
+g++ -mconsole -mwindows voronoi_tree.cpp -o output.exe
+*/
 // Global variables
 static TCHAR class_name[] = "Desktop App";
 static TCHAR title_text[] = "José Rodolfo";

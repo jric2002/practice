@@ -4,6 +4,9 @@
 #include <windows.h>
 /* Author: José Rodolfo (jric2002) */
 /* Declaration */
+/* Para compilar este archivo abre tu consola y ejecuta el siguiente comando:
+g++ -mconsole -mwindows -municode gui_winapi_unicode.cpp -o output.exe
+*/
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
   // Register the window class.
@@ -17,7 +20,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
   HWND hwnd = CreateWindowEx(
     0, // Optional window styles.
     CLASS_NAME, // Window class
-    L"Learn to Program Windows", // Window text
+    L"José Rodolfo", // Window text
     WS_OVERLAPPEDWINDOW, // Window style
     // Size and position
     CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
