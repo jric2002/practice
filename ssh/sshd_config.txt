@@ -1,0 +1,21 @@
+# NOTA IMPORTANTE: AQUI SOLO ESTAN LOS PARÁMETROS MODIFICADOS Y ALGUNOS ADICIONALES.
+
+# Parámetros modificados
+
+Port 20102
+
+PermitRootLogin no
+
+PubkeyAuthentication no
+PubkeyAcceptedAlgorithms +ssh-rsa,ssh-ed25519
+HostKeyAlgorithms +ssh-rsa
+
+PasswordAuthentication no
+PermitEmptyPasswords no
+
+# Parámetros adicionales
+
+AuthenticationMethods none
+
+Match User jos
+  AuthenticationMethods publickey

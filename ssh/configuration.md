@@ -29,13 +29,24 @@ También puedes usar:
 - `sudo service ssh stop` : Detener el servicio ssh
 - `sudo service ssh --full-restart` : Reiniciar el servicio ssh
 
-El servidor ssh tiene sus propias claves privadas y públicas, se encuentran en `/etc/ssh/` con 
+El servidor ssh tiene sus propias claves privadas y públicas, se encuentran en `/etc/ssh/` con nombres como: `ssh_host_dsa_key`, `ssh_host_rsa_key`.
 
 ### Configuración del servidor ssh
-El archivo de configuración se encuentra en `/etc/ssh/sshd_config`  
+El archivo de configuración se encuentra en `/etc/ssh/sshd_config`
+
+Te dejaré un archivo de configuración de configuración en esta misma carpeta, en la cuál solo estará los parámetros que va vienen el archivo de configuración por defecto con las modificaciones hechas a algunos parámetros y algunos parámetros adicionales.
+
+Se recomienda que cambiar el puerto 22 por otro puerto, por lo general suelen usar puertos mayores a 10 000, esto para evitar conflictos con algunos servicios.
+
+Es recomendable crear un usuario pero que este sea parte del grupo sudo, de tal manera que ahora en la configuración del servidor desactivemos el inicio de sesión con el usuario root: `PermitRootLogin no`. Esto lo puedes combinar con `AuthenticationMethods` y `Match User`, más adelante explico cómo funciona.
+
+Casi me olvido, en la configuración también se especifica que tipos de claves publicas acepta el servidor, el parámetro que lo controla es `PubkeyAcceptedAlgorithms`.
+
 De forma predeterminada, el servidor tiene habilitado la autenticación por clave pública y por contraseña.  
 - Puedes deshabilitar la autenticación para todos los usuarios, de la siguiente manera:
 `AuthenticationMethods none`
+
+**Nota:** Debes tener en cuenta que `AuthenticationMethods` solo controla los métodos de autenticación.
 
 - En la configuración puedes agregar varios métodos de autenticación extra, por ejemplo:
 
@@ -111,3 +122,73 @@ sudo tail -n 100 /var/log/syslog
 ```
 
 Este comando mostrará los últimos 100 líneas del archivo `/var/log/syslog`. Recuerda que es posible que necesites permisos de superusuario (`sudo`) para acceder a algunos de estos archivos.
+
+## Descargar y subir archivos o carpetas al servidor ssh
+Se suele mas el `scp`.
+
+Para descargar y subir archivos o carpetas a un servidor SSH desde la terminal utilizando `scp` (Secure Copy), puedes seguir estos pasos básicos:
+
+### Usando `scp` (Secure Copy)
+Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `-i` y `-p`.
+
+1. **Descargar desde el servidor SSH al local:**
+
+   ```
+   scp usuario@servidor_remoto:/ruta/al/archivo_local /ruta/destino/local
+   ```
+
+   - `usuario`: Nombre de usuario en el servidor SSH.
+   - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
+   - `/ruta/al/archivo_local`: Ruta del archivo en el servidor remoto que quieres descargar.
+   - `/ruta/destino/local`: Ruta en tu máquina local donde deseas guardar el archivo.
+
+   Por ejemplo:
+   ```
+   scp user@example.com:/home/user/file.txt /home/localuser/Documents/
+   ```
+
+2. **Subir desde local al servidor SSH:**
+
+   ```
+   scp /ruta/al/archivo_local usuario@servidor_remoto:/ruta/destino/remoto
+   ```
+
+   - `/ruta/al/archivo_local`: Ruta del archivo en tu máquina local que quieres subir.
+   - `usuario`: Nombre de usuario en el servidor SSH.
+   - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
+   - `/ruta/destino/remoto`: Ruta en el servidor remoto donde deseas guardar el archivo.
+
+   Por ejemplo:
+   ```
+   scp /home/localuser/Documents/file.txt user@example.com:/home/user/
+   ```
+
+### Alternativas a `scp`:
+
+1. **Usar `rsync`:**
+   `rsync` es otra herramienta muy útil para transferencias de archivos a través de SSH. Es similar a `scp` pero está optimizado para sincronizar directorios y manejar transferencias de grandes volúmenes de datos de manera más eficiente.
+
+   Ejemplo de uso básico:
+   ```
+   rsync -avz -e ssh /ruta/local usuario@servidor_remoto:/ruta/remota
+   ```
+
+   - `-avz`: Opciones para modo archivo, modo verbose y compresión.
+   - `-e ssh`: Especifica que se utiliza SSH como el método de transporte.
+   - `/ruta/local`: Ruta del directorio o archivo local que deseas transferir.
+   - `usuario@servidor_remoto:/ruta/remota`: Ruta en el servidor remoto donde deseas guardar los archivos.
+
+2. **Montar el sistema de archivos remoto:**
+   Puedes montar el sistema de archivos del servidor remoto en tu máquina local utilizando `sshfs` (SSH Filesystem). Esto te permite acceder y manipular archivos remotos como si estuvieran en tu propio sistema de archivos local.
+
+   Ejemplo:
+   ```
+   sshfs usuario@servidor_remoto:/ruta/remota /ruta/de/montaje/local
+   ```
+
+   Esto montará el directorio `/ruta/remota` del servidor remoto en `/ruta/de/montaje/local` de tu máquina local. Luego puedes trabajar con los archivos como si estuvieran localmente.
+
+3. **Utilizar clientes SFTP (FTP seguro):**
+   Hay varios clientes gráficos y de línea de comandos que soportan el protocolo SFTP, como `FileZilla`, `WinSCP` (Windows), `Cyberduck` (macOS), y `lftp` (linea de comandos para Linux). Estos permiten una interfaz más amigable para gestionar transferencias de archivos a través de SSH.
+
+Cada opción tiene sus ventajas dependiendo de tus necesidades específicas (velocidad, cantidad de datos, complejidad del directorio, etc.). `scp` es la opción más directa desde la línea de comandos, mientras que `rsync` es ideal para sincronización y manejo avanzado de archivos.
