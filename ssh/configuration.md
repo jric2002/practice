@@ -36,6 +36,8 @@ El archivo de configuración se encuentra en `/etc/ssh/sshd_config`
 
 Te dejaré un archivo de configuración de configuración en esta misma carpeta, en la cuál solo estará los parámetros que va vienen el archivo de configuración por defecto con las modificaciones hechas a algunos parámetros y algunos parámetros adicionales.
 
+**Nota**: YO USO UNA CONFIGURACIÓN EN LA QUE `AuthenticationMethods none` BLOQUEA TODOS LOS MÉTODOS DE AUTENTICACIÓN, ES POR ELLO QUE NO TENGO DESCOMENTADO LOS PARÁMETROS `PubkeyAuthentication no` y `PasswordAuthentication no`. DEBES TENER EN CUENTA QUE USO `AuthenticationMethods` CON `Match User`, LA RAZÓN LO EXPLICO MAS ADELANTE. SIN EMBARGO, TU PUEDES USAR OTRA CONFIGURACIÓN SI DESEAS, EN LA QUE NO USES `AuthenticationMethods`. ES TU DECISIÓN.
+
 Se recomienda que cambiar el puerto 22 por otro puerto, por lo general suelen usar puertos mayores a 10 000, esto para evitar conflictos con algunos servicios.
 
 Es recomendable crear un usuario pero que este sea parte del grupo sudo, de tal manera que ahora en la configuración del servidor desactivemos el inicio de sesión con el usuario root: `PermitRootLogin no`. Esto lo puedes combinar con `AuthenticationMethods` y `Match User`, más adelante explico cómo funciona.
@@ -91,6 +93,14 @@ touch /etc/ssh/authorized_keys/daniel
 
 Ahora, en los archivos `jos`, `miguel`, `daniel`, debes agregar las claves públicas autorizadas, la cuales pueden ser diferentes o no.
 
+Y finalmente, debes editar el archivo `sshd_config`, solo debes agregar esta comando:
+```
+# Directorio centralizado de claves autorizadas de los usuarios
+AuthorizedKeysFile /etc/ssh/authorized_keys/%u
+```
+
+**Nota**: Si usas un directorio centralizado de claves autorizadas, entonces si o si debe ser centralizado, ya que en el caso de que tengas una clave en `authorized_keys` pero en la carpeta `$HOME/.ssh/authorized_keys` del USUARIO, entonces NO funcionará, ya que las claves estan centralizadas en el directorio `/etc/ssh/authorized_keys/`
+
 ### Registros del servidor ssh
 Los registros del servidor ssh se guardan en el archivo `auth.log`, el cual se encuentra en: `/var/log/auth.log`.
 
@@ -103,6 +113,12 @@ En WSL (Windows Subsystem for Linux) teniendo a Debian como distribución. El re
 ```
 sudo service rsyslog start
 ```
+
+## Conexiones ssh
+Si quieres ver los usuarios que estan conectados por ssh, puedes usar el comando: `w` o `who -a`
+
+### Ver ultimas conexiones
+Para ver las ultimas conexiones puedes usar el comando: `last`
 
 ## Registro del Sistema
 Esto es una respuesta de ChatGPT:

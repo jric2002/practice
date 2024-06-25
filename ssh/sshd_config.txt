@@ -6,16 +6,18 @@ Port 20102
 
 PermitRootLogin no
 
-PubkeyAuthentication no
+# Algoritmos de firma digital que acepta el servidor
 PubkeyAcceptedAlgorithms +ssh-rsa,ssh-ed25519
+
+# Algoritmos de firma digital que usa el servidor
 HostKeyAlgorithms +ssh-rsa
 
-PasswordAuthentication no
 PermitEmptyPasswords no
 
 # Parámetros adicionales
-
+# Deshabilita todos lo metodos de autenticación disponibles
 AuthenticationMethods none
 
+# Permitir métodos de autenticación para algunos usuarios
 Match User jos
   AuthenticationMethods publickey
