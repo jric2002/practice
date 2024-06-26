@@ -149,19 +149,25 @@ Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `
 
 1. **Descargar desde el servidor SSH al local:**
 
-   ```
-   scp usuario@servidor_remoto:/ruta/al/archivo_local /ruta/destino/local
-   ```
+  ```
+  scp usuario@servidor_remoto:/ruta/al/archivo_local /ruta/destino/local
+  ```
 
-   - `usuario`: Nombre de usuario en el servidor SSH.
-   - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
-   - `/ruta/al/archivo_local`: Ruta del archivo en el servidor remoto que quieres descargar.
-   - `/ruta/destino/local`: Ruta en tu máquina local donde deseas guardar el archivo.
+  - `usuario`: Nombre de usuario en el servidor SSH.
+  - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
+  - `/ruta/al/archivo_local`: Ruta del archivo en el servidor remoto que quieres descargar.
+  - `/ruta/destino/local`: Ruta en tu máquina local donde deseas guardar el archivo.
 
-   Por ejemplo:
-   ```
-   scp user@example.com:/home/user/file.txt /home/localuser/Documents/
-   ```
+  Por ejemplo:
+  ```
+  scp user@example.com:/home/user/file.txt /home/localuser/Documents/
+  ```
+
+  Si quieres descargar el archivo del servidor, pero usas un puerto diferente y una clave pública específica, entonces puedes hacerlo de la siguiente manera:
+
+  ```
+  scp -i ruta_a_clave_privada -P puerto usuario@servidor:/ruta/remote/archivo /ruta/destino/local
+  ```
 
 2. **Subir desde local al servidor SSH:**
 
@@ -177,6 +183,12 @@ Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `
    Por ejemplo:
    ```
    scp /home/localuser/Documents/file.txt user@example.com:/home/user/
+   ```
+
+   Si quieres subir el archivo al servidor, pero usas un puerto diferente y una clave pública específica, entonces puedes hacerlo de la siguiente manera:
+
+   ```
+   scp -i ruta_a_clave_privada -P puerto ruta_del_archivo usuario@servidor:/ruta/destino/
    ```
 
 ### Alternativas a `scp`:
