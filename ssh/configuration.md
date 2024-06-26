@@ -171,25 +171,25 @@ Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `
 
 2. **Subir desde local al servidor SSH:**
 
-   ```
-   scp /ruta/al/archivo_local usuario@servidor_remoto:/ruta/destino/remoto
-   ```
+  ```
+  scp /ruta/al/archivo_local usuario@servidor_remoto:/ruta/destino/remoto
+  ```
 
-   - `/ruta/al/archivo_local`: Ruta del archivo en tu máquina local que quieres subir.
-   - `usuario`: Nombre de usuario en el servidor SSH.
-   - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
-   - `/ruta/destino/remoto`: Ruta en el servidor remoto donde deseas guardar el archivo.
+  - `/ruta/al/archivo_local`: Ruta del archivo en tu máquina local que quieres subir.
+  - `usuario`: Nombre de usuario en el servidor SSH.
+  - `servidor_remoto`: Dirección IP o nombre de dominio del servidor SSH.
+  - `/ruta/destino/remoto`: Ruta en el servidor remoto donde deseas guardar el archivo.
 
-   Por ejemplo:
-   ```
-   scp /home/localuser/Documents/file.txt user@example.com:/home/user/
-   ```
+  Por ejemplo:
+  ```
+  scp /home/localuser/Documents/file.txt user@example.com:/home/user/
+  ```
 
-   Si quieres subir el archivo al servidor, pero usas un puerto diferente y una clave pública específica, entonces puedes hacerlo de la siguiente manera:
+  Si quieres subir el archivo al servidor, pero usas un puerto diferente y una clave pública específica, entonces puedes hacerlo de la siguiente manera:
 
-   ```
-   scp -i ruta_a_clave_privada -P puerto ruta_del_archivo usuario@servidor:/ruta/destino/
-   ```
+  ```
+  scp -i ruta_a_clave_privada -P puerto ruta_del_archivo usuario@servidor:/ruta/destino/
+  ```
 
 ### Alternativas a `scp`:
 
