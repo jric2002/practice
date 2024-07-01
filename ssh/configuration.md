@@ -25,7 +25,7 @@ También puedes especificar que clave privada quieres usar para autenticación a
 ## Servidor
 Puedes iniciar el servidor ssh con el comando: `sudo service ssh start`  
 También puedes usar:
-- `sudo service --status-all` : Para ver que servicios estas activos
+- `sudo service --status-all` : Para ver que servicios estan activos
 - `sudo service ssh stop` : Detener el servicio ssh
 - `sudo service ssh --full-restart` : Reiniciar el servicio ssh
 
@@ -42,7 +42,15 @@ Se recomienda que cambiar el puerto 22 por otro puerto, por lo general suelen us
 
 Es recomendable crear un usuario pero que este sea parte del grupo sudo, de tal manera que ahora en la configuración del servidor desactivemos el inicio de sesión con el usuario root: `PermitRootLogin no`. Esto lo puedes combinar con `AuthenticationMethods` y `Match User`, más adelante explico cómo funciona.
 
-Casi me olvido, en la configuración también se especifica que tipos de claves publicas acepta el servidor, el parámetro que lo controla es `PubkeyAcceptedAlgorithms`.
+Casi me olvido, en la configuración también se especifica que tipos de claves publicas acepta el servidor, el parámetro que lo controla es `PubkeyAcceptedAlgorithms`. Sin embargo, al dia de hoy el servidor ssh acepta varios tipos de claves ssh, asi que no debería haber problemas. Pero aqui te dejo un ejemplo:
+
+```
+# Algoritmos de firma digital que acepta el servidor
+PubkeyAcceptedAlgorithms +ssh-rsa,ssh-ed25519
+
+# Algoritmos de firma digital que usa el servidor
+HostKeyAlgorithms +ssh-rsa
+```
 
 De forma predeterminada, el servidor tiene habilitado la autenticación por clave pública y por contraseña.  
 - Puedes deshabilitar la autenticación para todos los usuarios, de la siguiente manera:

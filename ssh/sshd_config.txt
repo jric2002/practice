@@ -6,12 +6,6 @@ Port 20102
 
 PermitRootLogin no
 
-# Algoritmos de firma digital que acepta el servidor
-PubkeyAcceptedAlgorithms +ssh-rsa,ssh-ed25519
-
-# Algoritmos de firma digital que usa el servidor
-HostKeyAlgorithms +ssh-rsa
-
 PermitEmptyPasswords no
 
 # Parámetros adicionales
