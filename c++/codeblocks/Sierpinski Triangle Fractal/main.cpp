@@ -4,6 +4,8 @@
 
 #undef main //Solution to the problem: No entry point defined.
 
+/* Source: https://cplusplus.com/articles/LyTbqMoL/#google_vignette */
+
 const int SCR_W = 800;
 const int SCR_H = 600;
 const int TILE_W = 5; //Each tile's width
