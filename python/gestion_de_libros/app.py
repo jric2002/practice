@@ -37,15 +37,15 @@ def main():
   with tabs[1]:
     st.header("Eliminar Libro")
     with st.form(key='eliminar_libro_form'):
-      titulo_eliminar = st.text_input("Título del libro")
+      libro_eliminar = st.text_input("ISBN del libro")
       if st.form_submit_button("Eliminar Libro"):
         try:
-          libro_encontrado = inventario.buscar_libro(titulo_eliminar)
+          libro_encontrado = inventario.buscar_libro(libro_eliminar, t="isbn")
           if libro_encontrado:
-            inventario.eliminar_libro(libro_encontrado.titulo)
+            inventario.eliminar_libro(libro_encontrado.isbn)
             st.success("Libro eliminado exitosamente.")
           else:
-            st.error("El libro con este título no se encuentra en el inventario.")
+            st.error("El libro con este ISBN no se encuentra en el inventario.")
         except ValueError as e:
           st.error(f"Error al eliminar libro: {e}")
   # Pestaña para buscar un libro
@@ -54,9 +54,17 @@ def main():
     with st.form(key='buscar_libro_form'):
       titulo_buscar = st.text_input("Título del libro")
       if st.form_submit_button("Buscar Libro"):
-        libro = inventario.buscar_libro(titulo_buscar)
+        libro = inventario.buscar_libro(titulo_buscar, t="titulo")
         if libro:
-          st.write("Libro encontrado:", libro)
+          st.write("Libro encontrado:")
+          df = pd.DataFrame({
+            "Título": [libro.titulo],
+            "Autor": [libro.autor],
+            "Año": [libro.anio],
+            "Género": [libro.genero],
+            "ISBN": [libro.isbn]
+          })
+          st.table(df)
         else:
           st.write("Libro no encontrado.")
   # Pestaña para listar todos los libros
@@ -64,43 +72,57 @@ def main():
     st.header("Listado de Libros")
     libros = [libro for libro in inventario.libros.values()]
     if libros:
+      dict_libros = {
+        "Título": [],
+        "Autor": [],
+        "Año": [],
+        "Género": [],
+        "ISBN": []
+      }
       for libro in libros:
-        st.write(libro)
+        dict_libros["Título"].append(libro.titulo)
+        dict_libros["Autor"].append(libro.autor)
+        dict_libros["Año"].append(libro.anio)
+        dict_libros["Género"].append(libro.genero)
+        dict_libros["ISBN"].append(libro.isbn)
+      df = pd.DataFrame(dict_libros)
+      st.table(df)
     else:
       st.write("No hay libros en el inventario.")
   # Pestaña para actualizar un libro
   with tabs[4]:
     st.header("Actualizar Libro")
+    libro = False
     with st.form(key='actualizar_libro_form'):
-      titulo_actualizar = st.text_input("Título del libro")
+      libro_actualizar = st.text_input("ISBN del libro")
       if st.form_submit_button("Buscar Libro"):
-        libro = inventario.buscar_libro(titulo_actualizar)
-        if libro:
-          nuevo_titulo = st.text_input("Nuevo título", value=libro.titulo)
-          nuevo_autor = st.text_input("Nuevo autor", value=libro.autor)
-          nuevo_anio = st.text_input("Nuevo año", value=libro.anio)
-          nuevo_genero = st.text_input("Nuevo género", value=libro.genero)
-          # Mostrar un mensaje de confirmación antes de actualizar
-          if st.form_submit_button("Actualizar Libro"):
-            try:
-              kwargs = {}
-              if nuevo_titulo != libro.titulo:
-                kwargs['titulo'] = nuevo_titulo
-              if nuevo_autor != libro.autor:
-                kwargs['autor'] = nuevo_autor
-              if nuevo_anio != libro.anio:
-                if not nuevo_anio.isdigit():
-                  raise ValueError("El año debe ser un número.")
-                kwargs['anio'] = nuevo_anio
-              if nuevo_genero != libro.genero:
-                kwargs['genero'] = nuevo_genero
-              inventario.actualizar_libro(titulo_actualizar, **kwargs)
-              inventario.guardar_libros()  # Guardar cambios en el archivo CSV
-              st.success("Libro actualizado exitosamente.")
-            except ValueError as e:
-              st.error(f"Error al actualizar libro: {e}")
-        else:
-          st.error("El libro con este título no se encuentra en el inventario.")
+        libro = inventario.buscar_libro(libro_actualizar, t="isbn")
+    if libro:
+      with st.form(key='Editar Datos'):
+        nuevo_titulo = st.text_input("Título", value=libro.titulo)
+        nuevo_autor = st.text_input("Autor", value=libro.autor)
+        nuevo_anio = st.text_input("Año", value=libro.anio)
+        nuevo_genero = st.text_input("Género", value=libro.genero)
+        # Mostrar un mensaje de confirmación antes de actualizar
+        if st.form_submit_button("Actualizar Libro"):
+          try:
+            kwargs = {}
+            if nuevo_titulo != libro.titulo:
+              kwargs['titulo'] = nuevo_titulo
+            if nuevo_autor != libro.autor:
+              kwargs['autor'] = nuevo_autor
+            if nuevo_anio != libro.anio:
+              if not nuevo_anio.isdigit():
+                raise ValueError("El año debe ser un número.")
+              kwargs['anio'] = nuevo_anio
+            if nuevo_genero != libro.genero:
+              kwargs['genero'] = nuevo_genero
+            inventario.actualizar_libro(libro.isbn, **kwargs)
+            st.success("Libro actualizado exitosamente.")
+          except ValueError as e:
+            st.error(f"Error al actualizar libro: {e}")
+    elif (libro == None):
+      st.error("El libro con este ISBN no se encuentra en el inventario.")
   # Pestaña para descargar el inventario como CSV
   with tabs[5]:
     st.header("Descargar Inventario como CSV")

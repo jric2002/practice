@@ -32,3 +32,17 @@ Práctica de Programación Orientada a Objetos.
 3. Interactúa con la aplicación según las instrucciones proporcionadas en la interfaz de usuario.
 
 ## Interfaz Web
+
+![Agregar Libro](./images/gestion-libros-agregar-libro.png)
+
+![Eliminar Libro](./images/gestion-libros-eliminar-libro.png)
+
+![Buscar Libro](./images/gestion-libros-buscar-libro.png)
+
+![Listar Libros](./images/gestion-libros-listar-libros.png)
+
+![Actualizar Libro](./images/gestion-libros-actualizar-libro.png)
+
+![Descargar CSV](./images/gestion-libros-descargar-csv.png)
+
+![Archivo CSV](./images/gestion-libros-archivo-csv.png)

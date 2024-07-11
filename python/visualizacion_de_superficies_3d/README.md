@@ -30,3 +30,11 @@ Práctica de Programación Orientada a Objetos.
 2. Abre tu navegador web y ve a la dirección local proporcionada por Streamlit (por defecto es `http://localhost:8501`).
 
 3. Interactúa con la aplicación según las instrucciones proporcionadas en la interfaz de usuario.
+
+## Interfaz Web
+
+![Plano en 3D](./images/visualizador-de-superficies-3d-plano.png)
+
+![Paraboloide en 3D](./images/visualizador-de-superficies-3d-paraboloide.png)
+
+![Sinusoide en 3D](./images/visualizador-de-superficies-3d-sinusoide.png)
