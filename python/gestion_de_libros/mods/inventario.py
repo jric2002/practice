@@ -1,3 +1,4 @@
+import streamlit as st
 import pandas as pd
 from mods.libro import Libro
 
@@ -13,7 +14,7 @@ class Inventario:
         libro = Libro(fila['titulo'], fila['autor'], str(fila['anio']), fila['genero'], fila['isbn'])
         self.agregar_libro(libro)
     except FileNotFoundError:
-      pass
+      st.error("Archivo no encontrado", icon="🚨")
   def guardar_libros(self):
     datos = []
     for libro in self.libros.values():

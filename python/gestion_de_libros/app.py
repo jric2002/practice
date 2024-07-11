@@ -4,11 +4,15 @@ from mods.libro import Libro
 from mods.inventario import Inventario
 
 def main():
+  st.set_page_config(
+    page_title="Gestión de Libros",
+    page_icon="📚"
+  )
   # Configurar el inventario con el archivo CSV
   archivo_csv = 'inventario_libros.csv'
   inventario = Inventario(archivo_csv)
   # Configurar la aplicación Streamlit
-  st.title("Gestión de Libros")
+  st.title("Gestión de Libros 📚")
   # Definir las opciones como pestañas
   tabs = st.tabs(["Agregar Libro", "Eliminar Libro", "Buscar Libro", "Listar Libros", "Actualizar Libro", "Descargar CSV"])
   # Pestaña para agregar un libro
@@ -48,7 +52,7 @@ def main():
   with tabs[2]:
     st.header("Buscar Libro")
     with st.form(key='buscar_libro_form'):
-      titulo_buscar = st.text_input("Título del libro a buscar")
+      titulo_buscar = st.text_input("Título del libro")
       if st.form_submit_button("Buscar Libro"):
         libro = inventario.buscar_libro(titulo_buscar)
         if libro:
@@ -68,7 +72,7 @@ def main():
   with tabs[4]:
     st.header("Actualizar Libro")
     with st.form(key='actualizar_libro_form'):
-      titulo_actualizar = st.text_input("Título del libro a actualizar")
+      titulo_actualizar = st.text_input("Título del libro")
       if st.form_submit_button("Buscar Libro"):
         libro = inventario.buscar_libro(titulo_actualizar)
         if libro:

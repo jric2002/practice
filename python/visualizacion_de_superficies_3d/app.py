@@ -3,6 +3,10 @@ from mods.superficie3d import Plano, Paraboloide, Sinusoide
 from mods.visualizador import Visualizador3D
 
 def main():
+    st.set_page_config(
+        page_title="Visualizador de Superficies 3D",
+        page_icon="🎲"
+    )
     st.title("Visualizador de Superficies 3D")
 
     tipo = st.selectbox("Seleccione el tipo de superficie:",
