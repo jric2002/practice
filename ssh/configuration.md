@@ -177,6 +177,12 @@ Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `
   scp -i ruta_a_clave_privada -P puerto usuario@servidor:/ruta/remote/archivo /ruta/destino/local
   ```
 
+  Si quieres descargar un directorio con todo su contenido, entonces debes usar el parámetro `-r`.
+
+  ```
+  scp -i ruta_a_clave_privada -P puerto -r usuario@servidor:/ruta/remote/directorio /ruta/destino/local
+  ```
+
 2. **Subir desde local al servidor SSH:**
 
   ```
@@ -197,6 +203,12 @@ Si usas una clave especifica y un puerto diferente, puedes usar los argumentos `
 
   ```
   scp -i ruta_a_clave_privada -P puerto ruta_del_archivo usuario@servidor:/ruta/destino/
+  ```
+
+  Si quieres subir un directorio y todo su contenido, debe usar el parámetro `-r`.
+
+  ```
+  scp -i ruta_a_clave_privada -P puerto -r ruta_del_directorio usuario@servidor:/ruta/destino/
   ```
 
 ### Alternativas a `scp`:
