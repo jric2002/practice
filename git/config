@@ -1,0 +1,11 @@
+# GitHub
+Host github.com
+  Hostname github.com
+  PreferredAuthentications publickey
+  IdentityFile C:\Users\Usuario\.ssh\git\id_ed25519
+
+# GitLab
+Host gitlab.com
+  Hostname gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile C:\Users\Usuario\.ssh\git\id_ed25519
